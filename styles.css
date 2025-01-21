@@ -8,6 +8,30 @@ body {
     margin-left: 50px;
     margin-right: 50px;
     background-color: #000000;
+    text-align: center; /* Center all text */
+}
+
+.socials {
+  display: flex;
+  justify-content: center;
+  list-style: none;
+  padding: 0;
+  margin: 0 auto; /* Ensure the container is centered */
+}
+
+.socials ul {
+  display: inline;
+
+  align-items: center;
+}
+.socials li {
+  display: inline;
+  margin: 0 10px;
+}
+
+.socials img {
+  width: 30px; /* Adjust the size as needed */
+  height: 30px; /* Adjust the size as needed */
 }
 
 .socials {
@@ -31,6 +55,10 @@ h1 {
     text-align: center;
     color: rgb(255, 233, 248);
     align-items: center;
+}
+
+p {
+  color: pink;
 }
 
 .box {
