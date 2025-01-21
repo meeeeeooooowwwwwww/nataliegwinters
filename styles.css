@@ -1,32 +1,30 @@
-.body {
+body {
     font-size: 16px;
     display: flex;
     justify-content: center;
     align-items: center;
     flex-direction: column;
     height: 100vh;
-    margin: 0;
+    margin-left: 50px;
+    margin-right: 50px;
     background-color: #000000;
 }
+
 h1 {
     text-align: center;
-    color: rgb(255, 78, 196);
+    color: rgb(255, 147, 222);
     align-items: center;
 }
-p {
-    color: rgb(255, 116, 209);
-    align-items: center;
-}
+
 .box {
     background-color: #000000;
-    padding:20px;
-    border-radius: 20px;
-    box-shadow: 0 2px 10px rgba(247, 133, 186, 0.849);
+    padding:10%;
+    box-shadow: 0 0px 10px rgba(255, 138, 235, 0.849);
 }
 .video-container {
-    margin: 0 auto;
+    margin: 20px auto;
     position: relative;
-    width: 85%;
+    width: 100%;
     padding-top: 56.25%; /* 16:9 Aspect Ratio */
 }
 .video-container iframe {
@@ -37,3 +35,65 @@ p {
     width: 100%;
     height: 100%;
 }
+
+.paint-order {
+    paint-order: stroke fill;
+    /* https://caniuse.com/mdn-css_properties_paint-order */
+    /* default is paint-order: fill stroke */
+    /* mdn: https://developer.mozilla.org/en-US/docs/Web/CSS/paint-order */
+  }
+  @layer demo.support {
+    h1 {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-transform: uppercase;
+      font-size: calc(.5rem + min(90px, 15vw));
+      font-weight: 900;
+      letter-spacing: -.175ch;
+      line-height: 0.9;
+      color: rgb(255, 255, 255);
+      -webkit-text-stroke: 5px rgb(255, 41, 159);
+      
+      text-shadow: 8px 8px rgb(255, 41, 159);
+      
+      > span:first-of-type {
+        font-size: .75em;
+      }
+      
+      > div {
+        display: flex;
+        gap: .5ch;
+      }
+    }
+  
+    * {
+      box-sizing: border-box;
+      margin: 0;
+    }
+  
+    html {
+      block-size: 0%;
+    }
+  
+    body {
+      min-block-size: 100%;
+      font-family: system-ui, sans-serif;
+      display: grid;
+      place-content: center;
+      gap: 15vmin;
+    }
+  
+    section {
+      display: grid;
+      place-items: center;
+      gap: 2vmin;
+      
+      > p {
+        border: 2px solid #aaa;
+        border-radius: 1e3px;
+        padding-inline: 1.5ch;
+        line-height: 1.75;
+      }
+    }
+  }
