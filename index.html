@@ -1,39 +1,45 @@
+
 <!DOCTYPE html>
 <html lang="en">
-<head>
+  <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="icon" type="image/icon" href="favicon.ico">
     <link rel="stylesheet" href="styles.css">
     <title>Natalie G Winters</title>
-</head>
-
-<script>
-    if ('serviceWorker' in navigator) {
-      navigator.serviceWorker.register('/service-worker.js')
-        .then(registration => {
-          console.log('Service Worker registered with scope:', registration.scope);
-        })
-        .catch(error => {
-          console.error('Service Worker registration failed:', error);
-        });
-    }
-  </script>
-
-<body>
-
-<div class="container">
-
-    <section>
-        <h1 class="paint-order">
-          <span>Super</span>
-          <div>
-            <span>Yoga</span>
-            <span>Music</span>
-          </div>
-        </h1>
-    </section>
+  </head>
+  <body>
+    <div class="container">
+        <section>
+          <h1 class="paint-order">
+            <span>Super</span>
+              <div>
+              <span>Yoga</span>
+              <span>Music</span>
+            </div>
+          </h1>
+        </section>
         <div class="box video-container">
           <iframe src="https://www.youtube.com/embed/videoseries?si=b6Og6UOx6FPFfHom&amp;list=PL1LdnGna-Q-kHurkzUFKBfOLoQNnCv738" frameborder="0" allowfullscreen></iframe>
         </div>
-</div>
+        <div class="socials">
+          <ul id="socials">
+              <li><a href="https://www.instagram.com/nataliegwinters/"><img src="images/icons8-instagram-96.png" alt="Natalie G Winters Instagram" /></a></li>
+              <li><a href="https://buymeacoffee.com/nataliegwinters"><img src="images/hot-beverage_2615.png" alt="Natalie G Winters Coffee" /></a></li>
+              <li><a href="https://x.com/nataliegwinters"><img src="images/icons8-x-96.png" alt="Natalie G Winters X" /></a></li>
+            </ul>
+          </div>
+    </div>
+    <script>
+      if ('serviceWorker' in navigator) {
+        navigator.serviceWorker.register('/service-worker.js')
+          .then(registration => {
+            console.log('Service Worker registered with scope:', registration.scope);
+          })
+          .catch(error => {
+            console.error('Service Worker registration failed:', error);
+          });
+      }
+    </script>
+  </body>
+</html>
