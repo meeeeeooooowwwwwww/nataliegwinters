@@ -2,56 +2,63 @@ body {
     font-size: 16px;
     display: flex;
     justify-content: center;
-    align-items: center;
+
     flex-direction: column;
-    height: 100vh;
+    height: 95vh;
     margin-left: 50px;
     margin-right: 50px;
+    margin-top: 10px;
     background-color: #000000;
-    text-align: center; /* Center all text */
 }
 
-.socials {
+.container {
+  padding-top: 10px;
+}
+
+.top-menu {
+  background-color: #000000;
+  overflow: hidden;
+  position: -webkit-sticky; /* For Safari */
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+  margin-bottom: 5px;
+}
+
+.top-menu ul {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
   display: flex;
   justify-content: center;
-  list-style: none;
-  padding: 0;
-  margin: 0 auto; /* Ensure the container is centered */
 }
 
-.socials ul {
+.top-menu ul li {
   display: inline;
+}
 
+.top-menu ul li a {
+  display: block;
+  color: rgb(255, 209, 253);
+  text-align: center;
+  padding: 11px 10px;
+  text-decoration: none;
+  transition: background-color 0.3s, box-shadow 0.3s;
+  border-radius: 20px; /* Adjust the value as needed */
+}
+
+.top-menu ul li a:hover {
+  background-color: #3f3f3f;
+  box-shadow: 0px 4px 8px rgba(122, 122, 122, 0.2);
+}
+
+h2 {
+  text-align: center;
+  color: rgb(255, 233, 248);
   align-items: center;
 }
-.socials li {
-  display: inline;
-  margin: 0 10px;
-}
 
-.socials img {
-  width: 30px; /* Adjust the size as needed */
-  height: 30px; /* Adjust the size as needed */
-}
-
-.socials {
-  display: flex;
-  justify-content: center;
-  list-style: none;
-  padding: 0;
-}
-
-.socials li {
-  display: inline;
-  margin: 0 10px;
-}
-
-.socials img {
-  width: 30px; /* Adjust the size as needed */
-  height: 30px; /* Adjust the size as needed */
-}
-
-h1 {
+  h1 {
     text-align: center;
     color: rgb(255, 233, 248);
     align-items: center;
@@ -79,7 +86,6 @@ p {
     width: 100%;
     height: 100%;
 }
-
 .paint-order {
     paint-order: stroke fill;
     /* https://caniuse.com/mdn-css_properties_paint-order */
@@ -107,7 +113,7 @@ p {
       
       > div {
         display: flex;
-        gap: .5ch;
+        gap: .0ch;
       }
     }
   
@@ -121,23 +127,90 @@ p {
     }
   
     body {
+      align-items: center;
       min-block-size: 100%;
       font-family: system-ui, sans-serif;
       display: grid;
       place-content: center;
-      gap: 15vmin;
+      gap: 0vmin;
     }
   
     section {
       display: grid;
       place-items: center;
       gap: 2vmin;
-      
-      > p {
-        border: 2px solid #aaa;
-        border-radius: 1e3px;
-        padding-inline: 1.5ch;
-        line-height: 1.75;
-      }
+      padding-bottom: 20px;
     }
-  }
+    
+    section p {
+      font
+      padding-inline: 1.5ch;
+      line-height: 1.75;
+      text-align: center;
+    }
+
+    .centered-image {
+      display: block;
+      margin: 0 auto;
+      max-width: 20%;
+      height: auto;
+    }
+  
+.socials {
+  display: flex;
+  justify-content: center;
+  list-style: none;
+  padding: 0;
+}
+
+.socials ul {
+  display: inline;
+  align-items: center;
+}
+.socials li {
+  display: inline;
+  margin: 0 10px;
+}
+.socials img {
+  width: 30px;
+  height: 30px;
+}
+
+footer {
+  display: flex;
+  justify-content: center;
+  text-align: center;
+  padding: 0;
+}
+
+footer ul {
+  list-style-type: none;
+}
+
+footer li {
+  display: inline;
+  margin: 0 10px;
+}
+
+footer a {
+  color: pink;
+  text-decoration: none;
+  font-size: 16px;
+}
+
+footer a:hover {
+  color: #ff69b4;
+  text-decoration: underline;
+}
+
+.footer2 {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.footer2 a {
+  display: block;
+  margin-bottom: 10px; /* Adjust the value as needed */
+}
