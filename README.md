@@ -1,2 +1,2 @@
 # nataliegwinters
-sup gang gnag
+sup gang gang
