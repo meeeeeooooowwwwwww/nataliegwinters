@@ -1,14 +1,15 @@
-body {
-  font-size: 16px;
-  display: flex;
-  justify-content: center;
+html, body {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  overflow-x: hidden; /* Prevent horizontal scrolling */
+}
 
+body {
+  display: flex;
   flex-direction: column;
-  height: 95vh;
-  margin-left: 50px;
-  margin-right: 50px;
-  margin-top: 10px;
-  background-color: #000000;
+  min-height: 100vh; /* Ensure the body fills the viewport */
+  background-color: #000000; /* Match the current background */
 }
 
 /* Default link style */
@@ -37,44 +38,47 @@ a:focus {
 }
 
 .container {
-  padding-top: 10px;
+  flex: 1; /* Allow content to expand to fill available space */
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start; /* Start content at the top */
+  padding: 10px; /* Add padding to prevent overlap */
 }
 
 .top-menu {
-  background-color: #000000;
-  overflow: hidden;
-  position: -webkit-sticky; /* For Safari */
-  position: sticky;
-  top: 0;
-  z-index: 1000;
-  margin-bottom: 5px;
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    background-color: #000000;
+    overflow: hidden;
+    margin-bottom: 5px;
 }
 
 .top-menu ul {
-  list-style-type: none;
-  margin: 0;
-  padding: 0;
-  display: flex;
-  justify-content: center;
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
 }
 
 .top-menu ul li {
-display: inline;
+    display: inline;
 }
 
 .top-menu ul li a {
-  display: block;
-  color: rgb(255, 209, 253);
-  text-align: center;
-  padding: 11px 10px;
-  text-decoration: none;
-  transition: background-color 0.3s, box-shadow 0.3s;
-  border-radius: 20px; /* Adjust the value as needed */
+    display: block;
+    color: rgb(255, 209, 253);
+    text-align: center;
+    padding: 11px 10px;
+    text-decoration: none;
+    border-radius: 20px;
+    transition: background-color 0.3s, box-shadow 0.3s;
 }
 
 .top-menu ul li a:hover {
-background-color: #3f3f3f;
-box-shadow: 0px 4px 8px rgba(122, 122, 122, 0.2);
+    background-color: #3f3f3f;
+    box-shadow: 0px 4px 8px rgba(122, 122, 122, 0.2);
 }
 
 /* Style for the image container */
@@ -123,20 +127,22 @@ p {
   padding:5%;
   box-shadow: 0 0px 10px rgba(255, 138, 235, 0.849);
 }
+
 .video-container {
-  margin: 20px auto;
   position: relative;
   width: 100%;
   padding-top: 56.25%; /* 16:9 Aspect Ratio */
+  margin: 20px 0;
 }
+
 .video-container iframe {
   position: absolute;
-  align-items: center;
   top: 0;
   left: 0;
   width: 100%;
   height: 100%;
 }
+
 .paint-order {
   paint-order: stroke fill;
   /* https://caniuse.com/mdn-css_properties_paint-order */
@@ -187,60 +193,62 @@ p {
   }
 }
 
-  section {
-    display: grid;
-    place-items: center;
-    gap: 2vmin;
-    padding-bottom: 20px;
-  }
+section {
+  margin-top: 5px; /* Add spacing to separate sections */
+  padding: 15px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
   
-  section p {
-    font
-    padding-inline: 1.5ch;
-    line-height: 1.75;
-    text-align: center;
-  }
+section p {
+  font
+  padding-inline: 1.5ch;
+  line-height: 1.75;
+  text-align: center;
+}
 
 .socials {
-    display: flex; /* Ensures all list items are inline */
-    justify-content: center;
-    list-style: none;
-    padding: 0; /* No extra padding for the container */
+  display: flex; /* Ensures all list items are inline */
+  justify-content: center;
+  list-style: none;
+  padding: 0; /* No extra padding for the container */
 }
   
 .socials li {
-    display: inline; /* Keeps list items inline */
-    margin: 0 5px; /* Reduce spacing between items */
+  display: inline; /* Keeps list items inline */
+  margin: 0 5px; /* Reduce spacing between items */
 }
   
 .socials li a {
-    display: inline-block; /* Allows padding and hover effects */
-    color: rgb(255, 209, 253); /* Base color */
-    text-align: center;
-    padding: 8px 5px; /* Reduced padding */
-    text-decoration: none;
-    transition: background-color 0.3s, box-shadow 0.3s;
-    border-radius: 10px; /* Matches the rounded style */
-    max-width: 40px; /* Smaller width for the link container */
-    max-height: 40px; /* Smaller height for the link container */
+  display: inline-block; /* Allows padding and hover effects */
+  color: rgb(255, 209, 253); /* Base color */
+  text-align: center;
+  padding: 8px 5px; /* Reduced padding */
+  text-decoration: none;
+  transition: background-color 0.3s, box-shadow 0.3s;
+  border-radius: 10px; /* Matches the rounded style */
+  max-width: 40px; /* Smaller width for the link container */
+  max-height: 40px; /* Smaller height for the link container */
 }
 
 .socials li a img {
-    width: 100%; /* Ensures the images fit within the link element */
-    height: 100%; /* Maintain aspect ratio */
-    object-fit: contain; /* Ensures the image maintains its aspect ratio */
+  width: 100%; /* Ensures the images fit within the link element */
+  height: 100%; /* Maintain aspect ratio */
+  object-fit: contain; /* Ensures the image maintains its aspect ratio */
 }
   
 .socials li a:hover {
-    background-color: #ff69b4; /* Pink hover color */
-    box-shadow: 0px 4px 6px rgba(255, 105, 180, 0.2); /* Slightly reduced shadow */
+  background-color: #ff69b4; /* Pink hover color */
+  box-shadow: 0px 4px 6px rgba(255, 105, 180, 0.2); /* Slightly reduced shadow */
 }
 
 footer {
-  display: flex;
-  justify-content: center;
+  margin-top: auto; /* Push footer to the bottom */
   text-align: center;
-  padding: 0;
+  padding: 10px;
+  background-color: #000000;
+  color: rgb(255, 209, 253);
 }
 
 footer ul {
@@ -276,20 +284,19 @@ footer a:hover {
 }
 
 .footer3 {
-  position: fixed; /* Fix the position of the container */
-  bottom: 0; /* Align to the bottom of the viewport */
-  right: 0; /* Align to the right of the viewport */
+  position: fixed;
+  bottom: 10px;
+  right: 10px;
   display: flex;
-  justify-content: center;
   align-items: flex-end;
-  text-align: right;
-  padding: 10px; /* Add padding for spacing */
+  justify-content: center;
+  padding: 10px;
 }
 
 .footer3 a img {
-  border-radius: 50%; /* Keep the image corners rounded */
-  width: 50px; /* Adjust the size of the image as needed */
-  height: 50px; /* Maintain a consistent size */
+  border-radius: 50%;
+  width: 50px;
+  height: 50px;
 }
 
 hr {
