@@ -247,3 +247,10 @@ margin-bottom: 10px; /* Adjust the value as needed */
 .footer3 a img {
   border-radius: 50%; /* Keep the image corners rounded */
 }
+
+hr {
+  border: 0;
+  border-top: 1px solid #ffb6c1; /* Very light pink color */
+  width: 50%; /* Adjust the width as needed */
+  margin: 5px auto; /* Reduced space above and below the <hr> */
+}
