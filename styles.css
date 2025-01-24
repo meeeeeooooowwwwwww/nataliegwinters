@@ -218,8 +218,8 @@ margin-bottom: 10px; /* Adjust the value as needed */
 .footer3 {
   display: flex;
   flex-direction: column;
-  align-items: right;
-  justify-content: center;
+  align-items: flex-end; /* Aligns items to the right */
+  justify-content: center; /* Center items vertically within the container */
 }
 
 .footer3 a {
