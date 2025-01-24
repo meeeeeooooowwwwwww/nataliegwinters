@@ -218,15 +218,13 @@ margin-bottom: 10px; /* Adjust the value as needed */
 .footer3 {
   display: flex;
   flex-direction: column;
-  align-items: flex-end; /* Aligns items to the right */
-  justify-content: center; /* Center items vertically within the container */
+  justify-content: center;
+  align-items: flex-end !important; /* Force alignment to the right */
+  text-align: right !important; /* Ensure text aligns right */
 }
 
 .footer3 a {
   display: block;
-  margin-bottom: 10px; /* Adjust the value as needed */
-}
-
-.footer3 a img {
-  border-radius: 50%; /* Make the image corners rounded */
+  margin-bottom: 10px !important; /* Retain margin-bottom while forcing it */
+  margin-left: auto !important; /* Push the link elements to the right */
 }
