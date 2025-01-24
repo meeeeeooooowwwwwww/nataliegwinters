@@ -11,6 +11,31 @@ body {
   background-color: #000000;
 }
 
+/* Default link style */
+a {
+  color: #f318bc; /* Pink color */
+  font-weight: bold; /* Make the font bold */
+  text-decoration: none; /* No underline by default */
+  transition: color 0.3s ease, text-decoration 0.3s ease; /* Smooth transition */
+}
+
+/* Link hover effect */
+a:hover {
+  color: #c11598; /* Darker pink when hovered */
+  text-decoration: underline; /* Underline on hover */
+}
+
+/* Link active (clicked) state */
+a:active {
+  color: #a10f7e; /* Even darker pink when clicked */
+  text-decoration: none; /* No underline when clicked */
+}
+
+/* Optional: Focus state for accessibility */
+a:focus {
+  outline: 2px solid #c11598; /* Add outline for focus */
+}
+
 .container {
 padding-top: 10px;
 }
@@ -51,6 +76,32 @@ border-radius: 20px; /* Adjust the value as needed */
 background-color: #3f3f3f;
 box-shadow: 0px 4px 8px rgba(122, 122, 122, 0.2);
 }
+
+/* Style for the image container */
+.image-container {
+  display: inline-block;
+  padding-top: 0px; /* Padding applied around the image container */
+  border-radius: 15px; /* Round the corners of the border */
+  border: 5px solid rgba(243, 24, 188, 0.6); /* Border wraps around the image */
+  box-shadow: 0 4px 12px rgba(243, 24, 188, 0.6); /* Pink shadow around the image container */
+}
+
+/* Style for the image */
+.natalie-winters-image {
+  display: block;
+  margin: 0 auto;
+  max-width: 30%; /* Image will take full width of its container */
+  height: auto;
+  border-radius: 15px; /* Round the corners of the image */
+  transition: box-shadow 0.3s ease, transform 0.3s ease; /* Smooth transition for shadow and scaling */
+}
+
+/* Optional: Add a hover effect to the shadow and shrink the image */
+.natalie-winters-image:hover {
+  box-shadow: 0 8px 16px rgba(243, 24, 188, 0.8); /* More intense shadow on hover */
+  transform: scale(0.95); /* Shrink the image a little bit */
+}
+
 
 h2 {
 text-align: center;
@@ -134,7 +185,7 @@ color: pink;
     place-content: center;
     gap: 0vmin;
   }
-
+}
   section {
     display: grid;
     place-items: center;
@@ -147,13 +198,6 @@ color: pink;
     padding-inline: 1.5ch;
     line-height: 1.75;
     text-align: center;
-  }
-
-  .centered-image {
-    display: block;
-    margin: 0 auto;
-    max-width: 20%;
-    height: auto;
   }
 
   .socials {
