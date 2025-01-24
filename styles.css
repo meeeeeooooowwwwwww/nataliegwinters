@@ -106,7 +106,6 @@ a:focus {
   transform: scale(0.95); /* Shrink the image a little bit */
 }
 
-
 h2 {
   text-align: center;
   color: rgb(255, 233, 248);
@@ -157,7 +156,7 @@ p {
     text-transform: uppercase;
     font-size: calc(.5rem + min(90px, 15vw));
     font-weight: 900;
-    letter-spacing: -.175ch;
+    letter-spacing: -.155ch;
     line-height: 0.9;
     color: rgb(255, 255, 255);
     -webkit-text-stroke: 5px rgb(255, 41, 159);
@@ -165,12 +164,12 @@ p {
     text-shadow: 8px 8px rgb(255, 41, 159);
     
     > span:first-of-type {
-      font-size: .75em;
+      font-size: .60em;
     }
     
     > div {
       display: flex;
-      gap: .0ch;
+      gap: .2ch;
     }
   }
 
@@ -185,7 +184,7 @@ p {
 
   body {
     align-items: center;
-    min-block-size: 100%;
+    min-block-size:100%;
     font-family: system-ui, sans-serif;
     display: grid;
     place-content: center;
@@ -195,7 +194,7 @@ p {
 
 section {
   margin-top: 5px; /* Add spacing to separate sections */
-  padding: 15px;
+  padding: 10px;
   display: flex;
   flex-direction: column;
   align-items: center;
