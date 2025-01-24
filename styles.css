@@ -186,6 +186,7 @@ color: pink;
     gap: 0vmin;
   }
 }
+
   section {
     display: grid;
     place-items: center;
@@ -275,21 +276,20 @@ margin-bottom: 10px; /* Adjust the value as needed */
 }
 
 .footer3 {
+  position: fixed; /* Fix the position of the container */
+  bottom: 0; /* Align to the bottom of the viewport */
+  right: 0; /* Align to the right of the viewport */
   display: flex;
-  flex-direction: column;
   justify-content: center;
-  align-items: flex-end !important; /* Force alignment to the right */
-  text-align: right !important; /* Ensure text aligns right */
-}
-
-.footer3 a {
-  display: block;
-  margin-bottom: 10px !important; /* Retain margin-bottom while forcing it */
-  margin-left: auto !important; /* Push the link elements to the right */
+  align-items: flex-end;
+  text-align: right;
+  padding: 10px; /* Add padding for spacing */
 }
 
 .footer3 a img {
   border-radius: 50%; /* Keep the image corners rounded */
+  width: 50px; /* Adjust the size of the image as needed */
+  height: 50px; /* Maintain a consistent size */
 }
 
 hr {
