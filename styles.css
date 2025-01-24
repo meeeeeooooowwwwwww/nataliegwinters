@@ -156,25 +156,40 @@ color: pink;
     height: auto;
   }
 
-.socials {
-display: flex;
-justify-content: center;
-list-style: none;
-padding: 0;
+  .socials {
+    display: flex; /* Ensures all list items are inline */
+    justify-content: center;
+    list-style: none;
+    padding: 0;
+}
+  
+.socials li {
+    display: inline; /* Keeps list items inline */
+    margin: 0 10px; /* Adds spacing between items */
+}
+  
+.socials li a {
+    display: inline-block; /* Allows padding and hover effects */
+    color: rgb(255, 209, 253); /* Base color */
+    text-align: center;
+    padding: 11px 10px;
+    text-decoration: none;
+    transition: background-color 0.3s, box-shadow 0.3s;
+    border-radius: 20px; /* Matches the rounded style */
+    max-width: 60px; /* Adjust this value to your desired image size */
+    max-height: 60px; /* Maintain aspect ratio with height */
 }
 
-.socials ul {
-display: inline;
-align-items: center;
+.socials li a img { /* If you have images inside the links */
+    width: 100%; /* Ensures the images fit within the link element */
+    height: 100%; /* Maintain aspect ratio */
+    object-fit: contain; /* Ensures the image maintains its aspect ratio */
 }
-.socials li {
-display: inline;
-margin: 0 10px;
-}
-.socials img {
-width: 30px;
-height: 30px;
-}
+  
+.socials li a:hover {
+    background-color: #ff69b4; /* Pink hover color */
+    box-shadow: 0px 4px 8px rgba(255, 105, 180, 0.2); /* Pink shadow */
+} 
 
 footer {
 display: flex;
