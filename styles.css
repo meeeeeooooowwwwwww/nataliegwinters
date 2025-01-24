@@ -228,3 +228,7 @@ margin-bottom: 10px; /* Adjust the value as needed */
   margin-bottom: 10px !important; /* Retain margin-bottom while forcing it */
   margin-left: auto !important; /* Push the link elements to the right */
 }
+
+.footer3 a img {
+  border-radius: 50%; /* Keep the image corners rounded */
+}
