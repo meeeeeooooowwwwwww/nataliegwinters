@@ -1,1 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Scraped News Headings</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+        }
+        h1 {
+            text-align: center;
+        }
+        .headings {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        .heading-item {
+            background: #f9f9f9;
+            padding: 10px;
+            margin: 10px 0;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Scraped News Headings</h1>
+    <div class="headings">
+        {% if headings %}
+            {% for heading in headings %}
+            <div class="heading-item">{{ heading }}</div>
+            {% endfor %}
+        {% else %}
+            <p>No headings found or unable to scrape the website.</p>
+        {% endif %}
+    </div>
+</body>
+</html>
 
