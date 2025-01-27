@@ -16,21 +16,19 @@ body {
   display: flex;
   justify-content: center;
   align-items: center;
-  height: auto; /* Adjust height to fit content */  
-  background: #000; /* Black background for contrast */
 }
 
 .neon-container .neonText {
   font-family: 'Alex Brush', cursive;  /* Apply the Google font here */
   color: #ff77b9; /* Shocking pink base color */
   text-shadow:
-    0 0 7px #ffe8f3,
-    0 0 10px #ffc2e0,
-    0 0 20px #ff9fcf,
-    0 0 30px #ff6db6,
-    0 0 40px #ff0080,
-    0 0 50px #ff0080,
-    0 0 100px #ff0080;
+    0 0 1px #ffe8f3,
+    0 0 3px #ffc2e0,
+    0 0 5px #ff9fcf,
+    0 0 7px #ff6db6,
+    0 0 10px #ff0080,
+    0 0 15px #ff0080,
+    0 0 20px #ff0080;
   font-size: 2.5rem; /* Adjust size as needed */
   animation: neon-flicker 0.9s infinite alternate ease-in-out;
   text-align: center;
@@ -39,26 +37,26 @@ body {
 @keyframes neon-flicker {
   0%, 85% { 
     text-shadow:
-      0 0 7px #ff70b7,
-      0 0 10px #ff4da6,
-      0 0 20px #ff4da6,
-      0 0 30px #ff0080,
-      0 0 40px #ff0080,
-      0 0 50px #ff0080,
-      0 0 100px #ff0080;
+    0 0 1px #ffe8f3,
+    0 0 3px #ffc2e0,
+    0 0 5px #ff9fcf,
+    0 0 7px #ff6db6,
+    0 0 10px #ff0080,
+    0 0 15px #ff0080,
+    0 0 20px #ff0080;
   }
   86%, 90% { 
     text-shadow: none; /* Brief flicker */
   }
   91%, 100% { 
     text-shadow:
-      0 0 5px #ffe4f2,
-      0 0 15px #ffc3e1,
-      0 0 25px #ff4da6,
-      0 0 40px #ff0080,
-      0 0 60px #ff0080,
-      0 0 80px #ff0080,
-      0 0 100px #ff0080;
+    0 0 1px #ffe8f3,
+    0 0 3px #ffc2e0,
+    0 0 5px #ff9fcf,
+    0 0 7px #ff6db6,
+    0 0 10px #ff0080,
+    0 0 15px #ff0080,
+    0 0 20px #ff0080;
   }
 }
 
