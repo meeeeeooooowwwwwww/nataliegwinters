@@ -20,7 +20,7 @@ body {
 
 .neon-container .neonText {
   font-family: 'Alex Brush', cursive;  /* Apply the Google font here */
-  color: #ff77b9; /* Shocking pink base color */
+  color: #ffbbdc; /* Shocking pink base color */
   text-shadow:
     0 0 1px #ffe8f3,
     0 0 3px #ffc2e0,
@@ -30,12 +30,12 @@ body {
     0 0 15px #ff0080,
     0 0 20px #ff0080;
   font-size: 2.5rem; /* Adjust size as needed */
-  animation: neon-flicker 1.9s infinite alternate ease-in-out;
+  animation: neon-flicker 1.0s infinite alternate ease-in-out;
   text-align: center;
 }
 
 @keyframes neon-flicker {
-  0%, 90% { 
+  0%, 60% { 
     text-shadow:
     0 0 1px #ffe8f3,
     0 0 3px #ffc2e0,
@@ -45,10 +45,10 @@ body {
     0 0 15px #ff0080,
     0 0 20px #ff0080;
   }
-  86%, 90% { 
+  86%, 95% { 
     text-shadow: none; /* Brief flicker */
   }
-  91%, 100% { 
+  91%, 95% { 
     text-shadow:
     0 0 1px #ffe8f3,
     0 0 3px #ffc2e0,
