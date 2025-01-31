@@ -230,6 +230,13 @@ p {
   }
 }
 
+.custom-heading {
+  font-family: 'Arial', sans-serif;
+  font-size: 4em; /* Larger size using em units */
+  color: rgb(255, 255, 255); /* Pink color for the text */
+  text-shadow: 2px 3px 4px rgba(255, 20, 147, 0.8); /* Strong pink drop shadow */
+}
+
 section {
   margin-top: 5px; /* Add spacing to separate sections */
   padding: 10px;
