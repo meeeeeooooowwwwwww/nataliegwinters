@@ -207,6 +207,12 @@ p {
   color: pink;
 }
 
+.custom-heading {
+  font-size: 1rem; /* Adjust the size as needed */
+  color:  rgba(255, 138, 235, 0.849);
+  text-align: center; /* Center the text horizontally */
+}
+
 .box {
   padding:5%;
   box-shadow: 0 0px 10px rgba(255, 138, 235, 0.849);
