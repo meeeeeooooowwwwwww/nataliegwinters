@@ -90,7 +90,7 @@ a:focus {
   display: flex;
   flex-direction: column;
   justify-content: flex-start; /* Start content at the top */
-  padding: 10px; /* Add padding to prevent overlap */
+  padding: 15px; /* Add padding to prevent overlap */
 }
 
 .top-menu {
@@ -170,6 +170,13 @@ a:focus {
   transform: scale(0.95); /* Shrink the image a little bit */
 }
 
+hr {
+  border: 0; /* Remove the default border */
+  height: 1px; /* Set the height to 1px */
+  background-color: #ffbbdc; /* Light pink color */
+  width: 30%; /* Adjust the width to 90% of the container */
+  margin: 10px auto; /* Center the hr with margins on top and bottom */
+}
 
 h2 {
   text-align: center;
@@ -181,6 +188,19 @@ h1 {
   text-align: center;
   color: rgb(255, 233, 248);
   align-items: center;
+}
+
+h4 {
+  text-align: center; /* Centers the text inside h4 */
+}
+
+h4 a {
+  color: #ff69b4; /* Optional: Change the color of the link */
+  text-decoration: none; /* Optional: Remove the underline */
+}
+
+h4 a:hover {
+  text-decoration: underline; /* Optional: Add underline on hover */
 }
 
 p {
