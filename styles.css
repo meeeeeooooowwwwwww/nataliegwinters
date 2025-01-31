@@ -195,29 +195,20 @@ p {
   /* default is paint-order: fill stroke */
   /* mdn: https://developer.mozilla.org/en-US/docs/Web/CSS/paint-order */
 }
+
 @layer demo.support {
-  h1 {
+  .custom-heading {
     display: flex;
     flex-direction: column;
     align-items: center;
     text-transform: uppercase;
-    font-size: calc(.3rem + min(90px, 15vw));
+    font-size: calc(.2rem + min(90px, 15vw));
     font-weight: 900;
     letter-spacing: -.155ch;
     line-height: 0.9;
     color: rgb(255, 255, 255);
-    -webkit-text-stroke: 4px rgb(255, 41, 159);
-    
-    text-shadow: 7px 7px rgb(255, 41, 159);
-    
-    > span:first-of-type {
-      font-size: .50em;
-    }
-    
-    > div {
-      display: flex;
-      gap: .2ch;
-    }
+    -webkit-text-stroke:1px rgb(255, 219, 239);
+    text-shadow: 0px 5px rgb(255, 167, 215);
   }
 
   * {
