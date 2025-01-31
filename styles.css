@@ -132,9 +132,9 @@ a:focus {
 /* Style for the image container */
 .image-container {
   display: flex;  /* Keeps images inline */
-  gap: 5px;  /* Reduce spacing between images */
+  gap: 10px;  /* Reduce spacing between images */
   justify-content: center;  /* Centers images horizontally */
-  flex-wrap: wrap;  /* Allows wrapping on smaller screens */
+
   padding-top: 10px; /* Remove unnecessary padding */
   padding-bottom: 10px; /* Remove unnecessary padding */
 }
@@ -142,7 +142,7 @@ a:focus {
 /* Style for the images */
 .natalie-winters-image {
   display: block;
-  max-width: 20%; /* Ensure images are responsive */
+  max-width: 25%; /* Ensure images are responsive */
   height: auto;
   border-radius: 15px; /* Round the corners of the image */
   border: 1px solid rgba(243, 24, 188, 0.6); /* Border around each image */
