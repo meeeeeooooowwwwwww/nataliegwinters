@@ -1,0 +1,36 @@
+name: Run Scraper Script
+
+on:
+  schedule:
+    # Every hour on the hour
+    - cron: '0 * * * *'
+  workflow_dispatch:  # Allows manual triggering from the GitHub UI
+
+jobs:
+  run-scraper:
+    runs-on: ubuntu-latest  # Use Ubuntu to run the script
+    
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v2  # Check out the code from the repository
+
+    - name: Set up Node.js
+      uses: actions/setup-node@v2
+      with:
+        node-version: '16'  # Set the Node.js version to use for the script
+
+    - name: Install dependencies
+      run: npm install  # Install required dependencies (if you have a package.json)
+
+    - name: Run scraper script
+      run: node scraper.js  # Run the scraper.js script
+
+    - name: Commit and push changes
+      run: |
+        git config --global user.name "your-github-username"
+        git config --global user.email "your-email@example.com"
+        git add news.html
+        git commit -m "Updated news.html from scraper"
+        git push
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}  # Use GitHub token to push changes

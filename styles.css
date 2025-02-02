@@ -1,0 +1,385 @@
+html, body {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  overflow-x: hidden; /* Prevent horizontal scrolling */
+}
+
+body {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh; /* Ensure the body fills the viewport */
+  background-color: #000000; /* Match the current background */
+}
+
+.neon-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.neon-container .neonText {
+  font-family: 'Alex Brush', cursive;  /* Apply the Google font here */
+  color: #ffbbdc; /* Shocking pink base color */
+  text-shadow:
+    0 0 1px #ffe8f3,
+    0 0 3px #ffc2e0,
+    0 0 5px #ff9fcf,
+    0 0 7px #ff6db6,
+    0 0 10px #ff0080,
+    0 0 15px #ff0080,
+    0 0 20px #ff0080;
+  font-size: 2.5rem; /* Adjust size as needed */
+  animation: neon-flicker 1.0s infinite alternate ease-in-out;
+  text-align: center;
+}
+
+@keyframes neon-flicker {
+  0%, 60% { 
+    text-shadow:
+    0 0 1px #ffe8f3,
+    0 0 3px #ffc2e0,
+    0 0 5px #ff9fcf,
+    0 0 7px #ff6db6,
+    0 0 10px #ff0080,
+    0 0 15px #ff0080,
+    0 0 20px #ff0080;
+  }
+  86%, 95% { 
+    text-shadow: none; /* Brief flicker */
+  }
+  91%, 95% { 
+    text-shadow:
+    0 0 1px #ffe8f3,
+    0 0 3px #ffc2e0,
+    0 0 5px #ff9fcf,
+    0 0 7px #ff6db6,
+    0 0 10px #ff0080,
+    0 0 15px #ff0080,
+    0 0 20px #ff0080;
+  }
+}
+
+/* Default link style */
+a {
+  color: #f318bc; /* Pink color */
+  font-weight: bold; /* Make the font bold */
+  text-decoration: none; /* No underline by default */
+  transition: color 0.3s ease, text-decoration 0.3s ease; /* Smooth transition */
+}
+
+/* Link hover effect */
+a:hover {
+  color: #c11598; /* Darker pink when hovered */
+  text-decoration: underline; /* Underline on hover */
+}
+
+/* Link active (clicked) state */
+a:active {
+  color: #a10f7e; /* Even darker pink when clicked */
+  text-decoration: none; /* No underline when clicked */
+}
+
+/* Optional: Focus state for accessibility */
+a:focus {
+  outline: 2px solid #c11598; /* Add outline for focus */
+}
+
+.container {
+  flex: 1; /* Allow content to expand to fill available space */
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start; /* Start content at the top */
+  padding: 15px; /* Add padding to prevent overlap */
+}
+
+.top-menu {
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+  background-color: #000000;
+  overflow: hidden;
+  margin-bottom: 0px;
+}
+
+.top-menu ul {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  justify-content: center;
+}
+
+.top-menu ul li {
+  display: inline;
+}
+
+.top-menu ul li a {
+  display: block;
+  color: rgb(255, 209, 253);
+  text-align: center;
+  padding:15px 5px;
+  text-decoration: none;
+  border-radius: 20px;
+  transition: background-color 0.3s, box-shadow 0.3s;
+}
+
+.top-menu ul li a:hover {
+  background-color: #3f3f3f;
+  box-shadow: 0px 4px 8px rgba(122, 122, 122, 0.2);
+}
+
+
+/* Style for the image container */
+.image-container {
+  display: flex;  /* Keeps images inline */
+  gap: 10px;  /* Reduce spacing between images */
+  justify-content: center;  /* Centers images horizontally */
+
+  padding-top: 10px; /* Remove unnecessary padding */
+  padding-bottom: 10px; /* Remove unnecessary padding */
+}
+
+/* Style for the images */
+.natalie-winters-image {
+  display: block;
+  max-width: 25%; /* Ensure images are responsive */
+  height: auto;
+  border-radius: 15px; /* Round the corners of the image */
+  border: 1px solid rgba(243, 24, 188, 0.6); /* Border around each image */
+  box-shadow: 0 4px 12px rgba(248, 123, 217, 0.6); /* Pink shadow around each image */
+  transition: box-shadow 0.3s ease, transform 0.3s ease; /* Smooth transition for shadow and scaling */
+}
+
+/* On smaller screens, adjust image size */
+@media (max-width: 768px) {
+  .natalie-winters-image {
+    max-width: 30%; /* Allow more space for images */
+  }
+}
+
+@media (max-width: 480px) {
+  .natalie-winters-image {
+    max-width: 45%; /* Stack images on very small screens */
+  }
+}
+
+/* Hover effect */
+.natalie-winters-image:hover {
+  box-shadow: 0 8px 16px rgba(243, 24, 188, 0.8); /* More intense shadow on hover */
+  transform: scale(0.95); /* Shrink the image a little bit */
+}
+
+hr {
+  border: 0; /* Remove the default border */
+  height: 1px; /* Set the height to 1px */
+  background-color: #ffbbdc; /* Light pink color */
+  width: 30%; /* Adjust the width to 90% of the container */
+  margin: 10px auto; /* Center the hr with margins on top and bottom */
+}
+
+h2 {
+  text-align: center;
+  color: rgb(255, 233, 248);
+  align-items: center;
+}
+
+h1 {
+  text-align: center;
+  color: rgb(255, 233, 248);
+  align-items: center;
+}
+
+h4 {
+  text-align: center; /* Centers the text inside h4 */
+}
+
+h4 a {
+  color: #ff69b4; /* Optional: Change the color of the link */
+  text-decoration: none; /* Optional: Remove the underline */
+}
+
+h4 a:hover {
+  text-decoration: underline; /* Optional: Add underline on hover */
+}
+
+p {
+  color: pink;
+}
+
+.custom-heading {
+  font-size: 1rem; /* Adjust the size as needed */
+  color:  rgba(255, 138, 235, 0.849);
+  text-align: center; /* Center the text horizontally */
+}
+
+.box {
+  padding:5%;
+  box-shadow: 0 0px 10px rgba(255, 138, 235, 0.849);
+}
+
+.video-container {
+  position: relative;
+  width: 45vw; /* Set width to 90% of the viewport width */
+  height: 0;
+  padding-top: 56.25%; /* Maintain 16:9 aspect ratio */
+  margin: 0 auto; /* Center the video horizontally */
+}
+
+.video-container iframe {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%; /* Ensure iframe takes full width of container */
+  height: 100%; /* Ensure iframe takes full height of container */
+}
+
+.paint-order {
+  paint-order: stroke fill;
+  /* https://caniuse.com/mdn-css_properties_paint-order */
+  /* default is paint-order: fill stroke */
+  /* mdn: https://developer.mozilla.org/en-US/docs/Web/CSS/paint-order */
+}
+
+@layer demo.support {
+  * {
+    box-sizing: border-box;
+    margin: 0;
+  }
+
+  html {
+    block-size: 0%;
+  }
+
+  body {
+    align-items: center;
+    min-block-size:100%;
+    font-family: system-ui, sans-serif;
+    display: grid;
+    place-content: center;
+    gap: 0vmin;
+  }
+}
+
+section {
+  margin-top: 5px; /* Add spacing to separate sections */
+  padding: 10px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+section p {
+  font
+  padding-inline: 1.5ch;
+  line-height: 1.75;
+  text-align: center;
+}
+
+.socials {
+  display: flex; /* Ensures all list items are inline */
+  justify-content: center;
+  list-style: none;
+  padding: 0; /* No extra padding for the container */
+}
+
+.socials li {
+  display: inline; /* Keeps list items inline */
+  margin: 0 5px; /* Reduce spacing between items */
+}
+
+.socials li a {
+  display: inline-block; /* Allows padding and hover effects */
+  color: rgb(255, 209, 253); /* Base color */
+  text-align: center;
+  padding: 8px 5px; /* Reduced padding */
+  text-decoration: none;
+  transition: background-color 0.3s, box-shadow 0.3s;
+  border-radius: 10px; /* Matches the rounded style */
+  max-width: 40px; /* Smaller width for the link container */
+  max-height: 40px; /* Smaller height for the link container */
+}
+
+.socials li a img {
+  width: 100%; /* Ensures the images fit within the link element */
+  height: 100%; /* Maintain aspect ratio */
+  object-fit: contain; /* Ensures the image maintains its aspect ratio */
+}
+
+.socials li a:hover {
+  background-color: #ff69b4; /* Pink hover color */
+  box-shadow: 0px 4px 6px rgba(255, 105, 180, 0.2); /* Slightly reduced shadow */
+}
+
+footer {
+  margin-top: auto; /* Push footer to the bottom */
+  text-align: center;
+  padding: 10px;
+  background-color: #000000;
+  color: rgb(255, 209, 253);
+  flex-shrink: 0; /* Ensure footer is always visible */
+}
+
+footer ul {
+  list-style-type: none;
+}
+
+footer li {
+  display: inline;
+  margin: 0 10px;
+}
+
+footer a {
+  color: rgb(255, 209, 253);
+  text-decoration: none;
+  font-size: 16px;
+}
+
+footer a:hover {
+  color: #ff69b4;
+  text-decoration: underline;
+}
+
+.footer2 {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.footer2 a {
+  display: block;
+  margin-bottom: 10px; /* Adjust the value as needed */
+}
+
+.footer3 {
+  position: fixed;
+  bottom: 10px;
+  right: 10px;
+  display: flex;
+  align-items: right;
+  justify-content: center;
+  padding: 10px;
+}
+
+.footer3 a img {
+  border-radius: 50%;
+  width: 50px; /* Adjust the size of the image */
+  height: 50px;
+  transition: transform 0.3s ease;
+}
+
+.footer3 a:hover img {
+  transform: scale(1.1); /* Slightly scale the image on hover */
+}
+
+@media (max-width: 768px) {
+  .top-menu ul {
+    flex-direction: column;
+    text-align: center;
+  }
+
+  .neonText {
+    font-size: 1.8rem; /* Reduce the font size for smaller screens */
+  }
+}
