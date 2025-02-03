@@ -2,35 +2,41 @@ name: Run Scraper Script
 
 on:
   schedule:
-    # Every hour on the hour
-    - cron: '0 * * * *'
-  workflow_dispatch:  # Allows manual triggering from the GitHub UI
+    - cron: '0 * * * *'  # Runs every hour
+  workflow_dispatch:  # Allows manual trigger
 
 jobs:
   run-scraper:
-    runs-on: ubuntu-latest  # Use Ubuntu to run the script
-    
+    runs-on: ubuntu-latest
+
     steps:
     - name: Checkout repository
-      uses: actions/checkout@v2  # Check out the code from the repository
+      uses: actions/checkout@v4  # Updated to latest version
 
     - name: Set up Node.js
-      uses: actions/setup-node@v2
+      uses: actions/setup-node@v4  # Updated to latest version
       with:
-        node-version: '16'  # Set the Node.js version to use for the script
+        node-version: '18'  # Use latest LTS version
+
+    - name: Ensure package.json exists
+      run: |
+        if [ ! -f package.json ]; then
+          echo "package.json missing! Creating one..."
+          npm init -y
+        fi
 
     - name: Install dependencies
-      run: npm install  # Install required dependencies (if you have a package.json)
+      run: npm install  # Install dependencies
 
     - name: Run scraper script
-      run: node scraper.js  # Run the scraper.js script
+      run: node scraper.js  # Run the scraper script
 
     - name: Commit and push changes
       run: |
-        git config --global user.name "your-github-username"
-        git config --global user.email "your-email@example.com"
+        git config --global user.name "meeeeeooooowwwwwww"
+        git config --global user.email "ruckus@americafirst.co.nz"
         git add news.html
-        git commit -m "Updated news.html from scraper"
-        git push
+        git commit -m "Updated news.html from scraper" || echo "No changes to commit"
+        git push https://x-access-token:${{ secrets.GITHUB_TOKEN }}@github.com/meeeeeooooowwwwwww/nataliegwinters.git HEAD:main
       env:
-        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}  # Use GitHub token to push changes
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}  # Authenticate with GitHub token

@@ -1,0 +1,25 @@
+{
+  "name": "nataliegwinters",
+  "version": "1.0.0",
+  "description": "sup gang gang below is some real ground breaking work in the realm of AI / quantum space and time.",
+  "main": "scraper.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/meeeeeooooowwwwwww/nataliegwinters.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/meeeeeooooowwwwwww/nataliegwinters/issues"
+  },
+  "homepage": "https://github.com/meeeeeooooowwwwwww/nataliegwinters#readme",
+  "dependencies": {
+    "axios": "^1.7.9",
+    "cheerio": "^1.0.0",
+    "puppeteer": "^24.1.1"
+  }
+}

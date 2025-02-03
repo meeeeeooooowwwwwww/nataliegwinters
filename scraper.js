@@ -13,7 +13,7 @@ async function scrapeArticles() {
   const articles = await page.evaluate(() => {
     const articleElements = document.querySelectorAll('.jeg_postblock_content .jeg_post_title a');
     const articleLinks = [];
-    
+
     articleElements.forEach((element) => {
       articleLinks.push(element.href);
     });
@@ -38,7 +38,7 @@ function generateHTML(articles) {
   const articleLinksHTML = articles
     .map(
       (link) =>
-        `<a href="${link}" target="_blank">${link}</a><br>`
+        `<a href="${link}" target="_blank">${link}</a>\n<hr>\n`
     )
     .join('');
 
