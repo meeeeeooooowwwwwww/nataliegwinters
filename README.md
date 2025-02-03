@@ -14,3 +14,5 @@ This repository contains a Flask-based application that scrapes article headings
 - Built using Python, Flask, and Beautiful Soup.
 
 ## Project Structure
+
+-> I lied. It is actually just a simple JS GFY.
