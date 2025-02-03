@@ -17,4 +17,4 @@ This repository contains a Flask-based application that scrapes article headings
 
 -> I lied. It is actually just a simple JS GFY.
 |
-ok it wasn't really a lie, more of an update.
+-ok it wasn't really a lie, more of an update.
