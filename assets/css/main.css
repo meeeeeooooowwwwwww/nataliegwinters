@@ -2146,8 +2146,8 @@ input, select, textarea {
 		.icon.circled {
 			position: relative;
 			display: inline-block;
-			background: #2b252c;
-			color: #949494;
+			background: #e23cff;
+			color: #ffffff;
 			border-radius: 100%;
 			width: 3em;
 			height: 3em;
@@ -2180,7 +2180,7 @@ input, select, textarea {
 		background-size: cover;
 		background-position: center center;
 		background-attachment: fixed;
-		color: #ff5ae4;
+		color: #ffe7fb;
 		text-align: center;
 		padding: 7.5em 0 2em 0;
 		cursor: default;
@@ -2211,7 +2211,7 @@ input, select, textarea {
 			}
 
 		#header h1 {
-			color: #e7e7e7;
+			color: #ffebfb;
 			font-size: 3em;
 			line-height: 1em;
 		}
@@ -2234,7 +2234,7 @@ input, select, textarea {
 		#header hr {
 			top: 1.5em;
 			margin-bottom: 3em;
-			border-bottom-color: rgba(252, 3, 231, 0.952);
+			border-bottom-color: rgba(255, 226, 253, 0.952);
 			box-shadow: inset 0 1px 0 0 rgba(192, 192, 192, 0.35);
 		}
 
@@ -2257,7 +2257,7 @@ input, select, textarea {
 
 		body.homepage #header:after {
 			content: '';
-			background: #ffffff;
+			background: #fca5e9;
 			display: block;
 			position: absolute;
 			left: 0;
@@ -2337,7 +2337,7 @@ input, select, textarea {
 			}
 
 				#nav > ul > li.active {
-					border-color: rgba(255, 255, 255, 0.685);
+					border-color: rgba(255, 230, 251, 0.685);
 				}
 
 				#nav > ul > li > a, #nav > ul > li > span {
@@ -2353,7 +2353,7 @@ input, select, textarea {
 				}
 
 	.dropotron {
-		background: rgba(255, 225, 248, 0.975);
+		background: rgba(255, 255, 255, 0.975);
 		padding: 1em 1.25em 1em 1.25em;
 		line-height: 1em;
 		height: auto;
@@ -2367,7 +2367,7 @@ input, select, textarea {
 
 		.dropotron li {
 			border-top: solid 1px rgba(128, 128, 128, 0.2);
-			color: #ff2fc1;
+			color: #ff6dd3;
 			padding-left: 0;
 		}
 
@@ -2376,7 +2376,7 @@ input, select, textarea {
 			}
 
 			.dropotron li:hover {
-				color: #e403ab;
+				color: #ffc6f7;
 			}
 
 			.dropotron li a, .dropotron li span {
@@ -2460,13 +2460,13 @@ input, select, textarea {
 		position: relative;
 		overflow: hidden;
 		padding: 6em 0 6em 0;
-		background: #ff1dec;
+		background: #ff78f4;
 		color: #fff;
 	}
 
 		#footer .icon.circled {
 			background: #fff;
-			color: #fc0ee8;
+			color: #7c7c7c;
 		}
 
 		#footer header {
@@ -2475,7 +2475,7 @@ input, select, textarea {
 		}
 
 		#footer h2, #footer h3, #footer h4, #footer h5, #footer h6 {
-			color: #fff;
+			color: #fff2fe;
 		}
 
 		#footer .contact {
@@ -2489,17 +2489,17 @@ input, select, textarea {
 
 		#footer .copyright {
 			text-align: center;
-			color: rgba(255, 166, 243, 0.945);
+			color: rgba(244, 191, 255, 0.945);
 			font-size: 0.8em;
 			cursor: default;
 		}
 
 		#footer .copyright a {
-			color: rgba(219, 219, 219, 0.973);
+			color: rgba(255, 255, 255, 0.973);
 		}
 
 		#footer .copyright a:hover {
-			color: rgb(129, 129, 129);
+			color: rgb(255, 188, 239);
 		}
 
 /* Carousel */
@@ -2526,7 +2526,7 @@ input, select, textarea {
 				width: 6em;
 				height: 6em;
 				border-radius: 100%;
-				background-color: rgba(221, 0, 217, 1);
+				background-color: rgb(255, 137, 253);
 				position: absolute;
 				top: 50%;
 				margin-top: -3em;
@@ -2549,7 +2549,7 @@ input, select, textarea {
 			}
 
 			.carousel .forward:hover:before, .carousel .backward:hover:before {
-				background-color: rgb(255, 117, 253);
+				background-color: rgb(255, 68, 252);
 			}
 
 		.carousel .forward {
@@ -2914,8 +2914,8 @@ input, select, textarea {
 						text-decoration: none;
 						font-style: normal;
 						content: '\f0c9';
-						color: #e900dd;
-						color: rgba(253, 68, 238, 0.75);
+						color: #fdcdfb;
+						color: rgba(248, 248, 248, 0.75);
 						text-align: center;
 						display: block;
 						font-size: 14px;
@@ -2925,7 +2925,7 @@ input, select, textarea {
 						position: absolute;
 						left: 50%;
 						margin-left: -40px;
-						background: rgba(255, 18, 235, 0.75);
+						background: rgba(252, 252, 252, 0.75);
 						border-top: 0;
 						border-radius: 0 0 0.35em 0.35em;
 					}
