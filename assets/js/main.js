@@ -214,33 +214,4 @@
 
 		});
 
-		document.addEventListener("DOMContentLoaded", function() {
-			function calculateAge() {
-				const birthDate = new Date('2001-02-24');
-				const today = new Date();
-				let age = today.getFullYear() - birthDate.getFullYear();
-		
-				// Check if birthday hasn't occurred yet this year
-				const hasBirthdayOccurred = (today.getMonth() > birthDate.getMonth()) || 
-					(today.getMonth() === birthDate.getMonth() && today.getDate() >= birthDate.getDate());
-		
-				if (!hasBirthdayOccurred) {
-					age--; // Reduce age if birthday is later in the year
-				}
-		
-				// Ensure the element exists before updating it
-				const ageElement = document.getElementById('age');
-				if (ageElement) {
-					ageElement.textContent = age;
-					console.log("Age calculated:", age); // Log to confirm it's running
-				} else {
-					console.error("Element with ID 'age' not found.");
-				}
-			}
-		
-			calculateAge(); // Run function after DOM loads
-		});
-		
-		
-
 })(jQuery);
