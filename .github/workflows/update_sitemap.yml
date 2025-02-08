@@ -28,7 +28,7 @@ jobs:
     
     - name: Run the sitemap update script
       run: |
-        python scripts/update_sitemap.py  # Run the script directly from the scripts folder
+        python scripts/update_sitemap.py  # Run the script directly from the 'scripts' folder
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}  # Provides GitHub token for any necessary authentication
 
