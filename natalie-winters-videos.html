@@ -11,14 +11,14 @@
 		<script>
 			let videos = [];
 			let currentPage = 1;
-			const itemsPerPage = 20;
-	
+			const itemsPerPage = 21;
+			
 			async function loadVideos() {
 				const response = await fetch('natalie-videos.json');
 				videos = await response.json();
 				showPage(currentPage);
 			}
-	
+			
 			function showPage(page) {
 				const start = (page - 1) * itemsPerPage;
 				const end = start + itemsPerPage;
@@ -26,7 +26,7 @@
 				
 				const videoContainer = document.getElementById("video-list");
 				videoContainer.innerHTML = "";
-	
+			
 				paginatedVideos.forEach(video => {
 					const article = document.createElement("article");
 					article.classList.add("col-4", "col-12-mobile", "special");
@@ -41,25 +41,35 @@
 					`;
 					videoContainer.appendChild(article);
 				});
-	
+			
 				document.getElementById("page-info").textContent = `Page ${page} of ${Math.ceil(videos.length / itemsPerPage)}`;
+			
+				// Log to check if scroll is triggered and section is available
+				const section = document.getElementById("features");
+				console.log('Scrolling to section:', section);
+				
+				if (section) {
+					section.scrollIntoView({ behavior: "smooth", block: "start" });
+				} else {
+					console.log('Section not found');
+				}
 			}
-	
+			
 			function prevPage() {
 				if (currentPage > 1) {
 					currentPage--;
 					showPage(currentPage);
 				}
 			}
-	
+			
 			function nextPage() {
 				if (currentPage < Math.ceil(videos.length / itemsPerPage)) {
 					currentPage++;
 					showPage(currentPage);
 				}
 			}
-	
-			window.onload = loadVideos;
+			
+			window.onload = loadVideos;									
 		</script>
 	</head>
 	<body class="homepage is-preload">
