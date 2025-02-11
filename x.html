@@ -47,6 +47,7 @@
           display: block;
           margin-bottom: 30px;
           border-radius: 10px;
+          cursor: pointer; /* Make the gif clickable */
       }
 
       /* Style the "GO BACK" link with text shadow */
@@ -66,22 +67,6 @@
           transform: translateY(-5px);
           /* Intensify the text shadow on hover */
           text-shadow: 4px 4px 12px rgba(255, 16, 68, 0.8);
-      }
-
-      /* Style the Play Audio button */
-      #playButton {
-          margin-top: 20px;
-          padding: 10px 20px;
-          background-color: #4CAF50;
-          color: white;
-          font-size: 16px;
-          border: none;
-          cursor: pointer;
-          border-radius: 5px;
-      }
-
-      #playButton:hover {
-          background-color: #45a049;
       }
 
       /* Optional: Add a subtle fade-in animation for page load */
@@ -106,24 +91,19 @@
             <img src="images/suspended.png" alt="Suspended Image" class="centered-image">
         </a>
         
-        <!-- GIF below the PNG Image -->
-        <a href="index.html">
-            <img src="images/grimes.gif" alt="Grimes GIF" class="gif-overlay">
-        </a>
+        <!-- GIF below the PNG Image, acting as the play button -->
+        <img src="images/grimes.gif" alt="Grimes GIF" class="gif-overlay" onclick="playAudio()">
         
         <!-- "GO BACK" link centered below the images -->
         <a href="index.html" class="go-back-link">GO BACK</a>
-
-        <!-- Play Audio Button -->
-        <button id="playButton">Message For Elon</button>
     </div>
 
     <script>
-        // Function to play audio when button is clicked
-        document.getElementById("playButton").onclick = function() {
+        // Function to play audio when gif is clicked
+        function playAudio() {
             var audio = new Audio("https://www.dropbox.com/scl/fi/vvwlkxi23v2gzwo6nfvqe/let-it-go.mp3?rlkey=jsjlip1f1ypelzjpleb0mtdge&st=xdobgums&dl=1");
             audio.play();
-        };
+        }
     </script>
 </body>
 </html>
