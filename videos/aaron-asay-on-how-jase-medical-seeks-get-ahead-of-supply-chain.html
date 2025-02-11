@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Aaron Asay On How Jase Medical Seeks Get Ahead Of Supply Chain</title>
+    <title>Bannon On Combating Cartels: "We Have A Wide Latitude For Paramilitary Operations"</title>
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -43,8 +43,98 @@
 </head>
 <body>
     <div class="video-container">
-        <h1 class="video-title">Aaron Asay On How Jase Medical Seeks Get Ahead Of Supply Chain</h1>
-        <iframe class="video-player" src="https://rumble.com/v6hp2hy-aaron-asay-on-how-jase-medical-seeks-get-ahead-of-supply-chain.html?e9s=src_v1_ucp" frameborder="0" allowfullscreen></iframe>
+        <h1 class="video-title">Bannon On Combating Cartels: "We Have A Wide Latitude For Paramilitary Operations"</h1>
+        <iframe class="video-player" src="https://rumble.com/v6i52ap-bannon-on-combating-cartels-we-have-a-wide-latitude-for-paramilitary-operat.html?e9s=src_v1_ucp" frameborder="0" allowfullscreen></iframe>
     </div>
+
+    <!-- Add more video links here -->
+    <div id="videos"></div> <!-- This is where the videos will be embedded -->
+
+    <script>
+        // Example list of Rumble video links (replace with your actual list)
+        const rumbleLinks = [
+            "https://rumble.com/v6i52ap-bannon-on-combating-cartels-we-have-a-wide-latitude-for-paramilitary-operat.html",
+            "https://rumble.com/v1abcdef-video-title",
+            "https://rumble.com/v2abcdef-another-video-title",
+            "https://rumble.com/v3abcdef-some-video-title"
+        ];
+
+        // Function to convert Rumble video link to embed iframe
+        function createEmbedLink(videoUrl) {
+            // Extract the video ID from the URL
+            const videoId = videoUrl.split('/v')[1].split('-')[0];
+
+            // Construct the embed URL
+            return `https://rumble.com/embed/${videoId}/?pub=4`;
+        }
+
+        // Function to dynamically create and embed videos
+        function loadVideos() {
+            const videosContainer = document.getElementById('videos');
+
+            // Loop through each Rumble link and embed the video
+            rumbleLinks.forEach((link) => {
+                const embedUrl = createEmbedLink(link);
+                
+                // Create a new div for each video
+                const videoDiv = document.createElement('div');
+                videoDiv.classList.add('video-container');
+
+                // Create an iframe for the video
+                const iframe = document.createElement('iframe');
+                iframe.src = embedUrl;
+                iframe.allowFullscreen = true;
+
+                // Append the iframe to the div
+                videoDiv.appendChild(iframe);
+
+                // Append the video div to the page
+                videosContainer.appendChild(videoDiv);
+            });
+        }
+
+        // Load videos when the page loads
+        window.onload = loadVideos;
+    </script>
+
+<!-- Code injected by live-server -->
+<script>
+	// <![CDATA[  <-- For SVG support
+	if ('WebSocket' in window) {
+		(function () {
+			function refreshCSS() {
+				var sheets = [].slice.call(document.getElementsByTagName("link"));
+				var head = document.getElementsByTagName("head")[0];
+				for (var i = 0; i < sheets.length; ++i) {
+					var elem = sheets[i];
+					var parent = elem.parentElement || head;
+					parent.removeChild(elem);
+					var rel = elem.rel;
+					if (elem.href && typeof rel != "string" || rel.length == 0 || rel.toLowerCase() == "stylesheet") {
+						var url = elem.href.replace(/(&|\?)_cacheOverride=\d+/, '');
+						elem.href = url + (url.indexOf('?') >= 0 ? '&' : '?') + '_cacheOverride=' + (new Date().valueOf());
+					}
+					parent.appendChild(elem);
+				}
+			}
+			var protocol = window.location.protocol === 'http:' ? 'ws://' : 'wss://';
+			var address = protocol + window.location.host + window.location.pathname + '/ws';
+			var socket = new WebSocket(address);
+			socket.onmessage = function (msg) {
+				if (msg.data == 'reload') window.location.reload();
+				else if (msg.data == 'refreshcss') refreshCSS();
+			};
+			if (sessionStorage && !sessionStorage.getItem('IsThisFirstTime_Log_From_LiveServer')) {
+				console.log('Live reload enabled.');
+				sessionStorage.setItem('IsThisFirstTime_Log_From_LiveServer', true);
+			}
+		})();
+	}
+	else {
+		console.error('Upgrade your browser. This Browser is NOT supported WebSocket for Live-Reloading.');
+	}
+	// ]]>
+</script>
+
 </body>
 </html>
