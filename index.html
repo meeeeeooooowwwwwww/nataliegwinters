@@ -4,13 +4,20 @@
 		<title>Natalie Winters</title>
 		<meta charset="utf-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
-		<base href="https://nataliegwinters.com/" />
-        <link rel="canonical" href="https://nataliegwinters.com/" />
+		<!--<base href="https://nataliegwinters.com/" /> -->
+		<link rel="canonical" href="https://nataliegwinters.com/" />
 		<meta name="description" content="Natalie G Winters is a rising star in journalism and White House Press Correspondent known for her insightful analysis on media, politics, and business. Read more!">
 		<link rel="icon" type="image/icon" href="favicon.ico">
 		<link rel="stylesheet" href="assets/css/main.css" />
 		<noscript><link rel="stylesheet" href="assets/css/noscript.css" /></noscript>
+	
+		<!-- Include Fuse.js -->
+		<script src="https://cdn.jsdelivr.net/npm/fuse.js@6.6.2/dist/fuse.min.js"></script>
+	
+		<!-- Include your custom search.js -->
+		<script src="assets/js/search.js" script>
 	</head>
+	
 	<body class="homepage is-preload">
 		<div id="page-wrapper">
 
@@ -103,6 +110,10 @@
         <li><a href="https://shessoright.co/" target="_blank" rel="noopener noreferrer">Shop</a></li>
         <li><a href="about.html">About</a></li>
         <li><a href="https://warroom.org/contact/" target="_blank" rel="noopener noreferrer">Contact</a></li>
+		<li class="search-item">
+            <input type="text" id="search-box" placeholder="Search Videos..." />
+            <ul id="search-results"></ul>
+        </li>
     </ul>
 </nav>
 
@@ -124,83 +135,75 @@
 					<div class="reel">
 
 						<article>
-							<a href="#" class="image featured"><img src="images/natalie-winters-patriotic.jpg" alt="" /></a>
+							<a href="https://rumble.com/c/BannonsWarRoom" target="_blank" rel="noopener noreferrer" class="image featured"><img src="images/warroom-battle-ground.jpg" alt="Natalie Winters Warrom" /></a>
 							<header>
-								<h3><a href="#">Natalie Winters</a></h3>
+								<h3><a href="https://warroom.org/">Natalie Winters War Room</a></h3>
 							</header>
-							<p>Yap yap YAAAP yap yap. Just placeholder txt for meow.</p>
+							<p>Natalie Winters Executive Editor White House Correspondent</p>
 						</article>
 
 						<article>
-							<a href="#" class="image featured"><img src="images/natalie-winters-stunning.jpg" alt="" /></a>
+							<a href="https://warroom.org/" class="image featured"><img src="images/natalie-winters-brave.jpg" alt="Natalie Winters Executive Editor White House Correspondent" /></a>
 							<header>
-								<h3><a href="#">Champion Yapper</a></h3>
+								<h3><a href="https://rumble.com/c/BannonsWarRoom">Natalie Winters War Room</a></h3>
 							</header>
-							<p>No one beats Natalie Winters at yappin, nobody.</p>
+							<p>Natalie Winters Executive Editor White House Correspondent</p>
 						</article>
 
 						<article>
-							<a href="#" class="image featured"><img src="images/natalie-winters-brave.jpg" alt="" /></a>
+							<a href="https://warroom.org/" class="image featured"><img src="images/natalie-winters-quirky.jpg" alt="Natalie Winters Executive Editor White House Correspondent" /></a>
 							<header>
-								<h3><a href="#">Yapper of the Year</a></h3>
+								<h3><a href="https://rumble.com/c/BannonsWarRoom">Natalie Winters War Room</a></h3>
 							</header>
-							<p>Yappidy yap, from sea to shining sea no one beats Natalie Gee.</p>
+							<p>Natalie Winters Executive Editor White House Correspondent</p>
 						</article>
 
 						<article>
-							<a href="#" class="image featured"><img src="images/natalie-winters-quirky.jpg" alt="" /></a>
+							<a href="https://warroom.org/" class="image featured"><img src="images/natalie-winters-wholesome.jpg" alt="Natalie Winters Executive Editor White House Correspondent" /></a>
 							<header>
-								<h3><a href="#">Ranting or Yapping</a></h3>
+								<h3><a href="https://rumble.com/c/BannonsWarRoom">Natalie Winters War Room<</a></h3>
 							</header>
-							<p>Yappin or ranting? Only YOU can be the judge of that.</p>
+							<p>Natalie Winters Executive Editor White House Correspondent</p>
 						</article>
 
 						<article>
-							<a href="#" class="image featured"><img src="images/natalie-winters-wholesome.jpg" alt="" /></a>
+							<a href="https://warroom.org/" class="image featured"><img src="images/natalie-winters-fun.jpg" alt="Natalie Winters Executive Editor White House Correspondent" /></a>
 							<header>
-								<h3><a href="#">White House Yapper</a></h3>
+								<h3><a href="https://rumble.com/c/BannonsWarRoom">Natalie Winters War Room<</a></h3>
 							</header>
-							<p>They let her in the White House Press Galler, yappin' intensifies!</p>
+							<p>Natalie Winters Executive Editor White House Correspondent</p>
 						</article>
 
 						<article>
-							<a href="#" class="image featured"><img src="images/natalie-winters-fun.jpg" alt="" /></a>
+							<a href="https://warroom.org/" class="image featured"><img src="images/natalie-winters-luscious.jpg" alt="Natalie Winters Executive Editor White House Correspondent" /></a>
 							<header>
-								<h3><a href="#">Smexy Yapper</a></h3>
+								<h3><a href="https://rumble.com/c/BannonsWarRoom">Natalie Winters War Room<</a></h3>
 							</header>
-							<p>Yesh, even the yappers sometimes get it juuuust right.</p>
+							<p>Natalie Winters Executive Editor White House Correspondent</p>
 						</article>
 
 						<article>
-							<a href="#" class="image featured"><img src="images/natalie-winters-luscious.jpg" alt="" /></a>
+							<a href="https://warroom.org/" class="image featured"><img src="images/natalie-winters-steve-bannon.jpg" alt="Natalie Winters Executive Editor White House Correspondent" /></a>
 							<header>
-								<h3><a href="#">Pursed Yapper</a></h3>
+								<h3><a href="https://rumble.com/c/BannonsWarRoom">Natalie Winters War Room<</a></h3>
 							</header>
-							<p>Here we see a perfectly timed photo of Natalie Winters mid yap.</p>
+							<p>Natalie Winters Executive Editor White House Correspondent</p>
 						</article>
 
 						<article>
-							<a href="#" class="image featured"><img src="images/natalie-winters-steve-bannon.jpg" alt="" /></a>
+							<a href="https://warroom.org/" class="image featured"><img src="images/natalie-winters-nice.jpg" alt="Natalie Winters Executive Editor White House Correspondent" /></a>
 							<header>
-								<h3><a href="#">OMGEEE</a></h3>
+								<h3><a href="https://rumble.com/c/BannonsWarRoom">Natalie Winters War Room<</a></h3>
 							</header>
-							<p>How many of these article boxes are there even!?.</p>
+							<p>Natalie Winters Executive Editor White House Correspondent</p>
 						</article>
 
 						<article>
-							<a href="#" class="image featured"><img src="images/natalie-winters-nice.jpg" alt="" /></a>
+							<a href="https://warroom.org/" class="image featured"><img src="images/natalie-g-winters-sexy.jpg" alt="Natalie Winters Executive Editor White House Correspondent" /></a>
 							<header>
-								<h3><a href="#">Homely Yapper</a></h3>
+								<h3><a href="https://rumble.com/c/BannonsWarRoom">Natalie Winters War Room<</a></h3>
 							</header>
-							<p>A very natural picture of Natalie Winters lookin' all homely 'n shit.</p>
-						</article>
-
-						<article>
-							<a href="#" class="image featured"><img src="images/natalie-g-winters-sexy.jpg" alt="" /></a>
-							<header>
-								<h3><a href="#">Yappin' In The Wild</a></h3>
-							</header>
-							<p>Natalie Winters surrounded by nature probably about to yap.</p>
+							<p>Natalie Winters Executive Editor White House Correspondent</p>
 						</article>
 
 					</div>
