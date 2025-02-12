@@ -28,9 +28,9 @@ jobs:
         python -m pip install --upgrade pip
         pip install -r requirements.txt
 
-        - name: Run Scraper Script
-        run: |
-          python warroom-videos-updater/warroom_video_updater.py
+    - name: Run Scraper Script
+      run: |
+        python scripts/warroom_video_updater.py
 
     # Commit and push updated warroom-videos.json
     - name: Commit and push updated warroom-videos.json
