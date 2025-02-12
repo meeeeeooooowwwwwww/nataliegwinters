@@ -28,16 +28,15 @@ jobs:
         python -m pip install --upgrade pip
         pip install -r requirements.txt
 
-    # Run the scraper script
-    - name: Run Scraper Script
-      run: |
-        python warroom_video_updater.py # Since the script is in the root directory
+        - name: Run Scraper Script
+        run: |
+          python warroom-videos-updater/warroom_video_updater.py
 
     # Commit and push updated warroom-videos.json
     - name: Commit and push updated warroom-videos.json
       run: |
-        git config --global user.email "youremail@example.com"
-        git config --global user.name "Your Name"
+        git config --global user.email "ruckus@americafirst.co.nz"
+        git config --global user.name "meeeeeooooowwwwwww"
         git add warroom-videos.json  # This is the correct path for the JSON file in the root
         git commit -m "Update warroom-videos.json"
         git push
