@@ -31,14 +31,14 @@ jobs:
     # Run the scraper script
     - name: Run Scraper Script
       run: |
-        python path/to/your/scraper.py # Replace with your scraper script path
+        python warroom-videos-updater/warroom_video_updater.py # Replace with the actual path of your script
 
-    # Commit and push changes to the repository
+    # Commit and push updated warroom-videos.json
     - name: Commit and push updated warroom-videos.json
       run: |
         git config --global user.email "youremail@example.com"
         git config --global user.name "Your Name"
-        git add path/to/warroom-videos.json
+        git add warroom-videos-updater/warroom-videos.json  # Replace with the actual path of your json file
         git commit -m "Update warroom-videos.json"
         git push
       env:
