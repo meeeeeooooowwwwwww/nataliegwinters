@@ -2310,8 +2310,8 @@ input, select, textarea {
 				top: 50%;
 				margin-top: -2px;
 				height: 5px;
-				border-top: solid 1px rgba(255, 136, 249, 0.445);
-				border-bottom: solid 1px rgba(255, 136, 249, 0.445);
+				border-top: solid 1px rgba(243, 130, 215, 0.822);
+				border-bottom: solid 1px rgba(243, 130, 215, 0.822);
 			}
 
 			#nav > ul:before {
