@@ -2400,9 +2400,9 @@ input, select, textarea {
 				left: 50%;
 				top: -0.7em;
 				margin-left: -0.75em;
-				border-bottom: solid 0.75em rgba(255, 225, 248, 0.975);
-				border-left: solid 0.75em rgba(240, 11, 228, .51);
-				border-right: solid 0.75em rgba(240, 11, 228, .51);
+				border-bottom: solid 0.75em rgba(255, 225, 248, 0.9);
+				border-left: solid 0.75em rgba(255, 119, 245, .51);
+				border-right: solid 0.75em rgba(255, 119, 245, .51);
 			}
 
 /* Banner */
