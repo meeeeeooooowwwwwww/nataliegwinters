@@ -1,15 +1,36 @@
 <!DOCTYPE HTML>
 <html>
     <head>
-        <title>Natalie Winters</title>
+        <script>
+            if (window.location.hostname === "localhost") {
+              document.querySelector("base").setAttribute("href", "/");
+            }
+          </script>
+        <title>Natalie Winters – War Room Videos, White House Press Correspondence & Political Commentatary</title>
         <meta charset="utf-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
-        <meta name="description" content="Natalie G Winters is a rising star in journalism and White House Press Correspondent known for her insightful analysis on media, politics, and business. Read more!">
-		<base href="https://nataliegwinters.com/" />
-        <link rel="canonical" href="https://nataliegwinters.com/" />
+        <meta name="description"
+            content="Welcome to Natalie Winters' War Room reports & White House Correspndence. Discover her Investigative Journalism, and Political Commentatary with media, politics and business insights." />
+        <link rel="canonical" href="https://nataliegwinters.com" />
+        <base href="https://nataliegwinters.com/" />
+        <meta property="og:title"
+            content="Natalie Winters – Investigative Journalist, White House Press Correspondent & Political Commentator" />
+        <meta property="og:description"
+            content="Explore Natalie Winters' website. Read her investigative journalism, media appearances, and expert analysis on politics, media, and business. A trusted White House Press Correspondent." />
+        <meta property="og:url" content="https://nataliegwinters.com" />
+        <meta property="og:type" content="profile" />
+        <meta property="og:image" content="https://nataliegwinters.com/assets/images/social-header.jpg" />
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:title" content="Natalie Winters War Room Videos – Investigative Journalist & White House Press Correspondent" />
+        <meta name="twitter:description"
+            content="Natalie Winters is a leading Investigative Journalist and White House Press Correspondent offering sharp insights on media, politics, and business." />
+        <meta name="twitter:image" content="https://nataliegwinters.com/assets/images/social-header.jpg" />
+        <meta name="robots" content="index, follow" />
         <link rel="icon" type="image/icon" href="favicon.ico">
         <link rel="stylesheet" href="assets/css/main.css" />
-        <noscript><link rel="stylesheet" href="assets/css/noscript.css" /></noscript>
+        <noscript>
+            <link rel="stylesheet" href="assets/css/noscript.css" />
+        </noscript>
         <script>
             let videos = [];
             let currentIndex = 0; // track how many videos have been loaded
@@ -72,19 +93,24 @@
                     </header>
                 </div>
 
-                <!-- Nav -->
-                <nav id="nav">
-                    <ul>
-                        <li><a href="index.html">Home</a></li>
-                        <li><a href="all.html">Articles</a></li>
-                        <li><a href="#">Videos</a>
-                            <ul>
-                                <li><a href="natalie-winters-videos.html">Natalie Winter's Videos</a></li>
-                                <li><a href="warroom-videos.html">Warroom Videos</a></li>
-                            </ul>
-                        </li>
-                        <li>
-                            <a href="#">News</a>
+			<!-- Nav -->
+			<nav id="nav">
+				<ul>
+					<li><a href="index.html">Home</a></li>
+					<li>
+						<a href="#">Articles</a>
+						<ul>
+							<li><a href="articles/warroom.html">War Room Articles</a></li>
+						</ul>
+					</li>
+					<li><a href="#">Videos</a>
+						<ul>
+							<li><a href="natalie-winters-videos.html">Natalie Winter's Videos</a></li>
+							<li><a href="warroom-videos.html">Warroom Videos</a></li>
+						</ul>
+					</li>
+					<li>
+						<a href="#">News</a>
                             <ul>
                                 <li><a href="https://www.whitehouse.gov/" target="_blank" rel="noopener noreferrer">White House News</a>
                                     <ul>
@@ -224,7 +250,7 @@
                                         <header>
                                             <h3><a href="https://www.article3project.org/"  target="_blank" rel="noopener noreferrer">Mike Davis</a></h3>
                                         </header>
-                                        <span class="timestamp">The Article 111 Project</span>
+                                        <span class="timestamp">The Article III Project</span>
                                     </article>
                                 </li>
                                 <li>
