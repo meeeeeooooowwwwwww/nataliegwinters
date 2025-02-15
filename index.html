@@ -51,22 +51,16 @@
 				<footer>
 					<a href="#banner" class="button circled scrolly" onclick="playAudio()">X</a>
 				</footer>
-				<audio id="audioPlayer" style="display:none;">
-					<source src="https://www.dropbox.com/scl/fi/l0te72on1rhhsw7qx1b9u/X.mp3?rlkey=cgd4b3y0j9ihdwmgzs8e5917g&st=gs5o39er&dl=1" type="audio/mp3">
-				</audio>
 				<script>
-					let toggle = false; // Track which audio should play
+					let audio = new Audio("https://www.dropbox.com/scl/fi/l0te72on1rhhsw7qx1b9u/X2.mp3?rlkey=xyz&st=abc&dl=1");
 				
 					function playAudio() {
-						let audioSrc = toggle 
-							? "https://www.dropbox.com/scl/fi/m1lny65pgttlbhh52xgez/prawns.mp3?rlkey=lokn092pkhlcuz5sch6wvgoyf&st=5h9nplv3&dl=1"  // Second audio
-							: "https://www.dropbox.com/scl/fi/l0te72on1rhhsw7qx1b9u/X2.mp3?rlkey=xyz&st=abc&dl=1"; // First audio
-						
-						let audio = new Audio(audioSrc);
-						audio.play();
-
-				
-						toggle = !toggle; // Switch to the other track for the next click
+						if (audio.paused) {
+							audio.play();
+						} else {
+							audio.currentTime = 0; // Restart audio if already played
+							audio.play();
+						}
 					}
 				</script>
 			</div>
