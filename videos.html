@@ -38,7 +38,7 @@
                         <header>
                             <h3><a href="${video.link}" target="_blank">${video.title}</a></h3>
                         </header>
-                        <p>Uploaded by: ${video.uploader}</p>
+                        <p>${video.uploader}</p>
                     `;
                     videoContainer.appendChild(article);
                 });
@@ -144,7 +144,6 @@
                 </header>
 
                 <div class="pagination">
-                    <!-- Removed previous/next buttons, added "load more" button and info span -->
                 </div>
                 <br>
                 <div id="video-list" class="row"></div>
