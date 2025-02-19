@@ -46,11 +46,21 @@
 					<br><br><br>
 					<h1><a href="#" id="logo">Natalie G. Winters</a></h1>
 					<hr />
-					<p>White House Press Core Spy o.O</p>
+					<p>White House Press Core Spy</p>
 				</header>
 				<footer> 
-					<a href="https://youtu.be/8HNgIJqeyDw" class="button circled scrolly" target="_blank" rel="noopener noreferrer">Mars?</a>
+					<button class="button circled scrolly" onclick="playAudio()">🐇</button>
+					<audio id="hiddenAudio">
+						<source src="https://www.dropbox.com/scl/fi/1huzjxafdu6asi21hav6h/Eye-Spy.mp3?rlkey=dcjd7g1yl4xzftvazrewy1i5o&st=mnhnhjla&dl=1" type="audio/mpeg">
+					</audio>
 				</footer>
+				
+				<script>
+					function playAudio() {
+						const audio = document.getElementById("hiddenAudio");
+						audio.play();
+					}
+				</script>
 			</div>
 
 			<!-- Nav -->
