@@ -43,70 +43,70 @@
         <noscript>
             <link rel="stylesheet" href="assets/css/noscript.css" />
         </noscript>
-        <script>
+        <script type="text/javascript">
             let listings = [];
-            let currentPage = 1;
-            const itemsPerPage = 5;
+            let currentIndex = 0; // track how many listings have been loaded
+            const itemsPerPage = 21;
         
-            async function loadListings() {
-                const response = await fetch('listings.json');
-                listings = await response.json();
-                console.log(listings); // Debugging
-                displayListings();
-            }
+            function loadMore() {
+                const end = currentIndex + itemsPerPage;
+                const nextListings = listings.slice(currentIndex, end);
+                currentIndex = end;
         
-            // Function to display a portion of the listings
-            function displayListings() {
-                const listingList = document.getElementById("listing-list");
-                listingList.innerHTML = ""; // Clear current list
+                const listingsContainer = document.getElementById("listing-list");
         
-                // Get the slice of listings for the current page
-                const start = (currentPage - 1) * itemsPerPage;
-                const end = start + itemsPerPage;
-                const listingsToDisplay = listings.slice(start, end);
+                nextListings.forEach(listing => {
+                    const article = document.createElement("article");
+                    article.classList.add("col-4", "col-12-mobile", "special");
         
-                // Loop through listings and create list items
-                listingsToDisplay.forEach(listing => {
-                    const listItem = document.createElement("li");
-                    listItem.classList.add("listing-item");
+                    // Format the phone number with international calling code +64
+                    const formattedPhone = formatPhoneNumber(listing.phone || "N/A");
         
-                    // Create clickable link with title, address, and phone number
-                    const link = document.createElement("a");
-                    link.href = listing.url;
-                    link.target = "_blank";  // Open in a new tab
-                    link.innerHTML = `
-                        <h3>${listing.title}</h3>
-                        <p><strong>Address:</strong> ${listing.address || "N/A"}</p>
-                        <p><strong>Phone:</strong> <a href="tel:+64${formatPhoneNumber(listing.phone)}">${listing.phone || "N/A"}</a></p>
+                    // Check if each field exists and set it to "N/A" if missing
+                    const title = listing.title || "N/A";
+                    const address = listing.address || "N/A";
+                    const url = listing.url || "N/A";
+                    const sourceLink = listing.sourceLink || "N/A";
+                    const thumbnail = listing.thumbnail || "N/A";
+        
+                    article.innerHTML = `
+                        <a href="${url}" target="_blank" rel="noopener noreferrer" class="image featured">
+                            <img src="${thumbnail}" alt="${title}">
+                        </a>
+                        <header>
+                            <h3><a href="${url}" target="_blank">${title}</a></h3>
+                        </header>
+                        <p>Address: ${address}</p>
+                        <p>Phone: <a href="tel:${formattedPhone}">${formattedPhone}</a></p>
+                        <p>Uploaded by: <a href="${sourceLink}" target="_blank" rel="noopener noreferrer">Source</a></p>
                     `;
-        
-                    listItem.appendChild(link);
-                    listingList.appendChild(listItem);
+                    listingsContainer.appendChild(article);
                 });
         
-                updatePageInfo();
+                document.getElementById("page-info").textContent = `Loaded ${currentIndex} of ${listings.length}`;
+        
+                // Hide the load more button if we’ve displayed all listings
+                if (currentIndex >= listings.length) {
+                    document.getElementById("load-more-btn").style.display = "none";
+                }
             }
         
-            // Format phone number for New Zealand (+64)
+            // Function to format the phone number with the international calling code (+64)
             function formatPhoneNumber(phone) {
-                return phone.replace(/\D/g, '').replace(/^0/, '');  // Remove non-digit characters and leading zero
+                // Remove non-numeric characters
+                const phoneNumber = phone.replace(/\D/g, '');
+        
+                // Check if the phone number starts with '09' (local New Zealand number) and replace it with the international prefix +64
+                if (phoneNumber.startsWith('09')) {
+                    return '+64' + phoneNumber.slice(1); // Replace '09' with '+64'
+                } else {
+                    return '+64' + phoneNumber; // If it doesn't start with '09', just add '+64' in front
+                }
             }
         
-            // Load more listings on button click
-            function loadMore() {
-                currentPage++;
-                displayListings();
-            }
-        
-            // Update page info (e.g., which page you're on)
-            function updatePageInfo() {
-                const pageInfo = document.getElementById("page-info");
-                pageInfo.textContent = `Page ${currentPage}`;
-            }
-        
-            // Initial load when the page is ready
             window.onload = loadListings;
         </script>
+        
     </head>
     <body class="homepage is-preload">
         <div id="page-wrapper">
@@ -198,16 +198,14 @@
                     <p>Natalie Winters + America First New Zealand</p>
                 </header>
                 <br>
-            
-                <!-- Updated: Simple list to display titles, addresses, and phone numbers -->
-                <ul id="listing-list" class="row"></ul> <!-- List container -->
-            
+                <!-- Updated to reflect the correct ID used in the script -->
+                <div id="listing-list" class="row"></div>
                 <br>
+                <!-- Load More button triggers loadMore() function from the script -->
                 <button id="load-more-btn" onclick="loadMore()">Load More</button>
                 <span id="page-info" style="margin-left:10px;"></span>
                 <br>
             </section>
-            
             <br>
 
         <!-- Footer -->
@@ -413,5 +411,16 @@
         <script src="assets/js/util.js" type="c77398fc6953a3b63e39b016-text/javascript"></script>
         <script src="assets/js/main.js" type="c77398fc6953a3b63e39b016-text/javascript"></script>
     <script src="/cdn-cgi/scripts/7d0fa10a/cloudflare-static/rocket-loader.min.js" data-cf-settings="c77398fc6953a3b63e39b016-|49" defer></script><script defer src="https://static.cloudflareinsights.com/beacon.min.js/vcd15cbe7772f49c399c6a5babf22c1241717689176015" integrity="sha512-ZpsOmlRQV6y907TI0dKBHq9Md29nnaEIPlkf84rnaERnq6zvWvPUqr2ft8M1aS28oN72PdrCzSjY4U6VaAw1EQ==" data-cf-beacon='{"rayId":"916c7531c89e572c","version":"2025.1.0","r":1,"token":"1959aff6d2c94e2f85c740fb6df194cd","serverTiming":{"name":{"cfExtPri":true,"cfL4":true,"cfSpeedBrain":true,"cfCacheStatus":true}}}' crossorigin="anonymous"></script>
+    <script>
+        async function loadListings() {
+            const response = await fetch('listings.json');
+            listings = await response.json();
+            console.log(listings); // Debugging
+            loadMore();
+        }
+    
+        // Call the function when the window loads
+        window.onload = loadListings;
+    </script>
 </body>
 </html>
