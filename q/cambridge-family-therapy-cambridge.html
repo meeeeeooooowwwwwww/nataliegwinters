@@ -33,6 +33,70 @@
 		<link rel="icon" type="image/icon" href="favicon.ico">
 		<link rel="stylesheet" href="assets/css/main.css" />
 		<noscript><link rel="stylesheet" href="assets/css/noscript.css" /></noscript>
+
+		<script>
+			let listings = []; // Store all data from listings.json
+			let currentPage = 1;
+			const itemsPerPage = 5; // Define how many items per page
+			
+			async function loadListings() {
+				try {
+					const response = await fetch('listings.json');
+					listings = await response.json();
+					displayPage(currentPage);
+				} catch (error) {
+					console.error("Error loading listings:", error);
+				}
+			}
+			
+			function displayPage(page) {
+				const start = (page - 1) * itemsPerPage;
+				const end = start + itemsPerPage;
+				const paginatedListings = listings.slice(start, end);
+			
+				const listingContainer = document.getElementById("listing-list");
+				listingContainer.innerHTML = ""; // Clear previous listings
+			
+				paginatedListings.forEach(listing => {
+					const listItem = document.createElement("li");
+					listItem.style.marginBottom = '15px';
+			
+					const link = document.createElement('a');
+					link.href = listing.url;
+					link.innerHTML = `<strong>${listing.title}</strong><br>${listing.address}<br>
+						<a href="tel:+64${listing.phone.replace(/\D/g, '')}">${listing.phone}</a>`;
+			
+					listItem.appendChild(link);
+					listingContainer.appendChild(listItem);
+				});
+			
+				updatePaginationControls();
+			}
+			
+			function updatePaginationControls() {
+				document.getElementById("page-info").textContent = `Page ${currentPage} of ${Math.ceil(listings.length / itemsPerPage)}`;
+			
+				document.getElementById("prev-page-btn").style.display = currentPage > 1 ? "inline-block" : "none";
+				document.getElementById("next-page-btn").style.display = currentPage < Math.ceil(listings.length / itemsPerPage) ? "inline-block" : "none";
+			}
+			
+			function nextPage() {
+				if (currentPage < Math.ceil(listings.length / itemsPerPage)) {
+					currentPage++;
+					displayPage(currentPage);
+				}
+			}
+			
+			function prevPage() {
+				if (currentPage > 1) {
+					currentPage--;
+					displayPage(currentPage);
+				}
+			}
+			
+			window.onload = loadListings;
+			</script>				
+
 	  </head>
  	<body class="homepage is-preload">
 		<div id="page-wrapper">
@@ -118,13 +182,22 @@
 
 				</div>
 
-			<div class="wrapper style2">
-                <article id="main" class="container special">
-					<h1>Cambridge Family Therapy Centre</h1>
-					<p><strong>Address:</strong> 56 Queen Street Cambridge</p>
-					<p><strong>Phone:</strong> <a href="tel:07 8276060">07 8276060</a></p>
-				</article>
-    		</div>
+				<section id="features" class="container special">
+					<header>
+						<h2><strong>Natalie Winters</strong> Executive Editor</h2>
+						<p>Natalie Winters Co-Host + Executive Editor At Steve Bannon War Room</p>
+					</header>
+				
+					<!-- List container for listings -->
+					<ul id="listing-list" class="row" style="list-style-type: none; padding-left: 0; margin: 0;"></ul>
+				
+					<!-- Pagination Controls -->
+					<div id="pagination-controls" style="margin-top: 20px;">
+						<button id="prev-page-btn" onclick="prevPage()" style="display:none;">Previous Page</button>
+						<span id="page-info"></span>
+						<button id="next-page-btn" onclick="nextPage()" style="display:none;">Next Page</button>
+					</div>
+				</section>				
 
 		<!-- Footer -->
 		<div id="footer">
@@ -160,6 +233,13 @@
 										aria-label="Natalie Winters Videos">Gay Dating</a>
 									<br>
 									<span class="timestamp">Gay Dating Advice</span>
+								</article>
+							</li>
+							<li>
+								<article class="tweet">
+									<a href="biz.html" aria-label="Natalie Winters On War Room">America First Business</a>
+									<br>
+									<span class="timestamp">Business Listings New Zealand</span>
 								</article>
 							</li>
 							<li>
