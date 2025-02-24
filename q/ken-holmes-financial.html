@@ -32,71 +32,7 @@
 		<meta name="robots" content="index, follow" />
 		<link rel="icon" type="image/icon" href="favicon.ico">
 		<link rel="stylesheet" href="assets/css/main.css" />
-		<noscript><link rel="stylesheet" href="assets/css/noscript.css" /></noscript>
-
-		<script>
-			let listings = []; // Store all data from listings.json
-			let currentPage = 1;
-			const itemsPerPage = 5; // Define how many items per page
-			
-			async function loadListings() {
-				try {
-					const response = await fetch('listings.json');
-					listings = await response.json();
-					displayPage(currentPage);
-				} catch (error) {
-					console.error("Error loading listings:", error);
-				}
-			}
-			
-			function displayPage(page) {
-				const start = (page - 1) * itemsPerPage;
-				const end = start + itemsPerPage;
-				const paginatedListings = listings.slice(start, end);
-			
-				const listingContainer = document.getElementById("listing-list");
-				listingContainer.innerHTML = ""; // Clear previous listings
-			
-				paginatedListings.forEach(listing => {
-					const listItem = document.createElement("li");
-					listItem.style.marginBottom = '15px';
-			
-					const link = document.createElement('a');
-					link.href = listing.url;
-					link.innerHTML = `<strong>${listing.title}</strong><br>${listing.address}<br>
-						<a href="tel:+64${listing.phone.replace(/\D/g, '')}">${listing.phone}</a>`;
-			
-					listItem.appendChild(link);
-					listingContainer.appendChild(listItem);
-				});
-			
-				updatePaginationControls();
-			}
-			
-			function updatePaginationControls() {
-				document.getElementById("page-info").textContent = `Page ${currentPage} of ${Math.ceil(listings.length / itemsPerPage)}`;
-			
-				document.getElementById("prev-page-btn").style.display = currentPage > 1 ? "inline-block" : "none";
-				document.getElementById("next-page-btn").style.display = currentPage < Math.ceil(listings.length / itemsPerPage) ? "inline-block" : "none";
-			}
-			
-			function nextPage() {
-				if (currentPage < Math.ceil(listings.length / itemsPerPage)) {
-					currentPage++;
-					displayPage(currentPage);
-				}
-			}
-			
-			function prevPage() {
-				if (currentPage > 1) {
-					currentPage--;
-					displayPage(currentPage);
-				}
-			}
-			
-			window.onload = loadListings;
-			</script>				
-
+		<noscript><link rel="stylesheet" href="assets/css/noscript.css" /></noscript>		
 	  </head>
  	<body class="homepage is-preload">
 		<div id="page-wrapper">
@@ -184,19 +120,17 @@
 
 				<section id="features" class="container special">
 					<header>
-						<h2><strong>Natalie Winters</strong> Executive Editor</h2>
-						<p>Natalie Winters Co-Host + Executive Editor At Steve Bannon War Room</p>
+						<h2><strong>Natalie Winters</strong> White House Press</h2>
+						<p>Natalie Winters New Zealand Business Listing</p>
 					</header>
 				
-					<!-- List container for listings -->
-					<ul id="listing-list" class="row" style="list-style-type: none; padding-left: 0; margin: 0;"></ul>
-				
-					<!-- Pagination Controls -->
-					<div id="pagination-controls" style="margin-top: 20px;">
-						<button id="prev-page-btn" onclick="prevPage()" style="display:none;">Previous Page</button>
-						<span id="page-info"></span>
-						<button id="next-page-btn" onclick="nextPage()" style="display:none;">Next Page</button>
-					</div>
+					<h1>Ken Holmes Financial Services (Insurance & Investments)</h1>
+					
+						<p><strong>Address:</strong> Servicing: Newmarket</p>
+					
+					
+						<p><strong>Phone:</strong> <a href="tel:+640800 536465">0800 536465</a></p>
+					
 				</section>				
 
 		<!-- Footer -->
