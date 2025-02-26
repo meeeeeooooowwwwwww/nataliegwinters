@@ -2,9 +2,6 @@ name = "business-listings-worker"
 
 main = "src/index.ts"  # Path to your entry script (adjust if using JS)
 
-[build]
-command = "npm install && npm run build"  # If you have a build step
-
 [site]
 bucket = "./templates"  # Folder where your static files (templates) are stored
 
