@@ -1,17 +1,18 @@
-name = "your-worker"
-type = "javascript"  # or "typescript" if using TypeScript
+name = "business-listings-worker"
+name = "business-listings-worker"
+
+main = "src/index.ts"  # Path to your entry script (adjust if using JS)
 
 [build]
-command = "npm install && npm run build"
+command = "npm install && npm run build"  # If you have a build step
+
+[site]
+bucket = "./templates"  # Folder where your static files (templates) are stored
 
 [env.production]
-workers_dev = false
-route = "https://yourdomain.com/*"
-zone_id = "your-zone-id"
+route = "https://nataliegwinters.com.com/*"
+zone_id = "34246ddf997608f8590474fcb874e548"
 
 [[kv_namespaces]]
-binding = "business_listings"  # This should match the name you want to use in your Worker code
-id = "89cde751c8f949d9a801d7132eb85576"  # Your actual KV namespace ID
-
-[[site]]
-bucket = "./templates"  # Folder where the template resides
+binding = "BUSINESS_LISTINGS"
+id = "${BUSINESS_LISTINGS_NAMESPACE_ID}"  # Use the environment variable for the ID
