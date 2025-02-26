@@ -1,0 +1,17 @@
+name = "your-worker"
+type = "javascript"  # or "typescript" if using TypeScript
+
+[build]
+command = "npm install && npm run build"
+
+[env.production]
+workers_dev = false
+route = "https://yourdomain.com/*"
+zone_id = "your-zone-id"
+
+[[kv_namespaces]]
+binding = "business_listings"  # This should match the name you want to use in your Worker code
+id = "89cde751c8f949d9a801d7132eb85576"  # Your actual KV namespace ID
+
+[[site]]
+bucket = "./templates"  # Folder where the template resides
