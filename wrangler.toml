@@ -1,6 +1,9 @@
 name = "business-listings"
 type = "javascript"
 
+# Path to your worker script
+main = "nataliegwinters/business-listing/worker.js"
+
 [[kv_namespaces]]
 binding = "BUSINESS_LISTINGS_KV"
 id = "${CF_KV_NAMESPACE_ID}"
