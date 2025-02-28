@@ -1,14 +1,6 @@
-name = "business-listings-worker"
-
-main = "src/index.ts"  # Path to your entry script (adjust if using JS)
-
-[site]
-bucket = "./templates"  # Folder where your static files (templates) are stored
-
-[env.production]
-route = "https://nataliegwinters.com.com/*"
-zone_id = "34246ddf997608f8590474fcb874e548"
+name = "business-listings"
+type = "javascript"
 
 [[kv_namespaces]]
-binding = "BUSINESS_LISTINGS"
-id = "${BUSINESS_LISTINGS_NAMESPACE_ID}"  # Use the environment variable for the ID
+binding = "BUSINESS_LISTINGS_KV"
+id = "${CF_KV_NAMESPACE_ID}"
