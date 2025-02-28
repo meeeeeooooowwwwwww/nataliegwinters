@@ -1,10 +1,11 @@
 name = "business-listings"
 type = "javascript"
 
-compatibility_date = "2025-03-01"  # Correctly place this here.
+compatibility_date = "2025-03-01"
 
 [[kv_namespaces]]
 binding = "BUSINESS_LISTINGS_KV"
 id = "${CF_KV_NAMESPACE_ID}"
 
-# Do not specify 'main' under kv_namespaces
+# Specify the entry-point for the worker in the correct place:
+main = "business-listings/worker.js"
