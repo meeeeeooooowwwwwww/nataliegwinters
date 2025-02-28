@@ -1,9 +1,10 @@
 name = "business-listings"
 type = "javascript"
 
-# Path to your worker script
-main = "business-listings/worker.js"  # Adjust this to the correct relative path
-
 [[kv_namespaces]]
 binding = "BUSINESS_LISTINGS_KV"
 id = "${CF_KV_NAMESPACE_ID}"
+
+main = "business-listings/worker.js"
+
+compatibility_date = "2025-03-01"  # Add this line with your preferred date
