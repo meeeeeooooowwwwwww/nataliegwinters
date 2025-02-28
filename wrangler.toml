@@ -2,7 +2,7 @@ name = "business-listings"
 type = "javascript"
 
 # Path to your worker script
-main = "nataliegwinters/business-listing/worker.js"
+main = "business-listings/worker.js"  # Adjust this to the correct relative path
 
 [[kv_namespaces]]
 binding = "BUSINESS_LISTINGS_KV"
