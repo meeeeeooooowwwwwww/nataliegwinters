@@ -1,31 +1,49 @@
+addEventListener('fetch', event => {
+    event.respondWith(handleRequest(event.request));
+});
+
 async function handleRequest(request) {
-    // Extract the path from the request URL
-    const url = new URL(request.url);
-    const path = url.pathname.substring(1); // Strip the leading "/"
+    try {
+        // Extract the path from the request URL
+        const url = new URL(request.url);
+        const path = url.pathname.slice(1); // Remove leading "/" (e.g., "richardson-brick-blocklayers-utting")
 
-    // Try to get the business listing from KV by key (path)
-    const business = await BUSINESS_LISTINGS_KV.get(path);
+        // Fetch the business listing from KV using the path as the key
+        const business = await BUSINESS_LISTINGS_KV.get(path);
+        if (!business) {
+            return new Response('Business listing not found', {
+                status: 404,
+                headers: { 'Content-Type': 'text/plain' }
+            });
+        }
 
-    if (business) {
-        // If the business listing is found, return the HTML page
+        // Parse the JSON data from KV
         const businessData = JSON.parse(business);
 
-        // Generate HTML content for the business listing
+        // Define fallback values for missing fields
+        const title = businessData.title || 'Untitled Business';
+        const address = businessData.address || 'Address not available';
+        const phone = businessData.phone || 'Phone not available';
+        const website = businessData.website || 'Website not available';
+        const email = businessData.email || 'Email not available';
+        const description = businessData.description || 'No description available';
+
+        // Generate HTML content
         const html = `
             <!DOCTYPE html>
             <html lang="en">
             <head>
                 <meta charset="UTF-8">
                 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-                <title>${businessData.title}</title>
+                <title>${title}</title>
             </head>
             <body>
-                <h1>${businessData.title}</h1>
-                <p><strong>Address:</strong> ${businessData.address}</p>
-                <p><strong>Phone:</strong> <a href="tel:${businessData.phone}">${businessData.phone}</a></p>
-                <p><strong>Website:</strong> <a href="${businessData.website}" target="_blank">${businessData.website}</a></p>
-                <p><strong>Email:</strong> ${businessData.email}</p>
-                <p><strong>Description:</strong> ${businessData.description}</p>
+                <h1>${title}</h1>
+                <p><strong>Address:</strong> ${address}</p>
+                <p><strong>Phone:</strong> <a href="tel:${phone}">${phone}</a></p>
+                <p><strong>Website:</strong> <a href="${website}" target="_blank">${website}</a></p>
+                <p><strong>Email:</strong> ${email}</p>
+                <p><strong>Description:</strong> ${description}</p>
             </body>
             </html>
         `;
@@ -33,12 +51,11 @@ async function handleRequest(request) {
         return new Response(html, {
             headers: { 'Content-Type': 'text/html' },
         });
-    } else {
-        // If no business listing is found, return a 404 page
-        return new Response('Business listing not found', { status: 404 });
+    } catch (error) {
+        // Handle any errors (e.g., JSON parsing errors, KV access issues)
+        return new Response(`Error: ${error.message}`, {
+            status: 500,
+            headers: { 'Content-Type': 'text/plain' }
+        });
     }
 }
-
-addEventListener('fetch', event => {
-    event.respondWith(handleRequest(event.request));
-});
