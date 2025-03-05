@@ -19,8 +19,8 @@ async function handleRequest(event) {
         // Extract the business ID (everything after 'nataliegwinters/business/')
         const businessId = path.slice(businessPrefix.length);
         if (businessId) {
-            // Map to the KV key (e.g., "business/my-business-example")
-            const kvKey = `business/${businessId}`;
+            // Map to the KV key (e.g., just "my-business-example")
+            const kvKey = businessId; // Use the businessId directly as the KV key
             console.log("Fetching KV Key:", kvKey); // Debug KV key
             const business = await BUSINESS_LISTINGS_KV.get(kvKey);
             if (business) {
@@ -40,8 +40,7 @@ async function handleRequest(event) {
 // Serve the business listing page
 function serveBusinessListing(businessData) {
     const business = JSON.parse(businessData);
-    // Basic sanitization (could be expanded with a proper library)
-    const sanitize = (str) => String(str).replace(/</g, '&lt;').replace(/>/g, '&gt;');
+    const sanitize = (str) => String(str).replace(/</g, '<').replace(/>/g, '>');
     
     const title = sanitize(business.title || 'Untitled Business');
     const address = sanitize(business.address || 'Address not available');
@@ -69,7 +68,6 @@ function serveBusinessListing(businessData) {
         </html>
     `;
 
-    // Add Cache-Control for business listings (e.g., cache for 1 hour)
     const headers = { 
         'Content-Type': 'text/html',
         'Cache-Control': 'public, max-age=3600'
@@ -80,18 +78,14 @@ function serveBusinessListing(businessData) {
 // Serve static pages with caching
 async function serveStaticPageWithCache(event, path) {
     const staticUrl = `https://nataliegwinters.pages.dev/${path}`;
-    const cacheKey = new Request(staticUrl); // Use staticUrl as cache key
+    const cacheKey = new Request(staticUrl);
     
-    // Check cache first for static pages
     const cache = caches.default;
     let response = await cache.match(cacheKey);
     
     if (!response) {
         try {
-            // If not in cache, fetch from Cloudflare Pages
-            response = await fetch(staticUrl, { cf: { cacheTtl: 86400 } }); // Cache for 1 day
-            
-            // Cache the response for future requests if successful
+            response = await fetch(staticUrl, { cf: { cacheTtl: 86400 } });
             if (response.ok) {
                 event.waitUntil(cache.put(cacheKey, response.clone()));
             }
