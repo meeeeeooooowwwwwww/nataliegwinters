@@ -161,10 +161,13 @@
         const listingsPerPage = 5;
         let currentPage = 1;
         let listings = [];
-
+    
         async function fetchListings() {
             try {
-                const response = await fetch('listings.json');
+                const response = await fetch('/api/listings');
+                if (!response.ok) {
+                    throw new Error('Failed to fetch listings');
+                }
                 listings = await response.json();
                 renderListings();
             } catch (error) {
@@ -172,7 +175,7 @@
                 document.getElementById('listings').innerHTML = '<p>Failed to load listings.</p>';
             }
         }
-
+    
         function renderListings() {
             const start = (currentPage - 1) * listingsPerPage;
             const end = start + listingsPerPage;
@@ -181,7 +184,7 @@
             const listingsContainer = document.getElementById('listings');
             listingsContainer.innerHTML = pageListings.map(item => `
                 <div class="listing">
-                    <h2><a href="${item.url}" target="_blank">${item.title}</a></h2>
+                    <h2><a href="/business/${item.id}">${item.title}</a></h2>
                     ${item.address ? `<p><strong>Address:</strong> ${item.address}</p>` : ''}
                     ${item.phone ? `<p><strong>Phone:</strong> <a href="tel:+64${item.phone.replace(/\s+/g, '')}">+64 ${item.phone}</a></p>` : ''}
                 </div>
@@ -189,21 +192,21 @@
             
             document.getElementById('page-info').innerText = `Page ${currentPage} of ${Math.ceil(listings.length / listingsPerPage)}`;
         }
-
+    
         function prevPage() {
             if (currentPage > 1) {
                 currentPage--;
                 renderListings();
             }
         }
-
+    
         function nextPage() {
             if (currentPage * listingsPerPage < listings.length) {
                 currentPage++;
                 renderListings();
             }
         }
-
+    
         fetchListings();
     </script>
 </section>

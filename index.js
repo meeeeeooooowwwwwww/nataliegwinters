@@ -11,17 +11,20 @@ async function handleRequest(event) {
     // Normalize the path by removing any trailing slashes
     path = path.replace(/\/$/, '');
 
-    // Define the prefix for business listings
-    const businessPrefix = 'nataliegwinters/business/';
+    // Handle API endpoint for listings
+    if (path === 'api/listings') {
+        return serveListings();
+    }
 
-    // Check if this is a business listing under 'nataliegwinters/business/'
+    // Define the prefix for business listings
+    const businessPrefix = 'business/'; // Changed from 'nataliegwinters/business/'
+
+    // Check if this is a business listing under 'business/'
     if (path.startsWith(businessPrefix)) {
-        // Extract the business ID (everything after 'nataliegwinters/business/')
         const businessId = path.slice(businessPrefix.length);
         if (businessId) {
-            // Map to the KV key (e.g., just "my-business-example")
             const kvKey = businessId; // Use the businessId directly as the KV key
-            console.log("Fetching KV Key:", kvKey); // Debug KV key
+            console.log("Fetching KV Key:", kvKey);
             const business = await BUSINESS_LISTINGS_KV.get(kvKey);
             if (business) {
                 return serveBusinessListing(business);
@@ -33,8 +36,42 @@ async function handleRequest(event) {
         }
     }
 
-    // If not a business listing, handle static pages with cache optimization
+    // If not a business listing or API endpoint, handle static pages
     return serveStaticPageWithCache(event, path);
+}
+
+// Serve all listings as JSON
+async function serveListings() {
+    try {
+        const list = await BUSINESS_LISTINGS_KV.list();
+        const listings = [];
+
+        for (const key of list.keys) {
+            const value = await BUSINESS_LISTINGS_KV.get(key.name);
+            if (value) {
+                const business = JSON.parse(value);
+                listings.push({
+                    id: key.name,
+                    title: business.title || 'Untitled Business',
+                    address: business.address || null,
+                    phone: business.phone || null,
+                    website: business.website || null,
+                    email: business.email || null,
+                    description: business.description || null
+                });
+            }
+        }
+
+        return new Response(JSON.stringify(listings), {
+            headers: { 'Content-Type': 'application/json' }
+        });
+    } catch (error) {
+        console.error('Error fetching listings:', error);
+        return new Response(JSON.stringify({ error: 'Failed to fetch listings' }), {
+            status: 500,
+            headers: { 'Content-Type': 'application/json' }
+        });
+    }
 }
 
 // Serve the business listing page
