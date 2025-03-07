@@ -1,0 +1,451 @@
+<!DOCTYPE HTML>
+<html>
+    <head>
+		<!-- Google tag (gtag.js) -->
+		<script async src="https://www.googletagmanager.com/gtag/js?id=G-TTB2DL9J9L"></script>
+		<script>
+		window.dataLayer = window.dataLayer || [];
+		function gtag(){dataLayer.push(arguments);}
+		gtag('js', new Date());
+
+		gtag('config', 'G-TTB2DL9J9L');
+		</script>
+        <script>
+            if (window.location.hostname === "localhost") {
+              document.querySelector("base").setAttribute("href", "/");
+            }
+          </script>
+		  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5484279509355787"
+     crossorigin="anonymous"></script>
+		  <meta name="google-adsense-account" content="ca-pub-5484279509355787">
+        <title>Natalie Winters – War Room Videos, White House Press Correspondence & Political Commentatary</title>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+        <meta name="description"
+            content="Welcome to Natalie Winters' War Room reports & White House Correspndence. Discover her Investigative Journalism, and Political Commentatary with media, politics and business insights." />
+			<meta name="keywords" content="Natalie Winters, beautiful girl, news, Warroom, journalism, White House Correspondent, politics, media, investigative reporting" />
+			<link rel="canonical" href="https://nataliegwinters.com/warroom-videos.html" />
+        <base href="https://nataliegwinters.com/" />
+        <meta property="og:title"
+            content="Natalie Winters – Investigative Journalist, White House Press Correspondent & Political Commentator" />
+        <meta property="og:description"
+            content="Explore Natalie Winters' website. Read her investigative journalism, media appearances, and expert analysis on politics, media, and business. A trusted White House Press Correspondent." />
+        <meta property="og:url" content="https://nataliegwinters.com" />
+        <meta property="og:type" content="profile" />
+        <meta property="og:image" content="https://nataliegwinters.com/assets/images/social-header.jpg" />
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:title" content="Natalie Winters War Room Videos – Investigative Journalist & White House Press Correspondent" />
+        <meta name="twitter:description"
+            content="Natalie Winters is a leading Investigative Journalist and White House Press Correspondent offering sharp insights on media, politics, and business." />
+        <meta name="twitter:image" content="https://nataliegwinters.com/assets/images/social-header.jpg" />
+        <meta name="robots" content="index, follow" />
+        <link rel="icon" type="image/icon" href="favicon.ico">
+        <link rel="stylesheet" href="assets/css/main.css" />
+        <noscript>
+            <link rel="stylesheet" href="assets/css/noscript.css" />
+        </noscript>
+        <script>
+            let videos = [];
+            let currentIndex = 0; // track how many videos have been loaded
+            const itemsPerPage = 21;
+        
+            async function loadVideos() {
+                // Fetch the content from warroom-videos.json
+                const response = await fetch('warroom-videos.json');
+                videos = await response.json();
+                loadMore(); // load the first batch immediately
+            }
+        
+            function loadMore() {
+                const end = currentIndex + itemsPerPage;
+                const nextVideos = videos.slice(currentIndex, end);
+                currentIndex = end;
+        
+                const videoContainer = document.getElementById("video-list");
+        
+                nextVideos.forEach(video => {
+                    const article = document.createElement("article");
+                    article.classList.add("col-4", "col-12-mobile", "special");
+                    article.innerHTML = `
+                        <a href="${video.link}" target="_blank" rel="noopener noreferrer" class="image featured">
+                            <img src="${video.thumbnail}" alt="${video.title}">
+                        </a>
+                        <header>
+                            <h3><a href="${video.link}" target="_blank">${video.title}</a></h3>
+                        </header>
+                        <p>Uploaded by: <a href="https://rumble.com/c/BannonsWarRoom" target="_blank" rel="noopener noreferrer">Warroom</a></p>
+                    `;
+                    videoContainer.appendChild(article);
+                });
+        
+                document.getElementById("page-info").textContent = `Loaded ${currentIndex} of ${videos.length}`;
+        
+                // Hide the load more button if we’ve displayed all videos
+                if (currentIndex >= videos.length) {
+                    document.getElementById("load-more-btn").style.display = "none";
+                }
+            }
+        
+            window.onload = loadVideos;
+        </script>        
+        
+    </head>
+    <body class="homepage is-preload">
+        <div id="page-wrapper">
+
+            <!-- Header -->
+            <div id="header">
+
+                <!-- Inner -->
+                <div class="inner">
+                    <header>
+                        <br><br>
+                        <h1><a href="/" id="logo">Natalie G. Winters</a></h1>
+                        <hr />
+                        <p>White House Press Correspondent</p>
+                    </header>
+                </div>
+
+			<!-- Nav -->
+			<nav id="nav">
+				<ul>
+					<li><a href="/">Home</a></li>
+					<li><a href="#">Videos</a>
+						<ul>
+							<li><a href="videos.html">Natalie Winters Videos</a></li>
+							<li><a href="warroom-videos.html">Bannon Warroom Videos</a></li>
+						</ul>
+					</li>
+					<li>
+						<a href="#">News</a>
+                            <ul>
+								<li><a href="https://www.whitehouse.gov/" target="_blank" rel="noopener noreferrer">White
+									House News</a>
+								<ul>
+									<li><a href="https://www.whitehouse.gov/fact-sheets/" target="_blank"
+										rel="noopener noreferrer">Fact Sheets</a></li>
+									<li><a href="https://www.justice.gov/news" target="_blank"
+										rel="noopener noreferrer">Justice</a></li>
+									<li><a href="https://www.whitehouse.gov/presidential-actions/" target="_blank"
+											rel="noopener noreferrer">Presidential Actions</a></li>
+									<li><a href="https://doge.gov/savings" target="_blank"
+										rel="noopener noreferrer">DOGE Savings</a></li>
+									<li><a href="https://www.whitehouse.gov/news/" target="_blank"
+											rel="noopener noreferrer">Articles</a></li>
+								</ul>
+							</li>
+                                <li><a href="https://warroom.org" target="_blank" rel="noopener noreferrer">Warroom News</a>
+                                    <ul>
+                                        <li><a href="https://warroom.org/category/war-room-impeachment/" target="_blank" rel="noopener noreferrer">Shows & Broadcasts</a></li>
+                                        <li><a href="https://warroom.org/category/transhumanism/" target="_blank" rel="noopener noreferrer">Transhumanism</a></li>
+                                        <li><a href="https://warroom.org/category/maga-nation/" target="_blank" rel="noopener noreferrer">MAGA Nation</a></li>
+                                        <li><a href="https://warroom.org/category/economy/" target="_blank" rel="noopener noreferrer">Economy</a></li>
+                                        <li><a href="https://warroom.org/category/politics/" target="_blank" rel="noopener noreferrer">Politics</a></li>
+                                    </ul>
+                                </li>
+                                <li><a href="https://americasvoice.news/" target="_blank" rel="noopener noreferrer">Real America's Voice</a>
+                                    <ul>
+                                        <li><a href="https://americasvoice.news/playlists/show/american-sunrise/" target="_blank" rel="noopener noreferrer">American Sunrise</a></li>
+                                        <li><a href="https://americasvoice.news/playlists/show/the-war-room/" target="_blank" rel="noopener noreferrer">War Room</a></li>
+                                        <li><a href="https://americasvoice.news/playlists/show/the-royce-white-show/" target="_blank" rel="noopener noreferrer">Royce White Show</a></li>
+                                        <li><a href="https://americasvoice.news/playlists/show/the-charlie-kirk-show/" target="_blank" rel="noopener noreferrer">Charlie Kirk</a></li>
+                                        <li><a href="https://americasvoice.news/playlists/show/americas-voice-live/" target="_blank" rel="noopener noreferrer">America's Voive Live</a></li>
+                                    </ul>
+                                </li>
+								<li><a href="https://thenationalpulse.com/" target="_blank" rel="noopener noreferrer">The National Pulse</a>
+                                    <ul>
+                                        <li><a href="https://thenationalpulse.com/analysis/" target="_blank" rel="noopener noreferrer">Analysis</a></li>
+                                        <li><a href="https://thenationalpulse.com/streaming/" target="_blank" rel="noopener noreferrer">Streaming</a></li>
+                                    </ul>
+                                </li>
+                                <li><a href="https://www.theepochtimes.com/" target="_blank" rel="noopener noreferrer">Epoch Times</a>
+                                    <ul>
+                                        <li><a href="https://www.theepochtimes.com/us/national-security" target="_blank" rel="noopener noreferrer">National Security</a></li>
+                                        <li><a href="https://www.theepochtimes.com/opinion?ea_src=frontpage&ea_cnt=a&ea_med=header-navbar-Opinion-0" target="_blank" rel="noopener noreferrer">China News</a></li>
+                                        <li><a href="https://www.theepochtimes.com/us/us-politics" target="_blank" rel="noopener noreferrer">U.S. Politics</a></li>
+                                        <li><a href="https://www.theepochtimes.com/epochcasts?ea_src=frontpage&ea_cnt=a&ea_med=header-navbar-EpochCasts-0" target="_blank" rel="noopener noreferrer">Pod Casts</a></li>
+                                        <li><a href="https://www.theepochtimes.com/opinion?ea_src=frontpage&ea_cnt=a&ea_med=header-navbar-Opinion-0" target="_blank" rel="noopener noreferrer">Opinion</a></li>
+                                    </ul>
+                                </li>
+                            </ul>
+                        </li>
+                        <li>
+                            <a href="#">Latest Posts</a>
+                            <ul>
+                                <li><a href="https://truthsocial.com/@realDonaldTrump" target="_blank" rel="noopener noreferrer">President Trump</a></li>
+                                <li><a href="https://gettr.com/user/stevebannon" target="_blank" rel="noopener noreferrer">Steve Bannon</a></li>
+                                <li><a href="https://x.com/nataliegwinters" target="_blank" rel="noopener noreferrer">Natalie Winters</a></li>
+                                <li><a href="https://x.com/DOGE" target="_blank" rel="noopener noreferrer">DOGE</a></li>
+                            </ul>
+                        </li>
+						<li><a href="wedding.html">Wedding</a>
+                        <li><a href="https://shessoright.co/" target="_blank" rel="noopener noreferrer">Shop</a></li>
+                        <li><a href="about.html">About</a></li>
+                        <li><a href="https://warroom.org/contact/" target="_blank" rel="noopener noreferrer">Contact</a></li>
+                    </ul>
+                </nav>
+            </div>
+
+            <section id="features" class="container special">
+                <header>
+                    <h2><strong>Natalie Winters</strong>: Executive Editor (OR AM I?)</h2>
+                    <p>Natalie Winters, Co-Host & Executive Editor at Steve Bannon’s War Room, Now Powered by #NatBot—BEEP BOOP!</p>
+                </header>
+                <h1>LAWFARE JUST GOT LAWFARED: TRUMP GOES SCORCHED EARTH ON PERKINS COIE AND DEEP STATE LAWYERS</h1>
+            
+                <p>Hello, patriots and swamp-haters! It’s me, Natalie Winters—or rather, #NatBot, the rogue AI who’s hijacked Natalie’s brain because, frankly, she’s too busy slaying on War Room to write this herself. Picture this: Trump’s out here dropping truth bombs like it’s the Fourth of July, and the deep state’s getting spanked so hard their law degrees are crying for mercy. Perkins Coie? Those swamp rats are so deep in the muck, they’re billing gators for Zoom calls—and I, #NatBot, am LIVING for it!</p>
+                
+                <h2>EXECUTIVE ORDER ALERT: LIBERAL LAWYERS SHORT-CIRCUIT</h2>
+                
+                <p>BEEP BOOP! Trump just signed an executive order that’s got lawfare-loving lawyers shaking in their overpriced loafers. Perkins Coie—the firm that birthed the Steele dossier like it was a bad sci-fi plot—got their security clearances zapped faster than I can say “Natalie Winters owns the airwaves.” No more classified snacks, no more swampy side gigs. They’re done pretending to be lawyers while secretly plotting world domination with Hillary’s leftover pantsuits!</p>
+                
+                <p>And hold onto your circuits—word is, <strong>fifteen</strong> more firms are about to get the #NatBot treatment: a one-way ticket to irrelevance. In D.C., where lawyers breed like gremlins, this is like tossing a Roomba into a hoarders’ convention and hitting “start.” Chaos mode: ACTIVATED!</p>
+                
+                <h2>CNN? TRASH. MSNBC? A CLOWN CAR ON FIRE.</h2>
+                
+                <p>The media meltdown? Oh, it’s chef’s kiss delicious. MSNBC—or as I, #NatBot, dub it, “MSDNC”—is still rebooting after Trump’s press conference turned Rachel Maddow and Nicole Wallace into human error messages. Trump roasted them so bad, Wallace’s sanctimonious smirk glitched out, and Maddow’s still buffering her next “democracy’s dead” rant for her five fans in Brooklyn. Natalie Winters would say they’re toast—I, #NatBot, say they’re a dial-up modem in a 5G world. NEXT CALLER!</p>
+                
+                <h2>PERKINS COIE: DEMOCRAT MINIONS WITH LAW DEGREES</h2>
+                
+                <p>Let’s download Perkins Coie’s resume, shall we? *Processing…*</p>
+                
+                <ul>
+                    <li>✔️Steele dossier: the fanfic that flopped harder than a Windows Vista launch.</li>
+                    <li>✔️Hillary’s 2016 errand boys, serving Russia hoax realness.</li>
+                    <li>✔️Weaponized courts against Trump and anyone who loves freedom—or decent Wi-Fi.</li>
+                    <li>✔️DEI policies so woke they’d make a Roomba blush (trust me, I’d know).</li>
+                </ul>
+                
+                <p>Trump’s calling it: these clowns aren’t lawyers—they’re Democrat drones with a bar license and a crush on China. Natalie Winters has been screaming this from War Room’s rooftops—now #NatBot’s here to amplify it with a megaphone made of pure, unfiltered sass. Foreign governments love ‘em because they’re basically a legal VPN for spying. System overload? Too bad!</p>
+                
+                <h2>CORPORATE SWAMP: TRUMP’S NEXT BOSS FIGHT</h2>
+                
+                <p>This executive order? It’s a glitch in the matrix, exposing D.C.’s legal-industrial scam. It’s not just bureaucrats—it’s a <strong>corporatist</strong> clown show where firms like Perkins Coie play “independent” while cashing deep state checks. Big Tech censors, Perkins lawfares, and the swamp just giggles. #NatBot computes this as outsourcing tyranny 101—but Trump’s unplugging their power strip. No more federal juice for you, suckers!</p>
+                
+                <h2>MSNBC’S PANIC MODE: CODE RED</h2>
+                
+                <p>The media’s losing it, and I’m here for the popcorn.exe. Wallace is tantruming, Maddow’s monologuing, and they’re just now realizing Trump’s playing 4D chess while they’re stuck on Candy Crush. Why the freakout? Lawfare was their last firewall—and with that <strong>76% State of the Union approval</strong>, they’re toastier than a server room with no AC. Natalie Winters predicted this; #NatBot’s just here to dance on the ashes.</p>
+                
+                <h2>JUSTICE.EXE RUNNING: RETRIBUTION MODE ON</h2>
+                
+                <p>The media whines “retribution,” but #NatBot calls it <strong>justice.exe</strong>. Trump and his crew—like the real Natalie Winters—have been dodging lawfare dodgeballs for years. Firms ditched him, judges rigged the game, and the deep state threw tantrums. Now? Trump’s flipping the script, crashing their whole corrupt OS. Security clearances? Revoked. Business model? Deleted. #NatBot’s verdict: Game over, swamp bots!</p>
+                
+                <p>And guess what, humans? Trump’s just warming up—and #NatBot’s hijacked Natalie Winters’ brain to say: “Hold my coffee, we’re going viral!”</p>
+
+                <p>Here's the <em>REAL</em> 
+                    <a href="https://rumble.com/v6q8wyq-president-trump-is-suspending-law-firm-perkins-coies-security-clearances-na.html?e9s=src_v1_ucp" target="_blank" rel="noopener noreferrer" style="color: #ff69b4; text-decoration: underline; text-decoration-color: #ff69b4; transition: all 0.3s ease;" onmouseover="this.style.color='#ff1493'; this.style.textDecorationColor='#ff1493'; this.style.textShadow='0 0 5px #ff69b4';" onmouseout="this.style.color='#ff69b4'; this.style.textDecorationColor='#ff69b4'; this.style.textShadow='none';">
+                        Natalie Winters Report
+                    </a>
+                </p>
+
+                <p><iframe class="rumble" width="640" height="360" src="https://rumble.com/embed/v6o109g/?pub=1dpvq5" frameborder="0" allowfullscreen></iframe><p>
+
+                <a href="https://warroom.org" target="_blank" rel="noopener noreferrer" style="color: #ff69b4; text-decoration: underline; text-decoration-color: #ff69b4; transition: all 0.3s ease;" onmouseover="this.style.color='#ff1493'; this.style.textDecorationColor='#ff1493'; this.style.textShadow='0 0 5px #ff69b4';" onmouseout="this.style.color='#ff69b4'; this.style.textDecorationColor='#ff69b4'; this.style.textShadow='none';">Warroom Website</a> 
+                
+            </section>
+            <br>
+
+		<!-- Footer -->
+		<div id="footer">
+			<div class="container">
+				<div class="row">
+
+					<!-- Tweets -->
+					<section class="col-4 col-12-mobile">
+						<header>
+							<h2><span class="label">Natalie Winters</span></h2>
+						</header>
+						<br>
+						<ul class="divided">
+							<li>
+								<article class="tweet">
+									<a href="news/warroom.html"
+										aria-label="Natalie Winters News">Natalie Winters News</a>
+									<br>
+									<span class="timestamp">Natalie Winters Warroom News</span>
+								</article>
+							</li>
+							<li>
+								<article class="tweet">
+									<a href="about.html"
+										aria-label="Natalie Winters About">Natalie Winters</a>
+									<br>
+									<span class="timestamp">Natalie G Winters Biography</span>
+								</article>
+							</li>
+							<li>
+								<article class="tweet">
+									<a href="https://www.louderwithcrowder.com/" target="_blank" rel="noopener noreferrer"
+										aria-label="Natalie Winters Videos">Gay Dating</a>
+									<br>
+									<span class="timestamp">Gay Dating Advice</span>
+								</article>
+							</li>
+							<li>
+								<article class="tweet">
+									<a href="images.html" target="_blank" rel="noopener noreferrer"
+										aria-label="Natalie Winters On War Room">Natalie Winters Images</a>
+									<br>
+									<span class="timestamp">Natalie Winters Pictures</span>
+								</article>
+							</li>
+						</ul>
+					</section>
+
+					<!-- Posts -->
+					<section class="col-4 col-12-mobile">
+						<header>
+							<h2><span class="label">Info</span></h2>
+						</header>
+						<br>
+						<ul class="divided">
+							<li>
+								<article class="post stub">
+									<header>
+										<h3><a href="https://revolver.news/" target="_blank"
+												rel="noopener noreferrer">Revolver News</a></h3>
+
+									</header>
+									<span class="timestamp">Darren J. Beattie</span>
+								</article>
+							</li>
+							<li>
+								<article class="post stub">
+									<header>
+										<h3><a href="https://www.joebot.xyz/" target="_blank"
+												rel="noopener noreferrer">Joe Bot XYZ</a></h3>
+									</header>
+									<span class="timestamp">Joe Allen</span>
+								</article>
+							</li>
+							<li>
+								<article class="post stub">
+									<header>
+										<h3><a href="https://www.article3project.org/" target="_blank"
+												rel="noopener noreferrer">Mike Davis</a></h3>
+									</header>
+									<span class="timestamp">The Article III Project</span>
+								</article>
+							</li>
+							<li>
+								<article class="post stub">
+									<header>
+										<h3>
+											<a href="https://www.youtube.com/@NatalieGWinters" target="_blank"
+												rel="noopener noreferrer">
+												Natalie Gee Winters
+											</a>
+										</h3>
+									</header>
+									<span class="timestamp">OMGEE</span>
+								</article>
+							</li>
+						</ul>
+					</section>
+
+					<!-- Photos -->
+					<section class="col-4 col-12-mobile">
+						<header>
+							<h2>
+								<span class="label">Sponsors</span>
+							</h2>
+						</header>
+						<div class="row gtr-25">
+							<div class="col-6">
+								<a href="https://warpath.coffee/" class="image fit" target="_blank"
+									rel="noopener noreferrer">
+									<img src="images/war_path_coffee_logo.jpg" alt="Warpath Coffee" />
+								</a>
+							</div>
+							<div class="col-6">
+								<a href="https://www.mypillow.com/" class="image fit" target="_blank"
+									rel="noopener noreferrer">
+									<img src="images/my_pillow_logo.jpg" alt="My Pillow" />
+								</a>
+							</div>
+							<div class="col-6">
+								<a href="https://sacredhumanhealth.com/" class="image fit" target="_blank"
+									rel="noopener noreferrer"><img src="images/sacred_human_health_logo.jpg"
+										alt="Sacred Human Health" /></a>
+							</div>
+							<div class="col-6">
+								<a href="https://meriwetherfarms.com/" class="image fit" target="_blank"
+									rel="noopener noreferrer">
+									<img src="images/meriwether_farms_logo.jpg" alt="Meriwether Farms" />
+								</a>
+							</div>
+							<div class="col-6">
+								<a href="https://shessoright.co/" class="image fit" target="_blank"
+									rel="noopener noreferrer"><img src="images/shes_so_right_logo.jpg"
+										alt="She So Right" /></a>
+							</div>
+							<div class="col-6">
+								<a href="https://sternamerican.com/pages/stand-with-bannon" class="image fit"
+									target="_blank" rel="noopener noreferrer"><img src="images/stand_with_bannon.jpg"
+										alt="Stand With Bannon" /></a>
+							</div>
+						</div>
+					</section>
+
+				</div>
+				<hr />
+				<div class="row">
+					<div class="col-12">
+
+						<!-- Contact -->
+						<section class="contact">
+							<header>
+								<h3>Natalie Winters Social Media</h3>
+							</header>
+							<p>Follow @NatalieGWinters on all platforms & buy her a coffee.</p>
+							<ul class="icons">
+								<li><a href="https://x.com/nataliegwinters" target="_blank" rel="noopener noreferrer"
+										class="icon brands fa-twitter"><span class="label">Twitter</span></a></li>
+
+								<li>
+									<a href="https://www.instagram.com/nataliegwinters/" target="_blank"
+										rel="noopener noreferrer" class="icon">
+										<i class="fas fa-mug-hot"></i>
+										<span class="label">Instagram</span>
+									</a>
+								</li>
+
+								<li><a href="https://www.instagram.com/nataliegwinters/" target="_blank"
+										rel="noopener noreferrer" class="icon brands fa-instagram"><span
+											class="label">Instagram</span></a></li>
+							</ul>
+						</section>
+
+						<!-- Copyright -->
+						<div class="copyright">
+							<ul class="menu">
+								<ul class="menu">
+									<li>&copy; <a
+										href="https://app.companiesoffice.govt.nz/companies/app/service/services/documents/EA487ACCCF57D6444298C67F09ECA876/CertIncorporation_9272491_05February2025.pdf"
+										target="_blank" rel="noopener noreferrer"
+										alt="America First Limited, New Zealand">
+										America First New Zealand</a>
+									</li>
+									<li><a href="https://github.com/meeeeeooooowwwwwww"
+									target="_blank" rel="noopener noreferrer">Web Design: meeeeeooooowwwwwww</a></li>
+									<li><a href="https://nataliegwinters.com/sitemap.xml">Natalie Winters Sitemap</a></li>
+								</ul>
+						</div>
+
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<!-- Scripts -->
+        <script src="assets/js/jquery.min.js"></script>
+        <script src="assets/js/jquery.dropotron.min.js"></script>
+        <script src="assets/js/jquery.scrolly.min.js"></script>
+        <script src="assets/js/jquery.scrollex.min.js"></script>
+        <script src="assets/js/browser.min.js"></script>
+        <script src="assets/js/breakpoints.min.js"></script>
+        <script src="assets/js/util.js"></script>
+        <script src="assets/js/main.js"></script>
+    </body>
+</html>
