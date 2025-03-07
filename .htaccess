@@ -1,0 +1,6 @@
+# Enable rewrite engine
+RewriteEngine On
+
+# Serve static files directly if they exist
+RewriteCond %{REQUEST_FILENAME} -f
+RewriteRule \.(jpg|png|gif|css|js)$ - [L]
