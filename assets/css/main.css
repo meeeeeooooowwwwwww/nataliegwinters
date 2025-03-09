@@ -1745,7 +1745,7 @@ input, select, textarea {
 /* Sections/Article */
 
 	section, article {
-		margin-bottom: 3em;
+		margin-bottom: 2em;
 	}
 
 		section > :last-child, section:last-child, article > :last-child, article:last-child {
@@ -1758,7 +1758,7 @@ input, select, textarea {
 
 		article.special > h2 {
 			text-align: center;
-			margin: 0 auto 1.5em auto;
+			margin: 0 auto 0.5em auto;
 		}
 
 	.row > section, .row > article {
