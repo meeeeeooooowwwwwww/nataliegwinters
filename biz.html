@@ -185,11 +185,8 @@
             }
             
             try {
-                console.log('Attempting to fetch listings from worker...');
-                const url = new URL('https://business-listings-worker.generalflynn17.workers.dev/api/listings');
-                if (cursor) {
-                    url.searchParams.set('cursor', cursor);
-                }
+                console.log('Attempting to fetch listings from S3...');
+                const url = 'https://0ac8cf282bbdc382ef6afb38b2ca79c7.r2.cloudflarestorage.com/all-listings';
                 
                 const response = await fetch(url);
                 console.log('Response status:', response.status);
@@ -201,21 +198,18 @@
                 const data = await response.json();
                 console.log('Received data:', data);
                 
-                if (!Array.isArray(data.listings)) {
-                    throw new Error('Received data is not in the expected format');
-                }
+                // Since we're getting all listings at once from S3, we don't need pagination
+                nextCursor = null;
                 
-                // Store the cursor for next page
-                nextCursor = data.cursor;
-                
-                // Add new listings to our array
-                listings.push(...data.listings);
+                // Store all listings
+                listings.length = 0; // Clear existing
+                listings.push(...(Array.isArray(data) ? data : []));
                 
                 // Render all listings
                 renderListings();
                 
-                // Show/hide load more button based on whether there are more listings
-                loadMoreBtn.style.display = nextCursor ? 'block' : 'none';
+                // Hide load more button since we get all data at once
+                loadMoreBtn.style.display = 'none';
                 
             } catch (error) {
                 console.error('Detailed error:', error);
