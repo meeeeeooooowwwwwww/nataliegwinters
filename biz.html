@@ -19,8 +19,8 @@
         <meta property="og:url" content="https://nataliegwinters.com/biz" />
         <meta property="og:type" content="website" /> <!-- Changed from "profile" to "website" for a subpage -->
         <meta property="og:image" content="https://nataliegwinters.com/assets/images/social-header.jpg" />
-        <meta property="og:image:width" content="1200" /> <!-- Optional: helps platforms optimize display -->
-        <meta property="og:image:height" content="630" /> <!-- Optional: standard OG size -->
+        <meta property="og:image:width" content="1200" />
+        <meta property="og:image:height" content="628" />
     
         <!-- Twitter Card Tags (optimized) -->
         <meta name="twitter:card" content="summary_large_image" />
@@ -163,63 +163,96 @@
                 <section id="features" class="container special">
 
 
-    <div id="listings"></div>
+    <div id="listings">Loading business listings...</div>
     <div class="pagination">
-        <button onclick="prevPage()">Previous</button>
-        <span id="page-info"></span>
-        <button onclick="nextPage()">Next</button>
+        <button id="loadMoreBtn" onclick="loadMore()" style="display: none;">Load More</button>
     </div>
     
     <script>
-        const listingsPerPage = 5;
-        let currentPage = 1;
-        let listings = [];
+        let nextCursor = null;
+        let isLoading = false;
+        const listings = [];
     
-        async function fetchListings() {
+        async function fetchListings(cursor = null) {
+            if (isLoading) return;
+            isLoading = true;
+            
+            const listingsDiv = document.getElementById('listings');
+            const loadMoreBtn = document.getElementById('loadMoreBtn');
+            
+            if (!cursor) {
+                listingsDiv.innerHTML = 'Fetching business listings...';
+            }
+            
             try {
-                const response = await fetch('/api/listings');
-                if (!response.ok) {
-                    throw new Error('Failed to fetch listings');
+                console.log('Attempting to fetch listings from worker...');
+                const url = new URL('https://business-listings-worker.generalflynn17.workers.dev/api/listings');
+                if (cursor) {
+                    url.searchParams.set('cursor', cursor);
                 }
-                listings = await response.json();
+                
+                const response = await fetch(url);
+                console.log('Response status:', response.status);
+                
+                if (!response.ok) {
+                    throw new Error(`HTTP error! status: ${response.status}`);
+                }
+                
+                const data = await response.json();
+                console.log('Received data:', data);
+                
+                if (!Array.isArray(data.listings)) {
+                    throw new Error('Received data is not in the expected format');
+                }
+                
+                // Store the cursor for next page
+                nextCursor = data.cursor;
+                
+                // Add new listings to our array
+                listings.push(...data.listings);
+                
+                // Render all listings
                 renderListings();
+                
+                // Show/hide load more button based on whether there are more listings
+                loadMoreBtn.style.display = nextCursor ? 'block' : 'none';
+                
             } catch (error) {
-                console.error('Error loading listings:', error);
-                document.getElementById('listings').innerHTML = '<p>Failed to load listings.</p>';
+                console.error('Detailed error:', error);
+                if (!cursor) {
+                    listingsDiv.innerHTML = `<p>Failed to load listings. Error: ${error.message}</p>
+                        <p>Please check the browser console for more details.</p>`;
+                }
+            } finally {
+                isLoading = false;
             }
         }
     
         function renderListings() {
-            const start = (currentPage - 1) * listingsPerPage;
-            const end = start + listingsPerPage;
-            const pageListings = listings.slice(start, end);
-            
             const listingsContainer = document.getElementById('listings');
-            listingsContainer.innerHTML = pageListings.map(item => `
+            
+            if (listings.length === 0) {
+                listingsContainer.innerHTML = '<p>No listings found.</p>';
+                return;
+            }
+            
+            listingsContainer.innerHTML = listings.map(item => `
                 <div class="listing">
-                    <h2><a href="/business/${item.id}">${item.title}</a></h2>
+                    <h2><a href="/business/${item.id}">${item.title || 'Untitled'}</a></h2>
                     ${item.address ? `<p><strong>Address:</strong> ${item.address}</p>` : ''}
                     ${item.phone ? `<p><strong>Phone:</strong> <a href="tel:+64${item.phone.replace(/\s+/g, '')}">+64 ${item.phone}</a></p>` : ''}
+                    ${item.website ? `<p><strong>Website:</strong> <a href="${item.website}" target="_blank">${item.website}</a></p>` : ''}
                 </div>
             `).join('');
-            
-            document.getElementById('page-info').innerText = `Page ${currentPage} of ${Math.ceil(listings.length / listingsPerPage)}`;
         }
     
-        function prevPage() {
-            if (currentPage > 1) {
-                currentPage--;
-                renderListings();
+        function loadMore() {
+            if (nextCursor) {
+                fetchListings(nextCursor);
             }
         }
     
-        function nextPage() {
-            if (currentPage * listingsPerPage < listings.length) {
-                currentPage++;
-                renderListings();
-            }
-        }
-    
+        // Initial load
         fetchListings();
     </script>
 </section>

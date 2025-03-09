@@ -8,6 +8,18 @@ async function handleRequest(event) {
     let path = url.pathname.slice(1); // Get the path excluding the leading '/'
     console.log("Requested Path:", path); // Debug path
 
+    // Handle CORS preflight requests
+    if (request.method === 'OPTIONS') {
+        return new Response(null, {
+            headers: {
+                'Access-Control-Allow-Origin': 'https://nataliegwinters.com',
+                'Access-Control-Allow-Methods': 'GET, OPTIONS',
+                'Access-Control-Allow-Headers': 'Content-Type',
+                'Access-Control-Max-Age': '86400'
+            }
+        });
+    }
+
     // Normalize the path by removing any trailing slashes
     path = path.replace(/\/$/, '');
 
@@ -43,33 +55,66 @@ async function handleRequest(event) {
 // Serve all listings as JSON
 async function serveListings() {
     try {
-        const list = await BUSINESS_LISTINGS_KV.list();
-        const listings = [];
+        const url = new URL(request.url);
+        const cursor = url.searchParams.get('cursor');
+        const limit = 10; // Fixed limit of 10 items per page
 
+        // Get listings with pagination
+        const list = await BUSINESS_LISTINGS_KV.list({
+            limit,
+            cursor: cursor || undefined
+        });
+
+        const listings = [];
+        
+        // Process this batch
         for (const key of list.keys) {
-            const value = await BUSINESS_LISTINGS_KV.get(key.name);
-            if (value) {
-                const business = JSON.parse(value);
-                listings.push({
-                    id: key.name,
-                    title: business.title || 'Untitled Business',
-                    address: business.address || null,
-                    phone: business.phone || null,
-                    website: business.website || null,
-                    email: business.email || null,
-                    description: business.description || null
-                });
+            try {
+                const value = await BUSINESS_LISTINGS_KV.get(key.name);
+                if (value) {
+                    const business = JSON.parse(value);
+                    listings.push({
+                        id: key.name,
+                        title: business.title || 'Untitled Business',
+                        address: business.address || null,
+                        phone: business.phone || null,
+                        website: business.website || null,
+                        email: business.email || null,
+                        description: business.description || null
+                    });
+                }
+            } catch (e) {
+                console.error(`Error processing key ${key.name}:`, e);
+                continue;
             }
         }
 
-        return new Response(JSON.stringify(listings), {
-            headers: { 'Content-Type': 'application/json' }
+        // Return response with listings and cursor for next page
+        return new Response(JSON.stringify({
+            listings,
+            cursor: list.list_complete ? null : list.cursor // Include cursor only if there are more items
+        }), {
+            headers: { 
+                'Content-Type': 'application/json',
+                'Access-Control-Allow-Origin': 'https://nataliegwinters.com',
+                'Access-Control-Allow-Methods': 'GET, OPTIONS',
+                'Access-Control-Allow-Headers': 'Content-Type',
+                'Cache-Control': 'public, max-age=300' // Cache for 5 minutes
+            }
         });
     } catch (error) {
         console.error('Error fetching listings:', error);
-        return new Response(JSON.stringify({ error: 'Failed to fetch listings' }), {
+        return new Response(JSON.stringify({ 
+            error: 'Failed to fetch listings', 
+            details: error.message 
+        }), {
             status: 500,
-            headers: { 'Content-Type': 'application/json' }
+            headers: { 
+                'Content-Type': 'application/json',
+                'Access-Control-Allow-Origin': 'https://nataliegwinters.com',
+                'Access-Control-Allow-Methods': 'GET, OPTIONS',
+                'Access-Control-Allow-Headers': 'Content-Type'
+            }
         });
     }
 }
