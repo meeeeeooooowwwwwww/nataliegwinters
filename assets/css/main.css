@@ -1756,6 +1756,11 @@ input, select, textarea {
 			text-align: center;
 		}
 
+		article.special > h2 {
+			text-align: center;
+			margin: 0 auto 1.5em auto;
+		}
+
 	.row > section, .row > article {
 		margin-bottom: 0;
 	}
