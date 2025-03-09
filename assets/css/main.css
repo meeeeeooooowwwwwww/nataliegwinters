@@ -1798,7 +1798,19 @@ input, select, textarea {
 		.image.featured {
 			display: block;
 			width: 100%;
-			margin: 0 0 4em 0;
+			margin: 0 auto;
+			overflow: hidden;
+			text-align: center;
+		}
+		
+		.image.featured video {
+			width: 100%;
+			height: auto;
+			max-width: 100%;
+			display: block;
+			margin: 0 auto;
+			object-fit: contain;
+			transform-origin: center; /* Ensures scaling is centered */
 		}
 
 		.image.left {
@@ -1814,6 +1826,34 @@ input, select, textarea {
 			.image.centered img {
 				margin: 0 auto;
 				width: auto;
+			}
+
+			@media screen and (max-width: 1680px) {
+				.image.featured {
+					max-width: 1000px; /* Increased from 700px */
+				}
+			}
+			
+			@media screen and (max-width: 1280px) {
+				.image.featured {
+					max-width: 900px; /* Increased from 600px */
+					padding: 0 2em;
+				}
+			}
+			
+			@media screen and (max-width: 960px) {
+				.image.featured {
+					max-width: 100%; /* Unchanged */
+					padding: 0 1.5em;
+				}
+			}
+			
+			@media screen and (max-width: 736px) {
+				.image.featured {
+					max-width: 100%; /* Unchanged */
+					margin: 0 0 2em 0;
+					padding: 0 1em;
+				}
 			}
 
 /* List */
