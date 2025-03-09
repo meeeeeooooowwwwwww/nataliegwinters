@@ -25,7 +25,7 @@ async function handleRequest(event) {
 
     // Handle API endpoint for listings
     if (path === 'api/listings') {
-        return serveListings();
+        return serveListings(request);
     }
 
     // Define the prefix for business listings
@@ -53,17 +53,21 @@ async function handleRequest(event) {
 }
 
 // Serve all listings as JSON
-async function serveListings() {
+async function serveListings(request) {
     try {
         const url = new URL(request.url);
         const cursor = url.searchParams.get('cursor');
         const limit = 10; // Fixed limit of 10 items per page
+
+        console.log('Fetching listings with cursor:', cursor); // Add debug logging
 
         // Get listings with pagination
         const list = await BUSINESS_LISTINGS_KV.list({
             limit,
             cursor: cursor || undefined
         });
+
+        console.log('Got KV list response:', list); // Add debug logging
 
         const listings = [];
         
@@ -89,21 +93,23 @@ async function serveListings() {
             }
         }
 
+        console.log('Processed listings:', listings.length); // Add debug logging
+
         // Return response with listings and cursor for next page
         return new Response(JSON.stringify({
             listings,
-            cursor: list.list_complete ? null : list.cursor // Include cursor only if there are more items
+            cursor: list.list_complete ? null : list.cursor
         }), {
             headers: { 
                 'Content-Type': 'application/json',
                 'Access-Control-Allow-Origin': 'https://nataliegwinters.com',
                 'Access-Control-Allow-Methods': 'GET, OPTIONS',
                 'Access-Control-Allow-Headers': 'Content-Type',
-                'Cache-Control': 'public, max-age=300' // Cache for 5 minutes
+                'Cache-Control': 'public, max-age=300'
             }
         });
     } catch (error) {
-        console.error('Error fetching listings:', error);
+        console.error('Worker error:', error);
         return new Response(JSON.stringify({ 
             error: 'Failed to fetch listings', 
             details: error.message 
