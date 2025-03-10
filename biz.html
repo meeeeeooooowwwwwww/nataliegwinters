@@ -176,41 +176,40 @@
         async function fetchListings(cursor = null) {
             if (isLoading) return;
             isLoading = true;
-            
+        
             const listingsDiv = document.getElementById('listings');
             const loadMoreBtn = document.getElementById('loadMoreBtn');
-            
+        
             if (!cursor) {
                 listingsDiv.innerHTML = 'Fetching business listings...';
             }
-            
+        
             try {
-                console.log('Attempting to fetch listings from S3...');
+                console.log('Attempting to fetch listings...');
                 const url = 'https://0ac8cf282bbdc382ef6afb38b2ca79c7.r2.cloudflarestorage.com/all-listings';
-                
-                const response = await fetch(url);
+        
+                const response = await fetch(url, {
+                    method: 'GET',
+                    headers: {
+                        'Accept': 'application/json'
+                    }
+                });
+        
                 console.log('Response status:', response.status);
-                
+        
                 if (!response.ok) {
                     throw new Error(`HTTP error! status: ${response.status}`);
                 }
-                
+        
                 const data = await response.json();
                 console.log('Received data:', data);
-                
-                // Since we're getting all listings at once from S3, we don't need pagination
-                nextCursor = null;
-                
-                // Store all listings
+        
                 listings.length = 0; // Clear existing
                 listings.push(...(Array.isArray(data) ? data : []));
-                
-                // Render all listings
+        
                 renderListings();
-                
-                // Hide load more button since we get all data at once
-                loadMoreBtn.style.display = 'none';
-                
+                loadMoreBtn.style.display = 'none'; // Hide since all data is fetched
+        
             } catch (error) {
                 console.error('Detailed error:', error);
                 if (!cursor) {
