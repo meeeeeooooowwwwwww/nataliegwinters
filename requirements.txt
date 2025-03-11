@@ -1,1 +1,2 @@
-playwright
+# Python dependencies
+# Add new dependencies as needed 

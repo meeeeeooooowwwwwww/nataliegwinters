@@ -1,0 +1,18 @@
+{
+  "build": {
+    "publicDir": "public",
+    "command": null
+  },
+  "routes": [
+    { "pattern": "/biz/*", "script": "functions/biz.js" },
+    { "pattern": "/*", "serve": "public/*" }
+  ],
+  "env": {
+    "production": {
+      "NODE_ENV": "production"
+    },
+    "preview": {
+      "NODE_ENV": "development"
+    }
+  }
+} 
