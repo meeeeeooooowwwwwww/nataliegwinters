@@ -40,6 +40,7 @@ def append_data(videos):
 def scrape_rumble():
     # Load the most recent video URL
     last_video_url = load_existing_data()
+    print(f"Last known video URL: {last_video_url}")
 
     with sync_playwright() as p:
         # Launch browser
@@ -72,6 +73,7 @@ def scrape_rumble():
             return
 
         # Extract video details from each video element
+        most_recent_video = None
         for video in video_elements:
             try:
                 img_element = video.query_selector("img.thumbnail__image")
@@ -85,9 +87,14 @@ def scrape_rumble():
                     if title and link:
                         video_url = "https://rumble.com" + link
                         
+                        # Keep track of the most recent video we checked
+                        if most_recent_video is None:
+                            most_recent_video = {"title": title, "url": video_url}
+                        
                         # Stop if we've reached the most recent video (already in the JSON)
                         if video_url == last_video_url:
-                            print("Reached the most recent video. Stopping scrape.")
+                            print(f"Reached the most recent video: {title}")
+                            print(f"URL: {video_url}")
                             break
                         
                         # Add new videos to the list
@@ -105,8 +112,15 @@ def scrape_rumble():
         # Save new data to JSON (prepend the new videos to existing data)
         if new_videos:
             append_data(new_videos)
+            print(f"Added {total_scraped} new videos")
+        else:
+            if most_recent_video:
+                print(f"No new videos found. Most recent video: {most_recent_video['title']}")
+                print(f"URL: {most_recent_video['url']}")
+            else:
+                print("No videos found at all!")
 
-        print(f"Scraped {total_scraped} new videos and saved to {OUTPUT_FILE}")
+        print(f"Scraping completed. Total videos processed: {len(video_elements)}")
         
         browser.close()
 
