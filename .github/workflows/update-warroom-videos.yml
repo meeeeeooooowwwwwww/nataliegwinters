@@ -6,6 +6,9 @@ on:
     - cron: '0 8,20 * * *'
   workflow_dispatch:  # Allows manual triggering
 
+permissions:
+  contents: write  # This gives the workflow permission to push changes
+
 jobs:
   update-videos:
     runs-on: ubuntu-latest
@@ -37,4 +40,6 @@ jobs:
     - name: Commit and push if changes
       run: |
         git add warroom-videos.json
-        git diff --quiet && git diff --staged --quiet || (git commit -m "Auto-update warroom videos [skip ci]" && git push) 
+        git diff --quiet && git diff --staged --quiet || (git commit -m "Auto-update warroom videos [skip ci]" && git push)
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }} 
