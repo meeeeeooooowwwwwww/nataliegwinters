@@ -2,8 +2,8 @@ name: Update War Room Videos
 
 on:
   schedule:
-    # Run every 5 minutes for testing
-    - cron: '*/5 * * * *'
+    # Run at 5 AM, 11 AM, 5 PM, and 11 PM CST (11:00, 17:00, 23:00, 05:00 UTC)
+    - cron: '0 5,11,17,23 * * *'
   workflow_dispatch:  # Allows manual triggering
 
 permissions:
