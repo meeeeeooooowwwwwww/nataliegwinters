@@ -33,7 +33,13 @@ jobs:
       id: update_videos
       run: |
         echo "Starting video update check at $(date)"
-        python scripts/warroom_video_updater.py
+        # Capture the script output
+        OUTPUT=$(python scripts/warroom_video_updater.py)
+        echo "$OUTPUT"
+        # Save the last line of output for the status
+        echo "script_output<<EOF" >> $GITHUB_OUTPUT
+        echo "$OUTPUT" >> $GITHUB_OUTPUT
+        echo "EOF" >> $GITHUB_OUTPUT
         echo "Video check completed at $(date)"
     
     - name: Configure Git
@@ -63,8 +69,10 @@ jobs:
         script: |
           const date = new Date().toISOString();
           const hasChanges = '${{ steps.check_changes.outputs.has_changes }}' === 'true';
+          const scriptOutput = `${{ steps.update_videos.outputs.script_output }}`;
+          
           const message = hasChanges 
-            ? `✅ Successfully updated videos at ${date}`
-            : `ℹ️ No new videos found at ${date}`;
+            ? `✅ Successfully updated videos at ${date}\n\n${scriptOutput}`
+            : `ℹ️ No new videos found at ${date}\n\n${scriptOutput}`;
           
           console.log(message); 
