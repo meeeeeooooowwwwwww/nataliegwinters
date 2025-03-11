@@ -1,9 +1,8 @@
 # wrangler.toml
 name = "business-listings-worker"
 compatibility_date = "2025-03-03"
-main = "index.js"
 
-[[kv_namespaces]]
-binding = "BUSINESS_LISTINGS_KV"
-id = "89cde751c8f949d9a801d7132eb85576"
-preview_id = "4dc9b4f4c08e4b74a292e736957a1758"  # Keeping your preview ID
+[[r2_buckets]]
+binding = "LISTINGS_BUCKET"
+bucket_name = "all-listings"
+preview_bucket_name = "all-listings-preview"

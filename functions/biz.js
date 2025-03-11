@@ -5,6 +5,28 @@ export async function onRequest(context) {
 
     // Extract business ID and optional category
     const segments = path.split('/').filter(Boolean);
+    
+    // New route for listing businesses
+    if (segments.length === 2 && segments[1] === 'list') {
+        // Fetch from R2
+        const r2Response = await env.LISTINGS_BUCKET.get('listings.json');
+        if (!r2Response) {
+            return new Response('Failed to fetch listings', { status: 500 });
+        }
+        const allListings = JSON.parse(await r2Response.text());
+        
+        // Get first 10 listings
+        const first10Listings = allListings.slice(0, 10);
+        
+        return new Response(JSON.stringify(first10Listings, null, 2), {
+            headers: { 
+                'Content-Type': 'application/json',
+                'Access-Control-Allow-Origin': '*'
+            }
+        });
+    }
+
+    // Original business lookup logic
     let businessId, category;
     if (segments.length === 3) { // /biz/category/business-id
         category = segments[1];
@@ -16,7 +38,7 @@ export async function onRequest(context) {
     }
 
     // Fetch from R2 (using binding or URL)
-    const r2Response = await env.LISTINGS_BUCKET.get('all-listings.json');
+    const r2Response = await env.LISTINGS_BUCKET.get('listings.json');
     if (!r2Response) {
         return new Response('Failed to fetch listings', { status: 500 });
     }
