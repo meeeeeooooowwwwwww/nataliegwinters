@@ -1,0 +1,22 @@
+# wrangler.toml - Configuration for Cloudflare Pages
+name = "nataliegwinters"
+compatibility_date = "2025-03-03"
+
+# Pages configuration
+[build]
+command = ""
+output_dir = "."
+
+# R2 bucket binding
+[[r2_buckets]]
+binding = "LISTINGS_BUCKET"
+bucket_name = "all-listings"
+preview_bucket_name = "all-listings-preview"
+
+# Routes configuration
+[[routes]]
+pattern = "/biz/*"
+script = "functions/biz.js"
+
+[site]
+bucket = "."
