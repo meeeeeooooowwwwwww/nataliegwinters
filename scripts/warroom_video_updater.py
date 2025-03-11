@@ -2,6 +2,8 @@ from playwright.sync_api import sync_playwright
 import json
 import time
 
+# Automated via GitHub Actions - runs twice daily at 8:00 AM and 8:00 PM UTC
+
 # URL of the Rumble War Room channel
 URL = "https://rumble.com/c/BannonsWarRoom/videos"
 OUTPUT_FILE = "warroom-videos.json"  # Make sure this is defined
