@@ -1,0 +1,14 @@
+name = "nataliegwinters-articles"
+compatibility_date = "2025-03-03"
+main = "index.js"
+
+[[r2_buckets]]
+binding = "ARTICLES_BUCKET"
+bucket_name = "all-articles"
+preview_bucket_name = "all-articles-preview"
+
+# Routes for articles API
+routes = [
+  { pattern = "nataliegwinters.com/api/articles/*", zone_name = "nataliegwinters.com" },
+  { pattern = "www.nataliegwinters.com/api/articles/*", zone_name = "nataliegwinters.com" }
+] 
