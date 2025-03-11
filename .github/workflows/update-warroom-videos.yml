@@ -2,8 +2,8 @@ name: Update War Room Videos
 
 on:
   schedule:
-    # Run at 8:00 AM and 8:00 PM UTC (adjust these times as needed)
-    - cron: '0 8,20 * * *'
+    # Run every 5 minutes for testing
+    - cron: '*/5 * * * *'
   workflow_dispatch:  # Allows manual triggering
 
 permissions:
@@ -30,16 +30,41 @@ jobs:
         playwright install chromium
     
     - name: Run video updater script
-      run: python scripts/warroom_video_updater.py
+      id: update_videos
+      run: |
+        echo "Starting video update check at $(date)"
+        python scripts/warroom_video_updater.py
+        echo "Video check completed at $(date)"
     
     - name: Configure Git
       run: |
         git config --local user.email "github-actions[bot]@users.noreply.github.com"
         git config --local user.name "github-actions[bot]"
     
-    - name: Commit and push if changes
+    - name: Check for changes and commit
+      id: check_changes
       run: |
-        git add warroom-videos.json
-        git diff --quiet && git diff --staged --quiet || (git commit -m "Auto-update warroom videos [skip ci]" && git push)
+        if git diff --quiet warroom-videos.json; then
+          echo "No new videos found at $(date)"
+          echo "has_changes=false" >> $GITHUB_OUTPUT
+        else
+          echo "New videos found! Committing changes..."
+          git add warroom-videos.json
+          git commit -m "Auto-update warroom videos [skip ci]"
+          git push
+          echo "has_changes=true" >> $GITHUB_OUTPUT
+        fi
       env:
-        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }} 
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+    
+    - name: Create status comment
+      uses: actions/github-script@v6
+      with:
+        script: |
+          const date = new Date().toISOString();
+          const hasChanges = '${{ steps.check_changes.outputs.has_changes }}' === 'true';
+          const message = hasChanges 
+            ? `✅ Successfully updated videos at ${date}`
+            : `ℹ️ No new videos found at ${date}`;
+          
+          console.log(message); 
