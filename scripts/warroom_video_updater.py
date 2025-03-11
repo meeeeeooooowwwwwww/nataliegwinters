@@ -29,13 +29,13 @@ def append_data(videos):
     except (FileNotFoundError, json.JSONDecodeError):
         existing_data = []  # If file doesn't exist or is empty, start with an empty list
     
-    # Prepend the new videos at the beginning of the existing data
-    videos.extend(existing_data)
+    # Create a new list with new videos at the beginning
+    combined_data = videos + existing_data
     
     # Save the combined data back to the JSON file
     with open(OUTPUT_FILE, "w", encoding="utf-8") as f:
-        json.dump(videos, f, indent=4)
-    print(f"Appended {len(videos)} new videos to {OUTPUT_FILE}")
+        json.dump(combined_data, f, indent=4)
+    print(f"Added {len(videos)} new videos at the beginning of {OUTPUT_FILE}")
 
 def scrape_rumble():
     # Load the most recent video URL
