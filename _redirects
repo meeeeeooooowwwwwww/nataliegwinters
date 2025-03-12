@@ -1,2 +1,4 @@
+/* /index.html 200
 /warroom-articles /warroom-articles.html 200
-/warroom-articles/* /article.html 200 
+/warroom-articles/* /article.html 200
+/warroom-articles.json /warroom-articles.json 200 
