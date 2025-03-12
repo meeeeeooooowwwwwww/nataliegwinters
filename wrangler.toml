@@ -1,4 +1,4 @@
-name = "nataliegwinters"
+name = "business-listings-worker"
 compatibility_date = "2025-03-03"
 main = "functions/main.js"
 
