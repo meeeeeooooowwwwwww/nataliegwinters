@@ -1,13 +1,2 @@
-# Static assets should pass through
-/assets/* /assets/:splat 200
-/images/* /images/:splat 200
-
-# Handle article pages
-/warroom-articles /warroom-articles.html 200
-/warroom-articles/* /article.html 200
-
-# Handle JSON data
-/warroom-articles.json /warroom-articles.json 200
-
-# Default route
-/ /index.html 200 
+/warroom-articles /warroom-articles.html 301
+/warroom-articles/* /article.html 301 
