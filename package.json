@@ -1,5 +1,17 @@
 {
+  "name": "nataliegwinters",
+  "version": "1.0.0",
   "dependencies": {
-    "cheerio": "^1.0.0"
+    "cheerio": "^1.0.0-rc.12"
+  },
+  "scripts": {
+    "process-articles": "node scripts/process-warroom-articles.js",
+    "process-articles:dev": "NODE_ENV=development node scripts/process-warroom-articles.js",
+    "process-articles:staging": "NODE_ENV=staging node scripts/process-warroom-articles.js",
+    "process-articles:prod": "NODE_ENV=production node scripts/process-warroom-articles.js",
+    "upload-articles": "node scripts/upload-to-cloudflare.js"
+  },
+  "devDependencies": {
+    "http-server": "^14.1.1"
   }
 }
