@@ -5,11 +5,20 @@ function generateSlug(title) {
         .replace(/(^-|-$)/g, '');
 }
 
+function getArticleId() {
+    // Check for query parameter first (development)
+    const urlParams = new URLSearchParams(window.location.search);
+    const queryId = urlParams.get('id');
+    if (queryId) return queryId;
+
+    // Check for clean URL format (production)
+    const match = window.location.pathname.match(/\/warroom-articles\/(.+)/);
+    return match ? match[1] : null;
+}
+
 document.addEventListener('DOMContentLoaded', async () => {
     try {
-        // Get the article ID from URL query parameters
-        const urlParams = new URLSearchParams(window.location.search);
-        const articleId = urlParams.get('id');
+        const articleId = getArticleId();
         
         if (!articleId) {
             throw new Error('Article not found');
@@ -52,7 +61,7 @@ document.addEventListener('DOMContentLoaded', async () => {
             <div class="article-body">
                 ${article.content}
             </div>
-            <a href="/warroom-articles.html" class="back-to-articles"><em>→</em> Back to Articles</a>
+            <a href="/warroom-articles" class="back-to-articles"><em>→</em> Back to Articles</a>
         `;
 
     } catch (error) {
@@ -62,7 +71,7 @@ document.addEventListener('DOMContentLoaded', async () => {
             <div class="error">
                 <h2>Article Not Found</h2>
                 <p>Sorry, we couldn't find the article you're looking for.</p>
-                <a href="/warroom-articles.html" class="back-to-articles"><em>→</em> Back to Articles</a>
+                <a href="/warroom-articles" class="back-to-articles"><em>→</em> Back to Articles</a>
             </div>
         `;
     }
