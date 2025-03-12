@@ -9,8 +9,8 @@ def generate_article_html(article):
     <title>{article['title']}</title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" href="../assets/css/main.css">
-    <link rel="stylesheet" href="../assets/css/fontawesome-all.min.css">
+    <link rel="stylesheet" href="/assets/css/main.css">
+    <link rel="stylesheet" href="/assets/css/fontawesome-all.min.css">
     <style>
         .article-container {{
             max-width: 1200px;
@@ -98,7 +98,7 @@ def generate_article_html(article):
             </div>
             
             <div class="article-footer">
-                <a href="../warroom-articles.html" class="back-to-articles">← Back to Articles</a>
+                <a href="/warroom-articles.html" class="back-to-articles">← Back to Articles</a>
                 <a href="{article['sourceUrl']}" class="source-link" target="_blank" rel="noopener noreferrer">Read Original Article →</a>
             </div>
         </article>

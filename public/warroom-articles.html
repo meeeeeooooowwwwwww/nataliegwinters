@@ -28,9 +28,9 @@
 		<meta name="twitter:description" content="Latest news and political analysis from Natalie Winters and Steve Bannon's Warroom." />
 		<meta name="twitter:image" content="https://nataliegwinters.com/assets/images/social-header.jpg" />
 		<meta name="robots" content="index, follow" />
-		<link rel="icon" type="image/icon" href="./favicon.ico">
-		<link rel="stylesheet" href="./assets/css/main.css" />
-		<noscript><link rel="stylesheet" href="./assets/css/noscript.css" /></noscript>
+		<link rel="icon" type="image/icon" href="/favicon.ico">
+		<link rel="stylesheet" href="/assets/css/main.css" />
+		<noscript><link rel="stylesheet" href="/assets/css/noscript.css" /></noscript>
 	</head>
 	<body class="homepage is-preload">
 		<div id="page-wrapper">
@@ -193,7 +193,7 @@
 							const articleList = document.querySelector('.article-list');
 							const errorMessage = document.getElementById('error-message');
 
-							fetch('warroom-articles.json')
+							fetch('/warroom-articles.json')
 								.then(response => {
 									if (!response.ok) {
 										throw new Error('Network response was not ok');
@@ -212,7 +212,7 @@
 										const title = document.createElement('h3');
 										title.className = 'article-title';
 										const titleLink = document.createElement('a');
-										titleLink.href = 'warroom-articles/' + article.fileName;
+										titleLink.href = '/warroom-articles/' + article.fileName;
 										titleLink.textContent = article.title;
 										title.appendChild(titleLink);
 										
@@ -230,7 +230,7 @@
 										
 										const readMore = document.createElement('a');
 										readMore.className = 'read-more';
-										readMore.href = 'warroom-articles/' + article.fileName;
+										readMore.href = '/warroom-articles/' + article.fileName;
 										readMore.textContent = 'Read More';
 										
 										li.appendChild(title);
