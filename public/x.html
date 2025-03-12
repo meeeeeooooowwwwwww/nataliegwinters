@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <base href="https://nataliegwinters.com/" />
+  <link rel="canonical" href="https://nataliegwinters.com/" />
+  <title>Banned On Twitter / X</title>
+  <style>
+      /* Set background to black and remove default margin and padding */
+      body, html {
+          margin: 0;
+          padding: 0;
+          height: 100%;
+          background-color: black;
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          font-family: 'Arial', sans-serif;
+          position: relative;
+          flex-direction: column; /* Ensure the content flows vertically */
+      }
+
+      /* Center the container with the image and link */
+      .container {
+          text-align: center;
+          padding: 20px;
+          z-index: 1; /* Ensure the container is above the gif */
+          display: flex;
+          flex-direction: column; /* Stack the elements vertically */
+          align-items: center; /* Horizontally center the elements */
+      }
+
+      /* Style the .png image */
+      .centered-image {
+          max-width: 100%;
+          height: auto;
+          display: block;
+          margin-bottom: 30px;
+          border-radius: 10px;
+      }
+
+      /* Style the .gif image */
+      .gif-overlay {
+          max-width: 100%;
+          height: auto;
+          display: block;
+          margin-bottom: 30px;
+          border-radius: 10px;
+          cursor: pointer; /* Make the gif clickable */
+      }
+
+      /* Style the "GO BACK" link with text shadow */
+      .go-back-link {
+          color: #ee003f;
+          font-size: 40px;
+          font-weight: bold;
+          text-decoration: none;
+          transition: color 0.3s ease, transform 0.3s ease, text-shadow 0.3s ease;
+          /* Add a subtle text shadow */
+          text-shadow: 4px 6px 8px rgba(255, 20, 20, 0.7);
+      }
+
+      .go-back-link:hover {
+          text-decoration: underline;
+          color: #ff1818;
+          transform: translateY(-5px);
+          /* Intensify the text shadow on hover */
+          text-shadow: 4px 4px 12px rgba(255, 16, 68, 0.8);
+      }
+
+      /* Optional: Add a subtle fade-in animation for page load */
+      body {
+          animation: fadeIn 1s ease-out;
+      }
+
+      @keyframes fadeIn {
+          from {
+              opacity: 0;
+          }
+          to {
+              opacity: 1;
+          }
+      }
+  </style>
+</head>
+<body>
+    <div class="container">
+        <!-- PNG Image at the top -->
+        <a href="index.html">
+            <img src="images/suspended.png" alt="Suspended Image" class="centered-image">
+        </a>
+        
+        <!-- GIF below the PNG Image, acting as the play button -->
+        <img src="images/grimes.gif" alt="Grimes GIF" class="gif-overlay" onclick="playAudio()">
+        
+        <!-- "GO BACK" link centered below the images -->
+        <a href="index.html" class="go-back-link">GO BACK</a>
+    </div>
+
+    <script>
+        // Function to play audio when gif is clicked
+        function playAudio() {
+            var audio = new Audio("https://www.dropbox.com/scl/fi/2mqst5vlwzwby3yijumlx/bruh.mp3?rlkey=0sw3ji4dk1k6r9a8wzqh14ffu&st=eo8ttmhe&dl=1");
+            audio.play();
+        }
+    </script>
+    
+</body>
+</html>
