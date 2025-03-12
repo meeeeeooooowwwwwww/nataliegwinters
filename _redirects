@@ -1,2 +1,3 @@
-/warroom-articles /warroom-articles.html 301
-/warroom-articles/* /article.html 301 
+# Internal URL rewrites (no redirects)
+/warroom-articles /warroom-articles.html 200!
+/warroom-articles/* /article.html 200! 
