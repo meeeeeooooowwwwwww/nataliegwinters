@@ -1,0 +1,63 @@
+<!DOCTYPE HTML>
+<html>
+	<head>
+	<!-- Google tag (gtag.js) -->
+	<script async src="https://www.googletagmanager.com/gtag/js?id=AW-11453931686" type="3353740c6a810a7d1b6c860a-text/javascript"></script>
+	<script type="3353740c6a810a7d1b6c860a-text/javascript">
+	window.dataLayer = window.dataLayer || [];
+	function gtag(){dataLayer.push(arguments);}
+	gtag('js', new Date());
+
+	gtag('config', 'AW-11453931686');
+	</script>
+		<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5484279509355787" crossorigin="anonymous" type="3353740c6a810a7d1b6c860a-text/javascript"></script>
+		<meta name="google-adsense-account" content="ca-pub-5484279509355787">
+		<title>Warroom Articles - Natalie Winters, Steve Bannon News & Politics</title>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+		<meta name="description" content="Latest news and political analysis from Natalie Winters and Steve Bannon's Warroom. Coverage of politics, commerce, and investigative reporting." />
+		<meta name="keywords" content="Natalie Winters, Steve Bannon, Warroom News, Politics, Commerce, White House Correspondent, investigative reporting" />
+		<link rel="canonical" href="https://nataliegwinters.com/warroom-articles/" />
+		<meta property="og:title" content="Warroom Articles - Latest News from Natalie Winters" />
+		<meta property="og:description" content="Latest news and political analysis from Natalie Winters and Steve Bannon's Warroom. In-depth coverage of politics, commerce, and investigative reporting." />
+		<meta property="og:url" content="https://nataliegwinters.com/warroom-articles/" />
+		<meta property="og:type" content="website" />
+		<meta property="og:image" content="https://nataliegwinters.com/assets/images/social-header.jpg" />
+		<meta name="twitter:card" content="summary_large_image" />
+		<meta name="twitter:title" content="Warroom Articles - Natalie Winters News" />
+		<meta name="twitter:description" content="Latest news and political analysis from Natalie Winters and Steve Bannon's Warroom." />
+		<meta name="twitter:image" content="https://nataliegwinters.com/assets/images/social-header.jpg" />
+		<meta name="robots" content="index, follow" />
+		<link rel="icon" type="image/icon" href="/favicon.ico">
+		<link rel="stylesheet" href="/assets/css/main.css" />
+		<noscript><link rel="stylesheet" href="/assets/css/noscript.css" /></noscript>
+	</head>
+	<body class="homepage is-preload">
+		<div id="page-wrapper">
+			<!-- ... existing header and nav code ... -->
+			
+			<div class="wrapper style2">
+				<article id="main" class="container special">
+					<header>
+						<h2>Latest Warroom Articles</h2>
+						<p>Breaking news and analysis from Natalie Winters</p>
+					</header>
+
+					<div id="article-list" class="article-container">
+						<!-- Article list will be dynamically inserted here -->
+						{{ARTICLE_LIST}}
+					</div>
+
+					<footer>
+						<a href="https://warroom.org/" target="_blank" rel="noopener noreferrer" class="button">Visit Warroom.org</a>
+					</footer>
+				</article>
+			</div>
+
+			<!-- ... existing footer code ... -->
+		</div>
+
+		<!-- Scripts -->
+		<!-- ... existing scripts ... -->
+	</body>
+</html> 
