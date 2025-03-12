@@ -1,4 +1,12 @@
-/* /index.html 200
+# Handle article list page
 /warroom-articles /warroom-articles.html 200
-/warroom-articles/* /article.html 200
-/warroom-articles.json /warroom-articles.json 200 
+
+# Handle individual article pages
+/warroom-articles/:slug /article.html 200
+
+# Explicitly allow JSON file access
+/warroom-articles.json /warroom-articles.json 200
+
+# Handle root and other pages
+/ /index.html 200
+/* /index.html 404 
