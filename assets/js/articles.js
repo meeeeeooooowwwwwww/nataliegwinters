@@ -2,8 +2,13 @@ let allArticles = [];
 let currentPage = 1;
 const articlesPerPage = 20;
 
-function renderArticles(articles, startIndex) {
+function renderArticles(articles, startIndex, append = false) {
     const articlesList = document.getElementById('articles-list');
+    
+    // Only clear the list if we're not appending
+    if (!append) {
+        articlesList.innerHTML = '';
+    }
     
     articles.slice(startIndex, startIndex + articlesPerPage).forEach(article => {
         const articleElement = document.createElement('div');
@@ -27,6 +32,17 @@ function renderArticles(articles, startIndex) {
     });
 
     // Show/hide load more button based on remaining articles
+    const loadMoreContainer = document.querySelector('.load-more-container');
+    if (!loadMoreContainer) {
+        // Create load more button if it doesn't exist
+        const container = document.createElement('div');
+        container.className = 'load-more-container';
+        container.innerHTML = `
+            <button id="load-more-button" class="button" onclick="loadMore()">Load More Articles</button>
+        `;
+        articlesList.parentNode.insertBefore(container, articlesList.nextSibling);
+    }
+
     const loadMoreButton = document.getElementById('load-more-button');
     if (startIndex + articlesPerPage >= articles.length) {
         loadMoreButton.style.display = 'none';
@@ -37,27 +53,11 @@ function renderArticles(articles, startIndex) {
 
 function loadMore() {
     currentPage++;
-    renderArticles(allArticles, (currentPage - 1) * articlesPerPage);
+    renderArticles(allArticles, (currentPage - 1) * articlesPerPage, true);
 }
 
 document.addEventListener('DOMContentLoaded', async () => {
     try {
-        const response = await fetch('/warroom-articles.json');
-        allArticles = await response.json();
-        
-        // Sort articles by date (newest first)
-        allArticles.sort((a, b) => new Date(b.date) - new Date(a.date));
-        
-        const articlesList = document.getElementById('articles-list');
-        articlesList.innerHTML = ''; // Clear loading message
-        
-        // Add load more button
-        articlesList.insertAdjacentHTML('afterend', `
-            <div class="load-more-container">
-                <button id="load-more-button" class="button" onclick="loadMore()">Load More Articles</button>
-            </div>
-        `);
-        
         // Add styles for the load more button
         const style = document.createElement('style');
         style.textContent = `
@@ -82,9 +82,15 @@ document.addEventListener('DOMContentLoaded', async () => {
             }
         `;
         document.head.appendChild(style);
+
+        const response = await fetch('/warroom-articles.json');
+        allArticles = await response.json();
+        
+        // Sort articles by date (newest first)
+        allArticles.sort((a, b) => new Date(b.date) - new Date(a.date));
         
         // Render first page
-        renderArticles(allArticles, 0);
+        renderArticles(allArticles, 0, false);
         
     } catch (error) {
         console.error('Error loading articles:', error);
