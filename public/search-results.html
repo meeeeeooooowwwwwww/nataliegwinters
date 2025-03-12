@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+    <title>Search Results - Business Directory</title>
+    <link rel="stylesheet" href="assets/css/main.css" />
+    <noscript><link rel="stylesheet" href="assets/css/noscript.css" /></noscript>
+</head>
+<body class="is-preload">
+    <!-- Include the search bar -->
+    <div id="search-bar-container"></div>
+    <script>
+        fetch('search-bar.html')
+            .then(response => response.text())
+            .then(html => {
+                document.getElementById('search-bar-container').innerHTML = html;
+                // Pre-fill search input with query parameter
+                const urlParams = new URLSearchParams(window.location.search);
+                const searchQuery = urlParams.get('q');
+                if (searchQuery) {
+                    document.getElementById('global-search-input').value = searchQuery;
+                }
+            });
+    </script>
+
+    <div id="page-wrapper">
+        <div class="wrapper style1" style="padding-top: 80px;">
+            <section id="features" class="container special">
+                <header>
+                    <h2>Search Results</h2>
+                    <p id="search-summary">Loading results...</p>
+                </header>
+
+                <div id="search-results" class="row"></div>
+                <div class="pagination" style="text-align: center; margin-top: 2em;">
+                    <button id="loadMoreBtn" class="button" style="display: none;">Load More</button>
+                </div>
+            </section>
+        </div>
+    </div>
+
+    <script>
+        let listings = [];
+        let filteredListings = [];
+        const itemsPerPage = 9;
+        let currentPage = 1;
+        
+        async function fetchAndFilterListings() {
+            try {
+                const response = await fetch('/yellow_test.json');
+                if (!response.ok) {
+                    throw new Error(`HTTP error! status: ${response.status}`);
+                }
+                
+                listings = await response.json();
+                const urlParams = new URLSearchParams(window.location.search);
+                const searchQuery = urlParams.get('q')?.toLowerCase();
+                
+                if (!searchQuery) {
+                    document.getElementById('search-summary').textContent = 'Please enter a search term';
+                    return;
+                }
+                
+                filteredListings = listings.filter(item => {
+                    return (
+                        (item.title && item.title.toLowerCase().includes(searchQuery)) ||
+                        (item.description && item.description.toLowerCase().includes(searchQuery)) ||
+                        (item.address && item.address.toLowerCase().includes(searchQuery)) ||
+                        (item.categories && item.categories.some(cat => cat.toLowerCase().includes(searchQuery)))
+                    );
+                });
+                
+                document.getElementById('search-summary').textContent = 
+                    `Found ${filteredListings.length} results for "${searchQuery}"`;
+                
+                renderResults();
+                
+            } catch (error) {
+                console.error('Error:', error);
+                document.getElementById('search-results').innerHTML = 
+                    `<div class="col-12"><p>Error loading results: ${error.message}</p></div>`;
+            }
+        }
+
+        function renderResults() {
+            const resultsContainer = document.getElementById('search-results');
+            const startIndex = 0;
+            const endIndex = currentPage * itemsPerPage;
+            const itemsToShow = filteredListings.slice(startIndex, endIndex);
+            
+            if (filteredListings.length === 0) {
+                resultsContainer.innerHTML = '<div class="col-12"><p>No results found.</p></div>';
+                document.getElementById('loadMoreBtn').style.display = 'none';
+                return;
+            }
+            
+            resultsContainer.innerHTML = itemsToShow.map(item => `
+                <div class="col-4 col-12-mobile">
+                    <div class="box" style="margin-bottom: 2em; padding: 1.5em; background: rgba(255, 255, 255, 0.05); height: 100%;">
+                        <h3 style="margin-bottom: 0.5em;">${item.title || 'Untitled'}</h3>
+                        ${item.categories ? `<p class="categories" style="margin-bottom: 1em; color: #888;">${item.categories.join(', ')}</p>` : ''}
+                        ${item.address ? `<p style="margin-bottom: 0.5em;"><i class="fa fa-map-marker"></i> ${item.address}</p>` : ''}
+                        ${item.phone ? `<p style="margin-bottom: 0.5em;"><i class="fa fa-phone"></i> <a href="tel:+64${item.phone.replace(/\s+/g, '')}">${item.phone}</a></p>` : ''}
+                        ${item.website ? `<p style="margin-bottom: 0.5em;"><i class="fa fa-globe"></i> <a href="${item.website}" target="_blank" rel="noopener noreferrer">Website</a></p>` : ''}
+                        ${item.email ? `<p style="margin-bottom: 0.5em;"><i class="fa fa-envelope"></i> <a href="mailto:${item.email}">${item.email}</a></p>` : ''}
+                        ${item.description ? `<p class="description" style="margin-top: 1em; font-size: 0.9em; color: #666;">${item.description.slice(0, 150)}${item.description.length > 150 ? '...' : ''}</p>` : ''}
+                    </div>
+                </div>
+            `).join('');
+            
+            document.getElementById('loadMoreBtn').style.display = 
+                endIndex < filteredListings.length ? 'inline-block' : 'none';
+        }
+
+        function loadMore() {
+            currentPage++;
+            renderResults();
+        }
+
+        // Event listeners
+        document.getElementById('loadMoreBtn').addEventListener('click', loadMore);
+
+        // Initial load
+        fetchAndFilterListings();
+    </script>
+
+    <!-- Scripts -->
+    <script src="assets/js/jquery.min.js"></script>
+    <script src="assets/js/jquery.dropotron.min.js"></script>
+    <script src="assets/js/jquery.scrolly.min.js"></script>
+    <script src="assets/js/jquery.scrollex.min.js"></script>
+    <script src="assets/js/browser.min.js"></script>
+    <script src="assets/js/breakpoints.min.js"></script>
+    <script src="assets/js/util.js"></script>
+    <script src="assets/js/main.js"></script>
+</body>
+</html> 
