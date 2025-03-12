@@ -2,6 +2,13 @@ let allArticles = [];
 let currentPage = 1;
 const articlesPerPage = 20;
 
+function generateSlug(title) {
+    return title
+        .toLowerCase()
+        .replace(/[^a-z0-9]+/g, '-')
+        .replace(/(^-|-$)/g, '');
+}
+
 function renderArticles(articles, startIndex, append = false) {
     const articlesList = document.getElementById('articles-list');
     
@@ -14,17 +21,19 @@ function renderArticles(articles, startIndex, append = false) {
         const articleElement = document.createElement('div');
         articleElement.className = 'article-item';
         
-        const date = new Date(article.date).toLocaleDateString('en-US', {
+        const date = new Date(article.publishedDate).toLocaleDateString('en-US', {
             year: 'numeric',
             month: 'long',
             day: 'numeric'
         });
         
+        const slug = generateSlug(article.title);
+        
         articleElement.innerHTML = `
-            <a href="/article.html?id=${encodeURIComponent(article.id)}">
+            <a href="/article.html?id=${encodeURIComponent(slug)}">
                 <h3>${article.title}</h3>
                 <div class="date">${date}</div>
-                <p>${article.excerpt || article.content.substring(0, 200)}...</p>
+                <p>${article.excerpt || article.content?.substring(0, 200) || ''}...</p>
             </a>
         `;
         
@@ -87,7 +96,7 @@ document.addEventListener('DOMContentLoaded', async () => {
         allArticles = await response.json();
         
         // Sort articles by date (newest first)
-        allArticles.sort((a, b) => new Date(b.date) - new Date(a.date));
+        allArticles.sort((a, b) => new Date(b.publishedDate) - new Date(a.publishedDate));
         
         // Render first page
         renderArticles(allArticles, 0, false);
