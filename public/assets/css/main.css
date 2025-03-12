@@ -3180,3 +3180,67 @@ input, select, textarea {
 					}
 
 	}
+
+/* Article List Styles */
+.article-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 2em;
+}
+
+.article-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.article-list li {
+    padding: 1em;
+    margin-bottom: 1em;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    transition: background-color 0.2s ease;
+}
+
+.article-list li:hover {
+    background-color: rgba(0, 0, 0, 0.02);
+}
+
+.article-list a {
+    color: #484d55;
+    text-decoration: none;
+    font-size: 1.1em;
+    font-weight: 400;
+    flex-grow: 1;
+    margin-right: 1em;
+}
+
+.article-list a:hover {
+    color: #3c93cf;
+}
+
+.article-date {
+    color: #888;
+    font-size: 0.9em;
+    white-space: nowrap;
+}
+
+.error-message {
+    color: #e74c3c;
+    text-align: center;
+    padding: 2em;
+    font-size: 1.1em;
+}
+
+.error-message a {
+    color: #3c93cf;
+    text-decoration: none;
+    margin-top: 1em;
+    display: inline-block;
+}
+
+.error-message a:hover {
+    text-decoration: underline;
+}
