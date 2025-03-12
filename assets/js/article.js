@@ -11,6 +11,8 @@ document.addEventListener('DOMContentLoaded', async () => {
         const urlParams = new URLSearchParams(window.location.search);
         const articleId = urlParams.get('id');
         
+        console.log('Article ID from URL:', articleId);
+        
         if (!articleId) {
             throw new Error('Article ID not provided');
         }
@@ -19,12 +21,20 @@ document.addEventListener('DOMContentLoaded', async () => {
         const response = await fetch('/warroom-articles.json');
         const articles = await response.json();
         
+        console.log('Number of articles loaded:', articles.length);
+        
         // Find the specific article by matching the slug
-        const article = articles.find(a => generateSlug(a.title) === articleId);
+        const article = articles.find(a => {
+            const slug = generateSlug(a.title);
+            console.log('Comparing:', { slug, articleId, title: a.title });
+            return slug === articleId;
+        });
         
         if (!article) {
             throw new Error('Article not found');
         }
+        
+        console.log('Found article:', article);
         
         // Update page title and meta description
         document.title = `${article.title} - Natalie Winters`;

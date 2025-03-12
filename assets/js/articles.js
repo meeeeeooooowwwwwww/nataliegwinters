@@ -30,7 +30,7 @@ function renderArticles(articles, startIndex, append = false) {
         const slug = generateSlug(article.title);
         
         articleElement.innerHTML = `
-            <a href="/article.html?id=${encodeURIComponent(slug)}">
+            <a href="/article?id=${encodeURIComponent(slug)}">
                 <h3>${article.title}</h3>
                 <div class="date">${date}</div>
                 <p>${article.excerpt || article.content?.substring(0, 200) || ''}...</p>
