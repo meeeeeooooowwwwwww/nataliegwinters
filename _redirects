@@ -1,3 +1,3 @@
 # Internal URL rewrites (no redirects)
 /warroom-articles /warroom-articles.html 200!
-/warroom-articles/* /article.html 200! 
+/warroom-articles/* /article.html?id=:splat 200! 
