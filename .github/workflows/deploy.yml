@@ -5,6 +5,9 @@ on:
     branches:
       - main
 
+permissions:
+  contents: write
+
 jobs:
   deploy:
     runs-on: ubuntu-latest
@@ -16,4 +19,5 @@ jobs:
         with:
           branch: gh-pages
           folder: public
-          clean: true 
+          clean: true
+          single-commit: true 
