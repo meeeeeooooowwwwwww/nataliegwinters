@@ -8,8 +8,7 @@
     "process-articles": "node scripts/process-warroom-articles.js",
     "process-articles:dev": "NODE_ENV=development node scripts/process-warroom-articles.js",
     "process-articles:staging": "NODE_ENV=staging node scripts/process-warroom-articles.js",
-    "process-articles:prod": "NODE_ENV=production node scripts/process-warroom-articles.js",
-    "upload-articles": "node scripts/upload-to-cloudflare.js"
+    "process-articles:prod": "NODE_ENV=production node scripts/process-warroom-articles.js"
   },
   "devDependencies": {
     "http-server": "^14.1.1"
