@@ -73,6 +73,11 @@ jobs:
         fi
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+    - name: Trigger Cloudflare Pages deployment
+      if: steps.check_changes.outputs.has_changes == 'true'
+      run: |
+        curl -X POST "https://api.cloudflare.com/client/v4/pages/webhooks/deploy_hooks/${{ secrets.CLOUDFLARE_DEPLOY_HOOK }}"
     
     - name: Create status comment
       uses: actions/github-script@v6
