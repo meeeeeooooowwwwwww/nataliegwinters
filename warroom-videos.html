@@ -1,6 +1,10 @@
 <!DOCTYPE HTML>
 <html>
     <head>
+		<!-- Cache control meta tags -->
+		<meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+		<meta http-equiv="Pragma" content="no-cache">
+		<meta http-equiv="Expires" content="0">
 		<!-- Google tag (gtag.js) -->
 		<script async src="https://www.googletagmanager.com/gtag/js?id=G-TTB2DL9J9L"></script>
 		<script>
@@ -48,8 +52,16 @@
             const itemsPerPage = 21;
         
             async function loadVideos() {
-                // Fetch the content from warroom-videos.json
-                const response = await fetch('warroom-videos.json');
+                // Add cache-busting timestamp parameter
+                const timestamp = new Date().getTime();
+                // Fetch the content from warroom-videos.json with cache-busting
+                const response = await fetch(`warroom-videos.json?v=${timestamp}`, {
+                    cache: 'no-store',
+                    headers: {
+                        'Cache-Control': 'no-cache',
+                        'Pragma': 'no-cache'
+                    }
+                });
                 videos = await response.json();
                 loadMore(); // load the first batch immediately
             }
