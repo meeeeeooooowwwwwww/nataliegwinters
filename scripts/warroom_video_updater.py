@@ -1,6 +1,7 @@
 from playwright.sync_api import sync_playwright
 import json
 import time
+from datetime import datetime
 
 # Automated via GitHub Actions - runs twice daily at 8:00 AM and 8:00 PM UTC
 
@@ -12,10 +13,16 @@ def load_existing_data():
     """Load the most recent video URL from the JSON file if it exists, otherwise return None"""
     try:
         with open(OUTPUT_FILE, "r", encoding="utf-8") as f:
-            existing_data = json.load(f)
+            data = json.load(f)
+            # Check if data is a dict with videos key (new format)
+            if isinstance(data, dict) and 'videos' in data:
+                videos = data['videos']
+            else:
+                # Old format - direct list of videos
+                videos = data
             # Return the URL of the most recent video (first entry in the list)
-            if existing_data:
-                return existing_data[0]['link']
+            if videos:
+                return videos[0]['link']
             else:
                 return None
     except (FileNotFoundError, json.JSONDecodeError):
@@ -25,16 +32,28 @@ def append_data(videos):
     """Append the new batch of videos to the existing JSON file at the beginning"""
     try:
         with open(OUTPUT_FILE, "r", encoding="utf-8") as f:
-            existing_data = json.load(f)
+            data = json.load(f)
+            # Check if data is a dict with videos key (new format)
+            if isinstance(data, dict) and 'videos' in data:
+                existing_videos = data['videos']
+            else:
+                # Old format - direct list of videos
+                existing_videos = data
     except (FileNotFoundError, json.JSONDecodeError):
-        existing_data = []  # If file doesn't exist or is empty, start with an empty list
+        existing_videos = []  # If file doesn't exist or is empty, start with an empty list
     
     # Create a new list with new videos at the beginning
-    combined_data = videos + existing_data
+    combined_videos = videos + existing_videos
+    
+    # Create the new data structure with timestamp
+    output_data = {
+        'last_updated': datetime.utcnow().isoformat(),
+        'videos': combined_videos
+    }
     
     # Save the combined data back to the JSON file
     with open(OUTPUT_FILE, "w", encoding="utf-8") as f:
-        json.dump(combined_data, f, indent=4)
+        json.dump(output_data, f, indent=4)
     print(f"Added {len(videos)} new videos at the beginning of {OUTPUT_FILE}")
 
 def scrape_rumble():

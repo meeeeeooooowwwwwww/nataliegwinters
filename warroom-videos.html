@@ -48,6 +48,7 @@
         <noscript><link rel="stylesheet" href="assets/css/noscript.css" /></noscript>
         <script>
             let videos = [];
+            let lastUpdated = '';
             let currentIndex = 0; // track how many videos have been loaded
             const itemsPerPage = 21;
         
@@ -62,8 +63,19 @@
                         'Pragma': 'no-cache'
                     }
                 });
-                videos = await response.json();
+                const data = await response.json();
+                // Handle both old (array) and new (object with videos array) format
+                videos = Array.isArray(data) ? data : data.videos;
+                lastUpdated = Array.isArray(data) ? '' : new Date(data.last_updated).toLocaleString();
                 loadMore(); // load the first batch immediately
+                
+                // Update the page info with last updated time
+                const pageInfo = document.getElementById("page-info");
+                if (lastUpdated) {
+                    pageInfo.innerHTML = `Loaded ${currentIndex} of ${videos.length} videos<br>Last updated: ${lastUpdated}`;
+                } else {
+                    pageInfo.textContent = `Loaded ${currentIndex} of ${videos.length}`;
+                }
             }
         
             function loadMore() {
