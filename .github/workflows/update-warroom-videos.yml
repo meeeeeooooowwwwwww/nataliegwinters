@@ -21,6 +21,7 @@ jobs:
         sparse-checkout: |
           requirements.txt
           scripts/
+          warroom-videos.json
     
     - name: Debug directory
       run: |
@@ -39,11 +40,16 @@ jobs:
         python -m pip install --upgrade pip
         pip install -r requirements.txt
         playwright install chromium
+        playwright install-deps
     
     - name: Run video updater script
       id: update_videos
       run: |
         echo "Starting video update check at $(date)"
+        # Create warroom-videos.json if it doesn't exist
+        if [ ! -f warroom-videos.json ]; then
+          echo '{"last_updated": "", "videos": []}' > warroom-videos.json
+        fi
         # Capture the script output
         OUTPUT=$(python scripts/warroom_video_updater.py)
         echo "$OUTPUT"
@@ -61,6 +67,10 @@ jobs:
     - name: Check for changes and commit
       id: check_changes
       run: |
+        if [ ! -f warroom-videos.json ]; then
+          echo "Error: warroom-videos.json does not exist!"
+          exit 1
+        fi
         if git diff --quiet warroom-videos.json; then
           echo "No new videos found at $(date)"
           echo "has_changes=false" >> $GITHUB_OUTPUT
