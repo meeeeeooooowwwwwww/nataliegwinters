@@ -14,24 +14,41 @@ OUTPUT_FILE = "warroom-videos.json"  # Make sure this is defined
 def parse_rumble_date(date_text):
     """Convert Rumble's relative date to datetime object"""
     now = datetime.utcnow()
+    print(f"Parsing date text: {date_text}")
+    
     if 'hour' in date_text:
         hours = int(re.search(r'(\d+)', date_text).group(1))
-        return now.replace(microsecond=0, second=0, minute=0) - timedelta(hours=hours)
+        date = now - timedelta(hours=hours)
+        print(f"Parsed as {hours} hours ago: {date}")
+        return date
+    elif 'minute' in date_text:
+        minutes = int(re.search(r'(\d+)', date_text).group(1))
+        date = now - timedelta(minutes=minutes)
+        print(f"Parsed as {minutes} minutes ago: {date}")
+        return date
     elif 'day' in date_text:
         days = int(re.search(r'(\d+)', date_text).group(1))
-        return now.replace(microsecond=0, hour=0, minute=0, second=0) - timedelta(days=days)
+        date = now.replace(hour=0, minute=0, second=0, microsecond=0) - timedelta(days=days)
+        print(f"Parsed as {days} days ago: {date}")
+        return date
     elif 'week' in date_text:
         weeks = int(re.search(r'(\d+)', date_text).group(1))
-        return now.replace(microsecond=0, hour=0, minute=0, second=0) - timedelta(weeks=weeks)
+        date = now.replace(hour=0, minute=0, second=0, microsecond=0) - timedelta(weeks=weeks)
+        print(f"Parsed as {weeks} weeks ago: {date}")
+        return date
     elif 'month' in date_text:
         months = int(re.search(r'(\d+)', date_text).group(1))
-        # Approximate months as 30 days
-        return now.replace(microsecond=0, hour=0, minute=0, second=0) - timedelta(days=30*months)
+        date = now.replace(hour=0, minute=0, second=0, microsecond=0) - timedelta(days=30*months)
+        print(f"Parsed as {months} months ago: {date}")
+        return date
     elif 'year' in date_text:
         years = int(re.search(r'(\d+)', date_text).group(1))
-        # Approximate years as 365 days
-        return now.replace(microsecond=0, hour=0, minute=0, second=0) - timedelta(days=365*years)
-    return now  # Default to now if we can't parse the date
+        date = now.replace(hour=0, minute=0, second=0, microsecond=0) - timedelta(days=365*years)
+        print(f"Parsed as {years} years ago: {date}")
+        return date
+    
+    print(f"Could not parse date text: {date_text}, using current time")
+    return now
 
 def load_existing_data():
     """Load the most recent video URL from the JSON file if it exists, otherwise return None"""
@@ -72,25 +89,26 @@ def append_data(videos):
     try:
         with open(OUTPUT_FILE, "r", encoding="utf-8") as f:
             data = json.load(f)
-            # Check if data is a dict with videos key (new format)
             if isinstance(data, dict) and 'videos' in data:
                 existing_videos = data['videos']
             else:
-                # Old format - direct list of videos
                 existing_videos = data
     except (FileNotFoundError, json.JSONDecodeError):
-        existing_videos = []  # If file doesn't exist or is empty, start with an empty list
+        existing_videos = []
     
     # Create a set of existing URLs to avoid duplicates
     existing_urls = {video['link'] for video in existing_videos}
     
-    # Filter out any duplicates from new videos
+    # Filter out any duplicates from new videos while preserving order
     unique_new_videos = [video for video in videos if video['link'] not in existing_urls]
     
-    # Sort videos by upload date (newest first)
-    unique_new_videos.sort(key=lambda x: x['upload_date'], reverse=True)
+    # Print debug information about new videos
+    print("\nDebug: New videos (in order of discovery):")
+    for video in unique_new_videos:
+        print(f"Title: {video['title']}")
+        print("---")
     
-    # Create a new list with new videos at the beginning
+    # Create a new list with new videos at the beginning (maintaining their original order)
     combined_videos = unique_new_videos + existing_videos
     
     # Create the new data structure with timestamp
@@ -102,9 +120,10 @@ def append_data(videos):
     # Save the combined data back to the JSON file
     with open(OUTPUT_FILE, "w", encoding="utf-8") as f:
         json.dump(output_data, f, indent=4)
-    print(f"Added {len(unique_new_videos)} new videos at the beginning of {OUTPUT_FILE}")
+    
+    print(f"\nAdded {len(unique_new_videos)} new videos at the beginning of {OUTPUT_FILE}")
     if unique_new_videos:
-        print("New videos added:")
+        print("New videos added (in original order):")
         for video in unique_new_videos:
             print(f"- {video['title']}")
 
@@ -160,13 +179,6 @@ def scrape_rumble():
                     if link_element:
                         link = link_element.get_attribute("href")
                         
-                        # Get upload date
-                        date_element = video.query_selector("time.video-item--time")
-                        upload_date = None
-                        if date_element:
-                            date_text = date_element.text_content().strip()
-                            upload_date = parse_rumble_date(date_text)
-                        
                         if title and link:
                             video_url = "https://rumble.com" + link
                             
@@ -180,13 +192,12 @@ def scrape_rumble():
                                 print(f"URL: {video_url}")
                                 break
                             
-                            # Add new videos to the list
+                            # Add new videos to the list (in order of discovery)
                             new_videos.append({
                                 "title": title.strip(),
                                 "link": video_url,
                                 "thumbnail": thumbnail,
-                                "uploader": "https://warroom.org",
-                                "upload_date": upload_date.isoformat() if upload_date else datetime.utcnow().isoformat()
+                                "uploader": "https://warroom.org"
                             })
                 except Exception as e:
                     print(f"Error extracting video data: {str(e)}")
