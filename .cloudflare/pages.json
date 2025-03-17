@@ -1,6 +1,5 @@
 {
   "build": {
-    "publicDir": ".",
     "command": "cd nataliegwinters && npm install && npm run build",
     "cwd": ".",
     "env": {
@@ -8,7 +7,6 @@
     }
   },
   "routes": [
-    { "pattern": "/biz/*", "script": "functions/biz.js" },
     { "pattern": "/*", "serve": "*" }
   ],
   "env": {

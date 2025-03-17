@@ -1,11 +1,54 @@
+# Python
 requirements.txt
 .venv/
+venv/
+env/
 __pycache__/
 *.pyc
 *.pyo
 *.pyd
 .Python
-env/
-venv/
+*.py
+
+# Node.js
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Environment
 .env
-*.log 
+.env.local
+.env.*.local
+
+# Build output
+.next/
+out/
+build/
+dist/
+
+# IDE and editor files
+.vscode/
+.idea/
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*.sw?
+
+# System files
+.DS_Store
+Thumbs.db
+
+# Logs
+*.log
+
+# Backup files
+*.bak
+*.backup
+*~
+
+# Other
+*.7z
+*.tar.gz
+*.zip 
