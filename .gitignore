@@ -1,16 +1,44 @@
-# Dependencies
-node_modules/
-.wrangler/
+# Python virtual environment
+.venv/
+venv/
+env/
 
-# Environment files
+# Python cache files
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Distribution / packaging
+dist/
+build/
+*.egg-info/
+
+# IDE settings
+.vscode/
+.idea/
+
+# Environment variables
 .env
 .env.local
 .env.*.local
 
-# Debug logs
+# Logs
+*.log
+
+# Node.js
+node_modules/
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
+
+# Build output
+.next/
+out/
+build/
+
+# System files
+.DS_Store
+Thumbs.db
 
 # Editor directories and files
 .idea/
