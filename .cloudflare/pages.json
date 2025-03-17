@@ -1,7 +1,11 @@
 {
   "build": {
     "publicDir": ".",
-    "command": null
+    "command": "cd nataliegwinters && npm install && npm run build",
+    "cwd": ".",
+    "env": {
+      "NODE_VERSION": "18"
+    }
   },
   "routes": [
     { "pattern": "/biz/*", "script": "functions/biz.js" },
