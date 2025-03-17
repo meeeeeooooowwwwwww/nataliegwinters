@@ -9,7 +9,7 @@ import os
 
 # URL of the Rumble War Room channel
 URL = "https://rumble.com/c/BannonsWarRoom/videos"
-OUTPUT_FILE = "warroom-videos.json"  # Make sure this is defined
+OUTPUT_FILE = "warroom_videos.json"  # Make sure this is defined
 
 def parse_rumble_date(date_text):
     """Convert Rumble's relative date to datetime object"""
