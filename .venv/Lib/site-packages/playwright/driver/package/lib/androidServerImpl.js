@@ -39,7 +39,7 @@ class AndroidServerLauncherImpl {
     if (devices.length === 0) throw new Error('No devices found');
     if (options.deviceSerialNumber) {
       devices = devices.filter(d => d.serial === options.deviceSerialNumber);
-      if (devices.length === 0) throw new Error(`No device with serial number '${options.deviceSerialNumber}' not found`);
+      if (devices.length === 0) throw new Error(`No device with serial number '${options.deviceSerialNumber}' was found`);
     }
     if (devices.length > 1) throw new Error(`More than one device found. Please specify deviceSerialNumber`);
     const device = devices[0];
@@ -52,7 +52,7 @@ class AndroidServerLauncherImpl {
       maxConnections: 1,
       preLaunchedAndroidDevice: device
     });
-    const wsEndpoint = await server.listen(options.port);
+    const wsEndpoint = await server.listen(options.port, options.host);
 
     // 3. Return the BrowserServer interface
     const browserServer = new _utilsBundle.ws.EventEmitter();

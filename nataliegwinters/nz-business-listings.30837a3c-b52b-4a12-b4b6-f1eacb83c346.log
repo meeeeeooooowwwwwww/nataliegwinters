@@ -1,0 +1,135 @@
+2025-03-14T05:28:23.096986351Z	Cloning repository...
+2025-03-14T05:28:23.789182317Z	From https://github.com/meeeeeooooowwwwwww/nz-business-listings
+2025-03-14T05:28:23.789694712Z	 * branch            99e6dc4cf6ad0e7490bea11e87efd0123866aba8 -> FETCH_HEAD
+2025-03-14T05:28:23.789720265Z	
+2025-03-14T05:28:23.832033451Z	HEAD is now at 99e6dc4 Initial commit: Basic Next.js setup with TypeScript and Tailwind CSS
+2025-03-14T05:28:23.832318191Z	
+2025-03-14T05:28:23.912442183Z	
+2025-03-14T05:28:23.912685436Z	Using v2 root directory strategy
+2025-03-14T05:28:23.933707796Z	Success: Finished cloning repository files
+2025-03-14T05:28:25.625175525Z	Checking for configuration in a Wrangler configuration file (BETA)
+2025-03-14T05:28:25.62567947Z	
+2025-03-14T05:28:26.736366479Z	No wrangler.toml file found. Continuing.
+2025-03-14T05:28:26.819455599Z	Detected the following tools from environment: nodejs@18.19.0, npm@9.6.7
+2025-03-14T05:28:26.819502569Z	Installing nodejs 18.19.0
+2025-03-14T05:28:27.77494003Z	Trying to update node-build... ok
+2025-03-14T05:28:27.868592916Z	To follow progress, use 'tail -f /tmp/node-build.20250314052827.490.log' or pass --verbose
+2025-03-14T05:28:27.966164251Z	Downloading node-v18.19.0-linux-x64.tar.gz...
+2025-03-14T05:28:28.206103021Z	-> https://nodejs.org/dist/v18.19.0/node-v18.19.0-linux-x64.tar.gz
+2025-03-14T05:28:30.040408654Z	
+2025-03-14T05:28:30.040673784Z	WARNING: node-v18.19.0-linux-x64 is in LTS Maintenance mode and nearing its end of life.
+2025-03-14T05:28:30.040718611Z	It only receives *critical* security updates, *critical* bug fixes and documentation updates.
+2025-03-14T05:28:30.040798387Z	
+2025-03-14T05:28:30.040918361Z	Installing node-v18.19.0-linux-x64...
+2025-03-14T05:28:30.42730478Z	Installed node-v18.19.0-linux-x64 to /opt/buildhome/.asdf/installs/nodejs/18.19.0
+2025-03-14T05:28:30.427781615Z	
+2025-03-14T05:28:31.415257108Z	Installing project dependencies: npm clean-install --progress=false
+2025-03-14T05:28:40.163965175Z	
+2025-03-14T05:28:40.164468384Z	added 49 packages, and audited 50 packages in 8s
+2025-03-14T05:28:40.164780267Z	
+2025-03-14T05:28:40.165014387Z	13 packages are looking for funding
+2025-03-14T05:28:40.165034826Z	  run `npm fund` for details
+2025-03-14T05:28:40.165616965Z	
+2025-03-14T05:28:40.165818193Z	found 0 vulnerabilities
+2025-03-14T05:28:40.180820742Z	Executing user command: npx @cloudflare/next-on-pages@1
+2025-03-14T05:28:41.239433269Z	npm WARN exec The following package was not found and will be installed: @cloudflare/next-on-pages@1.13.10
+2025-03-14T05:28:48.653421722Z	npm WARN deprecated inflight@1.0.6: This module is not supported, and leaks memory. Do not use it. Check out lru-cache if you want a good and tested way to coalesce async requests by a key value, which is much more comprehensive and powerful.
+2025-03-14T05:28:48.759881069Z	npm WARN deprecated glob@7.2.3: Glob versions prior to v9 are no longer supported
+2025-03-14T05:28:49.177972806Z	npm WARN deprecated uuid@3.3.2: Please upgrade  to version 7 or higher.  Older versions may use Math.random() in certain circumstances, which is known to be problematic.  See https://v8.dev/blog/math-random for details.
+2025-03-14T05:28:53.85452854Z	⚡️ @cloudflare/next-on-pages CLI v.1.13.10
+2025-03-14T05:28:54.234908467Z	⚡️ Detected Package Manager: npm (10.2.3)
+2025-03-14T05:28:54.235248224Z	⚡️ Preparing project...
+2025-03-14T05:28:54.237848408Z	⚡️ Project is ready
+2025-03-14T05:28:54.237998285Z	⚡️ Building project...
+2025-03-14T05:28:55.342452278Z	▲  npm
+2025-03-14T05:28:55.366479541Z	▲  WARN exec The following package was not found and will be installed: vercel@41.4.1
+2025-03-14T05:28:57.933760714Z	▲  npm
+2025-03-14T05:28:57.933968426Z	▲  WARN
+2025-03-14T05:28:57.934457258Z	▲  deprecated inflight@1.0.6: This module is not supported, and leaks memory. Do not use it. Check out lru-cache if you want a good and tested way to coalesce async requests by a key value, which is much more comprehensive and powerful.
+2025-03-14T05:28:58.023968952Z	▲  npm
+2025-03-14T05:28:58.024261738Z	▲  WARN deprecated glob@7.2.3: Glob versions prior to v9 are no longer supported
+2025-03-14T05:28:58.126231885Z	▲  npm
+2025-03-14T05:28:58.126765956Z	▲  WARN deprecated uuid@3.3.2: Please upgrade  to version 7 or higher.  Older versions may use Math.random() in certain circumstances, which is known to be problematic.  See https://v8.dev/blog/math-random for details.
+2025-03-14T05:28:59.365819423Z	▲  Vercel CLI 41.4.1
+2025-03-14T05:28:59.373394337Z	▲  > NOTE: The Vercel CLI now collects telemetry regarding usage of the CLI.
+2025-03-14T05:28:59.37380718Z	▲  > This information is used to shape the CLI roadmap and prioritize features.
+2025-03-14T05:28:59.374060681Z	▲  > You can learn more, including how to opt-out if you'd not like to participate in this program, by visiting the following URL:
+2025-03-14T05:28:59.374294264Z	▲  > https://vercel.com/docs/cli/about-telemetry
+2025-03-14T05:28:59.612770807Z	▲  Installing dependencies...
+2025-03-14T05:29:00.34162667Z	▲  up to date in 411ms
+2025-03-14T05:29:00.341902972Z	▲  
+2025-03-14T05:29:00.342162293Z	▲  13 packages are looking for funding
+2025-03-14T05:29:00.342373073Z	▲  run `npm fund` for details
+2025-03-14T05:29:00.350535403Z	▲  Detected Next.js version: 15.2.2
+2025-03-14T05:29:00.35383765Z	▲  Running "npm run build"
+2025-03-14T05:29:00.741278389Z	▲  > business-nataliegwinters@1.0.0 build
+2025-03-14T05:29:00.741460249Z	▲  > next build
+2025-03-14T05:29:01.436787403Z	▲  Attention: Next.js now collects completely anonymous telemetry regarding usage.
+2025-03-14T05:29:01.437005877Z	▲  This information is used to shape Next.js' roadmap and prioritize features.
+2025-03-14T05:29:01.437228564Z	▲  You can learn more, including how to opt-out if you'd not like to participate in this anonymous program, by visiting the following URL:
+2025-03-14T05:29:01.437338967Z	▲  https://nextjs.org/telemetry
+2025-03-14T05:29:01.53759608Z	▲  ▲ Next.js 15.2.2
+2025-03-14T05:29:01.537855519Z	▲  
+2025-03-14T05:29:01.551075081Z	▲  Creating an optimized production build ...
+2025-03-14T05:29:08.455382738Z	▲  Failed to compile.
+2025-03-14T05:29:08.45591453Z	▲  ./src/app/globals.css.webpack[javascript/auto]!=!./node_modules/next/dist/build/webpack/loaders/css-loader/src/index.js??ruleSet[1].rules[13].oneOf[10].use[2]!./node_modules/next/dist/build/webpack/loaders/postcss-loader/src/index.js??ruleSet[1].rules[13].oneOf[10].use[3]!./src/app/globals.css
+2025-03-14T05:29:08.456187576Z	▲  Error: It looks like you're trying to use `tailwindcss` directly as a PostCSS plugin. The PostCSS plugin has moved to a separate package, so to continue using Tailwind CSS with PostCSS you'll need to install `@tailwindcss/postcss` and update your PostCSS configuration.
+2025-03-14T05:29:08.456214499Z	▲  at Re (/opt/buildhome/repo/node_modules/tailwindcss/dist/lib.js:33:1889)
+2025-03-14T05:29:08.456309688Z	▲  at LazyResult.runOnRoot (/opt/buildhome/repo/node_modules/next/node_modules/postcss/lib/lazy-result.js:329:16)
+2025-03-14T05:29:08.456407065Z	▲  at LazyResult.runAsync (/opt/buildhome/repo/node_modules/next/node_modules/postcss/lib/lazy-result.js:258:26)
+2025-03-14T05:29:08.457293833Z	▲  at LazyResult.async (/opt/buildhome/repo/node_modules/next/node_modules/postcss/lib/lazy-result.js:160:30)
+2025-03-14T05:29:08.457529848Z	▲  at LazyResult.then (/opt/buildhome/repo/node_modules/next/node_modules/postcss/lib/lazy-result.js:404:17)
+2025-03-14T05:29:08.457609303Z	▲  
+2025-03-14T05:29:08.457770848Z	▲  Import trace for requested module:
+2025-03-14T05:29:08.457793646Z	▲  ./src/app/globals.css.webpack[javascript/auto]!=!./node_modules/next/dist/build/webpack/loaders/css-loader/src/index.js??ruleSet[1].rules[13].oneOf[10].use[2]!./node_modules/next/dist/build/webpack/loaders/postcss-loader/src/index.js??ruleSet[1].rules[13].oneOf[10].use[3]!./src/app/globals.css
+2025-03-14T05:29:08.458010771Z	▲  ./src/app/globals.css
+2025-03-14T05:29:08.458115651Z	▲  
+2025-03-14T05:29:08.458592862Z	▲  ./src/app/globals.css
+2025-03-14T05:29:08.458946396Z	▲  Error: It looks like you're trying to use `tailwindcss` directly as a PostCSS plugin. The PostCSS plugin has moved to a separate package, so to continue using Tailwind CSS with PostCSS you'll need to install `@tailwindcss/postcss` and update your PostCSS configuration.
+2025-03-14T05:29:08.459365083Z	▲  at Re (/opt/buildhome/repo/node_modules/tailwindcss/dist/lib.js:33:1889)
+2025-03-14T05:29:08.459449686Z	▲  at LazyResult.runOnRoot (/opt/buildhome/repo/node_modules/next/node_modules/postcss/lib/lazy-result.js:329:16)
+2025-03-14T05:29:08.459902666Z	▲  at LazyResult.runAsync (/opt/buildhome/repo/node_modules/next/node_modules/postcss/lib/lazy-result.js:258:26)
+2025-03-14T05:29:08.460085177Z	▲  at LazyResult.async (/opt/buildhome/repo/node_modules/next/node_modules/postcss/lib/lazy-result.js:160:30)
+2025-03-14T05:29:08.460280876Z	▲  at LazyResult.then (/opt/buildhome/repo/node_modules/next/node_modules/postcss/lib/lazy-result.js:404:17)
+2025-03-14T05:29:08.460301008Z	▲  at tryRunOrWebpackError (/opt/buildhome/repo/node_modules/next/dist/compiled/webpack/bundle5.js:29:316142)
+2025-03-14T05:29:08.46040407Z	▲  at __webpack_require_module__ (/opt/buildhome/repo/node_modules/next/dist/compiled/webpack/bundle5.js:29:131548)
+2025-03-14T05:29:08.460596163Z	▲  at __nested_webpack_require_161494__ (/opt/buildhome/repo/node_modules/next/dist/compiled/webpack/bundle5.js:29:130983)
+2025-03-14T05:29:08.46061627Z	▲  at /opt/buildhome/repo/node_modules/next/dist/compiled/webpack/bundle5.js:29:131840
+2025-03-14T05:29:08.460689422Z	▲  at symbolIterator (/opt/buildhome/repo/node_modules/next/dist/compiled/neo-async/async.js:1:14444)
+2025-03-14T05:29:08.460781309Z	▲  at done (/opt/buildhome/repo/node_modules/next/dist/compiled/neo-async/async.js:1:14824)
+2025-03-14T05:29:08.460958923Z	▲  at Hook.eval [as callAsync] (eval at create (/opt/buildhome/repo/node_modules/next/dist/compiled/webpack/bundle5.js:14:9224), <anonymous>:15:1)
+2025-03-14T05:29:08.46097433Z	▲  at Hook.CALL_ASYNC_DELEGATE [as _callAsync] (/opt/buildhome/repo/node_modules/next/dist/compiled/webpack/bundle5.js:14:6378)
+2025-03-14T05:29:08.46139874Z	▲  at /opt/buildhome/repo/node_modules/next/dist/compiled/webpack/bundle5.js:29:130703
+2025-03-14T05:29:08.461576296Z	▲  at symbolIterator (/opt/buildhome/repo/node_modules/next/dist/compiled/neo-async/async.js:1:14402)
+2025-03-14T05:29:08.462008256Z	▲  -- inner error --
+2025-03-14T05:29:08.462318085Z	▲  Error: It looks like you're trying to use `tailwindcss` directly as a PostCSS plugin. The PostCSS plugin has moved to a separate package, so to continue using Tailwind CSS with PostCSS you'll need to install `@tailwindcss/postcss` and update your PostCSS configuration.
+2025-03-14T05:29:08.462537419Z	▲  at Re (/opt/buildhome/repo/node_modules/tailwindcss/dist/lib.js:33:1889)
+2025-03-14T05:29:08.462896749Z	▲  at LazyResult.runOnRoot (/opt/buildhome/repo/node_modules/next/node_modules/postcss/lib/lazy-result.js:329:16)
+2025-03-14T05:29:08.46298227Z	▲  at LazyResult.runAsync (/opt/buildhome/repo/node_modules/next/node_modules/postcss/lib/lazy-result.js:258:26)
+2025-03-14T05:29:08.463347669Z	▲  at LazyResult.async (/opt/buildhome/repo/node_modules/next/node_modules/postcss/lib/lazy-result.js:160:30)
+2025-03-14T05:29:08.463361306Z	▲  at LazyResult.then (/opt/buildhome/repo/node_modules/next/node_modules/postcss/lib/lazy-result.js:404:17)
+2025-03-14T05:29:08.463366933Z	▲  at Object.<anonymous> (/opt/buildhome/repo/node_modules/next/dist/build/webpack/loaders/css-loader/src/index.js??ruleSet[1].rules[13].oneOf[10].use[2]!/opt/buildhome/repo/node_modules/next/dist/build/webpack/loaders/postcss-loader/src/index.js??ruleSet[1].rules[13].oneOf[10].use[3]!/opt/buildhome/repo/src/app/globals.css:1:7)
+2025-03-14T05:29:08.463370548Z	▲  at /opt/buildhome/repo/node_modules/next/dist/compiled/webpack/bundle5.js:29:962742
+2025-03-14T05:29:08.463374643Z	▲  at Hook.eval [as call] (eval at create (/opt/buildhome/repo/node_modules/next/dist/compiled/webpack/bundle5.js:14:9002), <anonymous>:7:1)
+2025-03-14T05:29:08.463492136Z	▲  at Hook.CALL_DELEGATE [as _call] (/opt/buildhome/repo/node_modules/next/dist/compiled/webpack/bundle5.js:14:6272)
+2025-03-14T05:29:08.463637152Z	▲  at /opt/buildhome/repo/node_modules/next/dist/compiled/webpack/bundle5.js:29:131581
+2025-03-14T05:29:08.463726663Z	▲  at tryRunOrWebpackError (/opt/buildhome/repo/node_modules/next/dist/compiled/webpack/bundle5.js:29:316096)
+2025-03-14T05:29:08.463796832Z	▲  at __webpack_require_module__ (/opt/buildhome/repo/node_modules/next/dist/compiled/webpack/bundle5.js:29:131548)
+2025-03-14T05:29:08.463882491Z	▲  at __nested_webpack_require_161494__ (/opt/buildhome/repo/node_modules/next/dist/compiled/webpack/bundle5.js:29:130983)
+2025-03-14T05:29:08.46393273Z	▲  at /opt/buildhome/repo/node_modules/next/dist/compiled/webpack/bundle5.js:29:131840
+2025-03-14T05:29:08.464004352Z	▲  at symbolIterator (/opt/buildhome/repo/node_modules/next/dist/compiled/neo-async/async.js:1:14444)
+2025-03-14T05:29:08.46405172Z	▲  
+2025-03-14T05:29:08.464105343Z	▲  Generated code for /opt/buildhome/repo/node_modules/next/dist/build/webpack/loaders/css-loader/src/index.js??ruleSet[1].rules[13].oneOf[10].use[2]!/opt/buildhome/repo/node_modules/next/dist/build/webpack/loaders/postcss-loader/src/index.js??ruleSet[1].rules[13].oneOf[10].use[3]!/opt/buildhome/repo/src/app/globals.css
+2025-03-14T05:29:08.464208449Z	▲  
+2025-03-14T05:29:08.464288958Z	▲  Import trace for requested module:
+2025-03-14T05:29:08.464393589Z	▲  ./src/app/globals.css
+2025-03-14T05:29:08.48400902Z	▲  
+2025-03-14T05:29:08.484555466Z	▲  > Build failed because of webpack errors
+2025-03-14T05:29:08.521225789Z	▲  Error: Command "npm run build" exited with 1
+2025-03-14T05:29:08.661933773Z	
+2025-03-14T05:29:08.662542519Z	⚡️ The Vercel build (`npx vercel build`) command failed. For more details see the Vercel logs above.
+2025-03-14T05:29:08.662572734Z	⚡️ If you need help solving the issue, refer to the Vercel or Next.js documentation or their repositories.
+2025-03-14T05:29:08.662585436Z	
+2025-03-14T05:29:08.706461872Z	Failed: Error while executing user command. Exited with error code: 1
+2025-03-14T05:29:08.719048233Z	Failed: build command exited with code: 1
+2025-03-14T05:29:10.343428Z	Failed: error occurred while running build command

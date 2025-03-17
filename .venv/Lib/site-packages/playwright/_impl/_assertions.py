@@ -16,7 +16,11 @@ import collections.abc
 from typing import Any, List, Optional, Pattern, Sequence, Union
 from urllib.parse import urljoin
 
-from playwright._impl._api_structures import ExpectedTextValue, FrameExpectOptions
+from playwright._impl._api_structures import (
+    AriaRole,
+    ExpectedTextValue,
+    FrameExpectOptions,
+)
 from playwright._impl._connection import format_call_log
 from playwright._impl._errors import Error
 from playwright._impl._fetch import APIResponse
@@ -92,10 +96,10 @@ class PageAssertions(AssertionsBase):
     async def to_have_title(
         self, titleOrRegExp: Union[Pattern[str], str], timeout: float = None
     ) -> None:
+        __tracebackhide__ = True
         expected_values = to_expected_text_values(
             [titleOrRegExp], normalize_white_space=True
         )
-        __tracebackhide__ = True
         await self._expect_impl(
             "to.have.title",
             FrameExpectOptions(expectedText=expected_values, timeout=timeout),
@@ -110,13 +114,16 @@ class PageAssertions(AssertionsBase):
         await self._not.to_have_title(titleOrRegExp, timeout)
 
     async def to_have_url(
-        self, urlOrRegExp: Union[str, Pattern[str]], timeout: float = None
+        self,
+        urlOrRegExp: Union[str, Pattern[str]],
+        timeout: float = None,
+        ignoreCase: bool = None,
     ) -> None:
         __tracebackhide__ = True
         base_url = self._actual_page.context._options.get("baseURL")
         if isinstance(urlOrRegExp, str) and base_url:
             urlOrRegExp = urljoin(base_url, urlOrRegExp)
-        expected_text = to_expected_text_values([urlOrRegExp])
+        expected_text = to_expected_text_values([urlOrRegExp], ignoreCase=ignoreCase)
         await self._expect_impl(
             "to.have.url",
             FrameExpectOptions(expectedText=expected_text, timeout=timeout),
@@ -125,10 +132,13 @@ class PageAssertions(AssertionsBase):
         )
 
     async def not_to_have_url(
-        self, urlOrRegExp: Union[Pattern[str], str], timeout: float = None
+        self,
+        urlOrRegExp: Union[Pattern[str], str],
+        timeout: float = None,
+        ignoreCase: bool = None,
     ) -> None:
         __tracebackhide__ = True
-        await self._not.to_have_url(urlOrRegExp, timeout)
+        await self._not.to_have_url(urlOrRegExp, timeout, ignoreCase)
 
 
 class LocatorAssertions(AssertionsBase):
@@ -501,28 +511,38 @@ class LocatorAssertions(AssertionsBase):
         timeout: float = None,
     ) -> None:
         __tracebackhide__ = True
+        if attached is None:
+            attached = True
+        attached_string = "attached" if attached else "detached"
         await self._expect_impl(
-            "to.be.attached"
-            if (attached is None or attached is True)
-            else "to.be.detached",
+            ("to.be.attached" if attached else "to.be.detached"),
             FrameExpectOptions(timeout=timeout),
             None,
-            "Locator expected to be attached",
+            f"Locator expected to be {attached_string}",
         )
 
     async def to_be_checked(
         self,
         timeout: float = None,
         checked: bool = None,
+        indeterminate: bool = None,
     ) -> None:
         __tracebackhide__ = True
+        expected_value = {}
+        if indeterminate is not None:
+            expected_value["indeterminate"] = indeterminate
+        if checked is not None:
+            expected_value["checked"] = checked
+        checked_string: str
+        if indeterminate:
+            checked_string = "indeterminate"
+        else:
+            checked_string = "unchecked" if checked is False else "checked"
         await self._expect_impl(
-            "to.be.checked"
-            if checked is None or checked is True
-            else "to.be.unchecked",
-            FrameExpectOptions(timeout=timeout),
+            "to.be.checked",
+            FrameExpectOptions(timeout=timeout, expectedValue=expected_value),
             None,
-            "Locator expected to be checked",
+            f"Locator expected to be {checked_string}",
         )
 
     async def not_to_be_attached(
@@ -567,11 +587,12 @@ class LocatorAssertions(AssertionsBase):
         __tracebackhide__ = True
         if editable is None:
             editable = True
+        editable_string = "editable" if editable else "readonly"
         await self._expect_impl(
             "to.be.editable" if editable else "to.be.readonly",
             FrameExpectOptions(timeout=timeout),
             None,
-            "Locator expected to be editable",
+            f"Locator expected to be {editable_string}",
         )
 
     async def not_to_be_editable(
@@ -609,11 +630,12 @@ class LocatorAssertions(AssertionsBase):
         __tracebackhide__ = True
         if enabled is None:
             enabled = True
+        enabled_string = "enabled" if enabled else "disabled"
         await self._expect_impl(
             "to.be.enabled" if enabled else "to.be.disabled",
             FrameExpectOptions(timeout=timeout),
             None,
-            "Locator expected to be enabled",
+            f"Locator expected to be {enabled_string}",
         )
 
     async def not_to_be_enabled(
@@ -651,11 +673,12 @@ class LocatorAssertions(AssertionsBase):
         __tracebackhide__ = True
         if visible is None:
             visible = True
+        visible_string = "visible" if visible else "hidden"
         await self._expect_impl(
             "to.be.visible" if visible else "to.be.hidden",
             FrameExpectOptions(timeout=timeout),
             None,
-            "Locator expected to be visible",
+            f"Locator expected to be {visible_string}",
         )
 
     async def not_to_be_visible(
@@ -703,6 +726,119 @@ class LocatorAssertions(AssertionsBase):
     ) -> None:
         __tracebackhide__ = True
         await self._not.to_be_in_viewport(ratio=ratio, timeout=timeout)
+
+    async def to_have_accessible_description(
+        self,
+        description: Union[str, Pattern[str]],
+        ignoreCase: bool = None,
+        timeout: float = None,
+    ) -> None:
+        __tracebackhide__ = True
+        expected_values = to_expected_text_values(
+            [description], ignoreCase=ignoreCase, normalize_white_space=True
+        )
+        await self._expect_impl(
+            "to.have.accessible.description",
+            FrameExpectOptions(expectedText=expected_values, timeout=timeout),
+            None,
+            "Locator expected to have accessible description",
+        )
+
+    async def not_to_have_accessible_description(
+        self,
+        name: Union[str, Pattern[str]],
+        ignoreCase: bool = None,
+        timeout: float = None,
+    ) -> None:
+        __tracebackhide__ = True
+        await self._not.to_have_accessible_description(name, ignoreCase, timeout)
+
+    async def to_have_accessible_name(
+        self,
+        name: Union[str, Pattern[str]],
+        ignoreCase: bool = None,
+        timeout: float = None,
+    ) -> None:
+        __tracebackhide__ = True
+        expected_values = to_expected_text_values(
+            [name], ignoreCase=ignoreCase, normalize_white_space=True
+        )
+        await self._expect_impl(
+            "to.have.accessible.name",
+            FrameExpectOptions(expectedText=expected_values, timeout=timeout),
+            None,
+            "Locator expected to have accessible name",
+        )
+
+    async def not_to_have_accessible_name(
+        self,
+        name: Union[str, Pattern[str]],
+        ignoreCase: bool = None,
+        timeout: float = None,
+    ) -> None:
+        __tracebackhide__ = True
+        await self._not.to_have_accessible_name(name, ignoreCase, timeout)
+
+    async def to_have_role(self, role: AriaRole, timeout: float = None) -> None:
+        __tracebackhide__ = True
+        if isinstance(role, Pattern):
+            raise Error('"role" argument in to_have_role must be a string')
+        expected_values = to_expected_text_values([role])
+        await self._expect_impl(
+            "to.have.role",
+            FrameExpectOptions(expectedText=expected_values, timeout=timeout),
+            None,
+            "Locator expected to have accessible role",
+        )
+
+    async def to_have_accessible_error_message(
+        self,
+        errorMessage: Union[str, Pattern[str]],
+        ignoreCase: bool = None,
+        timeout: float = None,
+    ) -> None:
+        __tracebackhide__ = True
+        expected_values = to_expected_text_values(
+            [errorMessage], ignoreCase=ignoreCase, normalize_white_space=True
+        )
+        await self._expect_impl(
+            "to.have.accessible.error.message",
+            FrameExpectOptions(expectedText=expected_values, timeout=timeout),
+            None,
+            "Locator expected to have accessible error message",
+        )
+
+    async def not_to_have_accessible_error_message(
+        self,
+        errorMessage: Union[str, Pattern[str]],
+        ignoreCase: bool = None,
+        timeout: float = None,
+    ) -> None:
+        __tracebackhide__ = True
+        await self._not.to_have_accessible_error_message(
+            errorMessage=errorMessage, ignoreCase=ignoreCase, timeout=timeout
+        )
+
+    async def not_to_have_role(self, role: AriaRole, timeout: float = None) -> None:
+        __tracebackhide__ = True
+        await self._not.to_have_role(role, timeout)
+
+    async def to_match_aria_snapshot(
+        self, expected: str, timeout: float = None
+    ) -> None:
+        __tracebackhide__ = True
+        await self._expect_impl(
+            "to.match.aria",
+            FrameExpectOptions(expectedValue=expected, timeout=timeout),
+            expected,
+            "Locator expected to match Aria snapshot",
+        )
+
+    async def not_to_match_aria_snapshot(
+        self, expected: str, timeout: float = None
+    ) -> None:
+        __tracebackhide__ = True
+        await self._not.to_match_aria_snapshot(expected, timeout)
 
 
 class APIResponseAssertions:
@@ -778,7 +914,7 @@ def to_expected_text_values(
     ignoreCase: Optional[bool] = None,
 ) -> Sequence[ExpectedTextValue]:
     out: List[ExpectedTextValue] = []
-    assert isinstance(items, list)
+    assert isinstance(items, (list, tuple))
     for item in items:
         if isinstance(item, str):
             o = ExpectedTextValue(

@@ -1,0 +1,9 @@
+# Ignore large data files
+src/app/data/nz-listings.json
+
+# Ignore development files
+.git
+.env*
+.vscode
+node_modules/
+README.md 

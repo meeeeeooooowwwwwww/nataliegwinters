@@ -15,6 +15,7 @@
 import pathlib
 from typing import Dict, Optional, Union, cast
 
+from playwright._impl._api_structures import TracingGroupLocation
 from playwright._impl._artifact import Artifact
 from playwright._impl._connection import ChannelOwner, from_nullable_channel
 from playwright._impl._helper import locals_to_params
@@ -25,6 +26,7 @@ class Tracing(ChannelOwner):
         self, parent: ChannelOwner, type: str, guid: str, initializer: Dict
     ) -> None:
         super().__init__(parent, type, guid, initializer)
+        self._channel.mark_as_internal_type()
         self._include_sources: bool = False
         self._stacks_id: Optional[str] = None
         self._is_tracing: bool = False
@@ -41,13 +43,10 @@ class Tracing(ChannelOwner):
         params = locals_to_params(locals())
         self._include_sources = bool(sources)
 
-        async def _inner_start() -> str:
-            await self._channel.send("tracingStart", params)
-            return await self._channel.send(
-                "tracingStartChunk", {"title": title, "name": name}
-            )
-
-        trace_name = await self._connection.wrap_api_call(_inner_start, True)
+        await self._channel.send("tracingStart", params)
+        trace_name = await self._channel.send(
+            "tracingStartChunk", {"title": title, "name": name}
+        )
         await self._start_collecting_stacks(trace_name)
 
     async def start_chunk(self, title: str = None, name: str = None) -> None:
@@ -58,25 +57,20 @@ class Tracing(ChannelOwner):
     async def _start_collecting_stacks(self, trace_name: str) -> None:
         if not self._is_tracing:
             self._is_tracing = True
-            self._connection.set_in_tracing(True)
+            self._connection.set_is_tracing(True)
         self._stacks_id = await self._connection.local_utils.tracing_started(
             self._traces_dir, trace_name
         )
 
     async def stop_chunk(self, path: Union[pathlib.Path, str] = None) -> None:
-        await self._connection.wrap_api_call(lambda: self._do_stop_chunk(path), True)
+        await self._do_stop_chunk(path)
 
     async def stop(self, path: Union[pathlib.Path, str] = None) -> None:
-        async def _inner() -> None:
-            await self._do_stop_chunk(path)
-            await self._channel.send("tracingStop")
-
-        await self._connection.wrap_api_call(_inner, True)
+        await self._do_stop_chunk(path)
+        await self._channel.send("tracingStop")
 
     async def _do_stop_chunk(self, file_path: Union[pathlib.Path, str] = None) -> None:
-        if self._is_tracing:
-            self._is_tracing = False
-            self._connection.set_in_tracing(False)
+        self._reset_stack_counter()
 
         if not file_path:
             # Not interested in any artifacts
@@ -133,3 +127,14 @@ class Tracing(ChannelOwner):
                 "includeSources": self._include_sources,
             }
         )
+
+    def _reset_stack_counter(self) -> None:
+        if self._is_tracing:
+            self._is_tracing = False
+            self._connection.set_is_tracing(False)
+
+    async def group(self, name: str, location: TracingGroupLocation = None) -> None:
+        await self._channel.send("tracingGroup", locals_to_params(locals()))
+
+    async def group_end(self) -> None:
+        await self._channel.send("tracingGroupEnd")

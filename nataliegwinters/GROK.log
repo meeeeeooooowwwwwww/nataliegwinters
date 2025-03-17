@@ -1,0 +1,76 @@
+Why This Happens
+Next.js uses PostCSS under the hood to process CSS files, including your globals.css (or whatever file includes Tailwind directives like @tailwind base;). Your project likely has a postcss.config.js file that lists tailwindcss as a plugin, but it doesn’t account for the updated package requirement. The logs confirm this is happening when processing ./src/app/globals.css.
+Steps to Fix It
+Here’s how to resolve this issue:
+1. Install the Correct Package
+You need to install @tailwindcss/postcss instead of relying solely on the tailwindcss package for PostCSS integration. Run this command in your project directory:
+bash
+
+npm install --save-dev @tailwindcss/postcss
+
+If you’re using an older version of Tailwind and want to stick with it (e.g., v3.x), you might not need this package yet—check your package.json to see which version of tailwindcss is installed. If it’s v4.x or you’re unsure, installing @tailwindcss/postcss is the safer bet.
+2. Update Your PostCSS Configuration
+Next, check your postcss.config.js file (it’s usually in the root of your project). It might look something like this right now:
+javascript
+
+module.exports = {
+  plugins: {
+    tailwindcss: {},
+    autoprefixer: {},
+  },
+};
+
+The issue is that tailwindcss is being referenced directly as a plugin, which isn’t supported in newer setups. Update it to use @tailwindcss/postcss instead:
+javascript
+
+module.exports = {
+  plugins: {
+    '@tailwindcss/postcss': {},
+    autoprefixer: {},
+  },
+};
+
+If you don’t have a postcss.config.js file yet, create one in the root of your project with the above content.
+3. Verify Your Tailwind Setup
+Ensure your tailwind.config.js (or .ts if you’re using TypeScript) is correctly set up. It should look something like this:
+javascript
+
+module.exports = {
+  content: [
+    './src/**/*.{js,ts,jsx,tsx}', // Adjust this based on your project structure
+  ],
+  theme: {
+    extend: {},
+  },
+  plugins: [],
+};
+
+Make sure the content paths match where your components and pages live (e.g., ./src/app/**/*.{js,ts,jsx,tsx} if you’re using the App Router).
+4. Check Your CSS File
+The error originates from ./src/app/globals.css. Open that file and confirm it includes standard Tailwind directives, like:
+css
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+If it’s missing these or has something unusual, that could also cause issues, though the logs point more to the PostCSS plugin problem.
+5. Test the Build Locally
+Before pushing to Cloudflare, test the build locally to catch any lingering issues:
+bash
+
+npm run build
+
+If it succeeds, you’re likely good to go. If it fails with a different error, let me know, and we’ll tackle that next.
+6. Push and Redeploy
+Commit your changes (updated package.json, postcss.config.js, etc.) and push them to your GitHub repository (https://github.com/meeeeeooooowwwwwww/nz-business-listings). Then trigger a redeploy on Cloudflare. The logs show it’s cloning from commit 99e6dc4, so a new commit should kick off a fresh build.
+Additional Notes from the Logs
+Node.js Version: You’re using Node.js 18.19.0, which is in LTS Maintenance mode and nearing end-of-life. It’s fine for now (critical updates are still provided), but consider upgrading to Node.js 20.x soon for better long-term support.
+
+Dependencies: The build installs vercel@41.4.1 and @cloudflare/next-on-pages@1.13.10. These are up-to-date as of March 2025, so no issues there.
+
+Warnings: There are deprecation warnings for inflight@1.0.6, glob@7.2.3, and uuid@3.3.2. These are from dependencies and won’t break the build, but updating them (via npm update or specific package upgrades) could clean things up later.
+
+If It Still Fails
+If the build still fails after these changes, share the new error logs or let me know what’s in your postcss.config.js, tailwind.config.js, and globals.css files. I can dig deeper. Alternatively, I could search the web or X for similar issues with @cloudflare/next-on-pages and Next.js 15.2.2 (your version), but the error message is clear enough that I’m confident this fix will work.
+

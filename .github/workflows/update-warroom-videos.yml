@@ -92,7 +92,17 @@ jobs:
     - name: Trigger Cloudflare Pages deployment
       if: steps.check_changes.outputs.has_changes == 'true'
       run: |
-        curl -X POST "https://api.cloudflare.com/client/v4/pages/webhooks/deploy_hooks/${{ secrets.CLOUDFLARE_DEPLOY_HOOK }}"
+        echo "Triggering Cloudflare Pages deployment..."
+        RESPONSE=$(curl -X POST "https://api.cloudflare.com/client/v4/pages/webhooks/deploy_hooks/${{ secrets.CLOUDFLARE_DEPLOY_HOOK }}" -w "\n%{http_code}")
+        HTTP_STATUS=$(echo "$RESPONSE" | tail -n1)
+        BODY=$(echo "$RESPONSE" | head -n1)
+        echo "Cloudflare API Response: $BODY"
+        echo "HTTP Status Code: $HTTP_STATUS"
+        if [ "$HTTP_STATUS" -ne 200 ]; then
+          echo "Error: Cloudflare deployment failed with status $HTTP_STATUS"
+          exit 1
+        fi
+        echo "Cloudflare deployment triggered successfully"
     
     - name: Create status comment
       uses: actions/github-script@v6

@@ -32,22 +32,22 @@ class Tracing extends _channelOwner.ChannelOwner {
     this._tracesDir = void 0;
     this._stacksId = void 0;
     this._isTracing = false;
+    this.markAsInternalType();
   }
   async start(options = {}) {
     this._includeSources = !!options.sources;
-    const traceName = await this._wrapApiCall(async () => {
-      await this._channel.tracingStart({
-        name: options.name,
-        snapshots: options.snapshots,
-        screenshots: options.screenshots,
-        live: options._live
-      });
-      const response = await this._channel.tracingStartChunk({
-        name: options.name,
-        title: options.title
-      });
-      return response.traceName;
-    }, true);
+    await this._channel.tracingStart({
+      name: options.name,
+      snapshots: options.snapshots,
+      screenshots: options.screenshots,
+      live: options._live
+    });
+    const {
+      traceName
+    } = await this._channel.tracingStartChunk({
+      name: options.name,
+      title: options.title
+    });
     await this._startCollectingStacks(traceName);
   }
   async startChunk(options = {}) {
@@ -55,6 +55,19 @@ class Tracing extends _channelOwner.ChannelOwner {
       traceName
     } = await this._channel.tracingStartChunk(options);
     await this._startCollectingStacks(traceName);
+  }
+  async group(name, options = {}) {
+    await this._wrapApiCall(async () => {
+      await this._channel.tracingGroup({
+        name,
+        location: options.location
+      });
+    }, false);
+  }
+  async groupEnd() {
+    await this._wrapApiCall(async () => {
+      await this._channel.tracingGroupEnd();
+    }, false);
   }
   async _startCollectingStacks(traceName) {
     if (!this._isTracing) {
@@ -68,21 +81,14 @@ class Tracing extends _channelOwner.ChannelOwner {
     this._stacksId = result.stacksId;
   }
   async stopChunk(options = {}) {
-    await this._wrapApiCall(async () => {
-      await this._doStopChunk(options.path);
-    }, true);
+    await this._doStopChunk(options.path);
   }
   async stop(options = {}) {
-    await this._wrapApiCall(async () => {
-      await this._doStopChunk(options.path);
-      await this._channel.tracingStop();
-    }, true);
+    await this._doStopChunk(options.path);
+    await this._channel.tracingStop();
   }
   async _doStopChunk(filePath) {
-    if (this._isTracing) {
-      this._isTracing = false;
-      this._connection.setIsTracing(false);
-    }
+    this._resetStackCounter();
     if (!filePath) {
       // Not interested in artifacts.
       await this._channel.tracingStopChunk({
@@ -130,6 +136,12 @@ class Tracing extends _channelOwner.ChannelOwner {
       stacksId: this._stacksId,
       includeSources: this._includeSources
     });
+  }
+  _resetStackCounter() {
+    if (this._isTracing) {
+      this._isTracing = false;
+      this._connection.setIsTracing(false);
+    }
   }
 }
 exports.Tracing = Tracing;

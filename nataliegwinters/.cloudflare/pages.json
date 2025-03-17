@@ -1,0 +1,20 @@
+{
+  "build": {
+    "command": "npm install && npm run build",
+    "cwd": ".",
+    "env": {
+      "NODE_VERSION": "18"
+    }
+  },
+  "routes": [
+    { "pattern": "/*", "serve": "*" }
+  ],
+  "env": {
+    "production": {
+      "NODE_ENV": "production"
+    },
+    "preview": {
+      "NODE_ENV": "development"
+    }
+  }
+} 

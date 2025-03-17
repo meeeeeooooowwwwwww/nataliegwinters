@@ -3,9 +3,8 @@
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.runWithFinally = runWithFinally;
-exports.zones = void 0;
-var _stackTrace = require("./stackTrace");
+exports.zones = exports.Zone = void 0;
+var _async_hooks = require("async_hooks");
 /**
  * Copyright (c) Microsoft Corporation.
  *
@@ -24,76 +23,47 @@ var _stackTrace = require("./stackTrace");
 
 class ZoneManager {
   constructor() {
-    this.lastZoneId = 0;
-    this._zones = new Map();
+    this._asyncLocalStorage = new _async_hooks.AsyncLocalStorage();
+    this._emptyZone = Zone.createEmpty(this._asyncLocalStorage);
   }
   run(type, data, func) {
-    return new Zone(this, ++this.lastZoneId, type, data).run(func);
+    return this.current().with(type, data).run(func);
   }
-  zoneData(type, rawStack) {
-    for (const line of rawStack) {
-      for (const zoneId of zoneIds(line)) {
-        const zone = this._zones.get(zoneId);
-        if (zone && zone.type === type) return zone.data;
-      }
-    }
-    return null;
+  zoneData(type) {
+    return this.current().data(type);
   }
-  preserve(callback) {
-    const rawStack = (0, _stackTrace.captureRawStack)();
-    const refs = [];
-    for (const line of rawStack) refs.push(...zoneIds(line));
-    Object.defineProperty(callback, 'name', {
-      value: `__PWZONE__[${refs.join(',')}]-refs`
-    });
-    return callback();
+  current() {
+    var _this$_asyncLocalStor;
+    return (_this$_asyncLocalStor = this._asyncLocalStorage.getStore()) !== null && _this$_asyncLocalStor !== void 0 ? _this$_asyncLocalStor : this._emptyZone;
   }
-}
-function zoneIds(line) {
-  const index = line.indexOf('__PWZONE__[');
-  if (index === -1) return [];
-  return line.substring(index + '__PWZONE__['.length, line.indexOf(']', index)).split(',').map(s => +s);
+  empty() {
+    return this._emptyZone;
+  }
 }
 class Zone {
-  constructor(manager, id, type, data) {
-    this._manager = void 0;
-    this.id = void 0;
-    this.type = void 0;
-    this.data = void 0;
-    this.wallTime = void 0;
-    this._manager = manager;
-    this.id = id;
-    this.type = type;
-    this.data = data;
-    this.wallTime = Date.now();
+  static createEmpty(asyncLocalStorage) {
+    return new Zone(asyncLocalStorage, new Map());
+  }
+  constructor(asyncLocalStorage, store) {
+    this._asyncLocalStorage = void 0;
+    this._data = void 0;
+    this._asyncLocalStorage = asyncLocalStorage;
+    this._data = store;
+  }
+  with(type, data) {
+    return new Zone(this._asyncLocalStorage, new Map(this._data).set(type, data));
+  }
+  without(type) {
+    const data = type ? new Map(this._data) : new Map();
+    data.delete(type);
+    return new Zone(this._asyncLocalStorage, data);
   }
   run(func) {
-    this._manager._zones.set(this.id, this);
-    Object.defineProperty(func, 'name', {
-      value: `__PWZONE__[${this.id}]-${this.type}`
-    });
-    return runWithFinally(() => func(this.data), () => {
-      this._manager._zones.delete(this.id);
-    });
+    return this._asyncLocalStorage.run(this, func);
+  }
+  data(type) {
+    return this._data.get(type);
   }
 }
-function runWithFinally(func, finallyFunc) {
-  try {
-    const result = func();
-    if (result instanceof Promise) {
-      return result.then(r => {
-        finallyFunc();
-        return r;
-      }).catch(e => {
-        finallyFunc();
-        throw e;
-      });
-    }
-    finallyFunc();
-    return result;
-  } catch (e) {
-    finallyFunc();
-    throw e;
-  }
-}
+exports.Zone = Zone;
 const zones = exports.zones = new ZoneManager();

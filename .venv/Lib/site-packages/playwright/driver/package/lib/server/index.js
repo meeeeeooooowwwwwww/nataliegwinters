@@ -45,10 +45,10 @@ Object.defineProperty(exports, "installBrowsersForNpmInstall", {
     return _registry.installBrowsersForNpmInstall;
   }
 });
-Object.defineProperty(exports, "installDefaultBrowsersForNpmInstall", {
+Object.defineProperty(exports, "installRootRedirect", {
   enumerable: true,
   get: function () {
-    return _registry.installDefaultBrowsersForNpmInstall;
+    return _traceViewer.installRootRedirect;
   }
 });
 Object.defineProperty(exports, "openTraceInBrowser", {
@@ -75,10 +75,22 @@ Object.defineProperty(exports, "registryDirectory", {
     return _registry.registryDirectory;
   }
 });
+Object.defineProperty(exports, "runTraceViewerApp", {
+  enumerable: true,
+  get: function () {
+    return _traceViewer.runTraceViewerApp;
+  }
+});
 Object.defineProperty(exports, "serverSideCallMetadata", {
   enumerable: true,
   get: function () {
     return _instrumentation.serverSideCallMetadata;
+  }
+});
+Object.defineProperty(exports, "startTraceViewerServer", {
+  enumerable: true,
+  get: function () {
+    return _traceViewer.startTraceViewerServer;
   }
 });
 Object.defineProperty(exports, "writeDockerVersion", {

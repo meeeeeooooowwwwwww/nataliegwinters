@@ -1,0 +1,25 @@
+[build]
+command = "npm run build"
+
+[build.environment]
+NODE_VERSION = "18"
+
+# Configure edge runtime
+compatibility_date = "2024-03-14"
+compatibility_flags = ["nodejs_compat"]
+
+[[routes]]
+pattern = "/*"
+zone_name = "business.nataliegwinters.com"
+
+[site]
+bucket = ".next"
+
+# Required for Cloudflare Pages
+[build.upload]
+format = "service-worker"
+dir = ".next"
+main = ".next/worker.js"
+
+# Specify the build output directory
+pages_build_output_dir = ".next" 

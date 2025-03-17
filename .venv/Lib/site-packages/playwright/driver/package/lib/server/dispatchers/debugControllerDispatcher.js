@@ -33,11 +33,13 @@ class DebugControllerDispatcher extends _dispatcher.Dispatcher {
       this._dispatchEvent('stateChanged', params);
     }), _utils.eventsHelper.addEventListener(this._object, _debugController.DebugController.Events.InspectRequested, ({
       selector,
-      locator
+      locator,
+      ariaSnapshot
     }) => {
       this._dispatchEvent('inspectRequested', {
         selector,
-        locator
+        locator,
+        ariaSnapshot
       });
     }), _utils.eventsHelper.addEventListener(this._object, _debugController.DebugController.Events.SourceChanged, ({
       text,
@@ -81,7 +83,7 @@ class DebugControllerDispatcher extends _dispatcher.Dispatcher {
     await this._object.setRecorderMode(params);
   }
   async highlight(params) {
-    await this._object.highlight(params.selector);
+    await this._object.highlight(params);
   }
   async hideHighlight() {
     await this._object.hideHighlight();

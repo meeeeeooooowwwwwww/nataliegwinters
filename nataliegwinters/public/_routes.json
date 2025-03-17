@@ -1,0 +1,17 @@
+{
+  "version": 1,
+  "include": [
+    "/*"
+  ],
+  "exclude": [
+    "/nz-listings.json"
+  ],
+  "cache": {
+    "/nz-listings.json": {
+      "bypass_cache": false,
+      "cache_everything": true,
+      "edge_ttl": 31536000,
+      "browser_ttl": 31536000
+    }
+  }
+} 
